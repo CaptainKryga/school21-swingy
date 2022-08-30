@@ -4,4 +4,8 @@ import org.jbashiri.model.Player;
 
 public interface UIGame {
     public void printPlayerInfo(Player player);
+
+    public void printDirections();
+
+    public void inputError();
 }

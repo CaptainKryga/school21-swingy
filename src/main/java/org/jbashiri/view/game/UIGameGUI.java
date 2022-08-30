@@ -7,4 +7,14 @@ public class UIGameGUI implements UIGame {
     public void printPlayerInfo(Player player) {
 
     }
+
+    @Override
+    public void printDirections() {
+
+    }
+
+    @Override
+    public void inputError() {
+
+    }
 }

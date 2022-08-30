@@ -22,4 +22,16 @@ public class UIGameConsole implements UIGame {
         System.out.println("HEAD: " +
                 (player.getArtifactHead() == null ? "no head" : player.getArtifactHead().getNameAndStats()));
     }
+
+    @Override
+    public void printDirections() {
+        System.out.println("Directions:      NORTH");
+        System.out.println("          WEST     X     EAST");
+        System.out.println("                 SOUTH");
+    }
+
+    @Override
+    public void inputError() {
+        System.out.println("INPUT ERROR");
+    }
 }
