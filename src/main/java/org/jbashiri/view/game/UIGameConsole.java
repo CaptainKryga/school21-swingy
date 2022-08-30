@@ -2,6 +2,8 @@ package org.jbashiri.view.game;
 
 import org.jbashiri.model.Player;
 
+import static org.jbashiri.utils.CustomMath.getRandom;
+
 public class UIGameConsole implements UIGame {
     @Override
     public void printPlayerInfo(Player player) {
@@ -33,5 +35,23 @@ public class UIGameConsole implements UIGame {
     @Override
     public void inputError() {
         System.out.println("INPUT ERROR");
+    }
+
+    @Override
+    public void printMap(int[][] map) {
+        for (int x = 0; x < map.length; x++) {
+            for (int y = 0; y < map.length; y++) {
+                if (map[x][y] == 0) {
+                    System.out.print(' ');
+                }
+                System.out.print(map[x][y]);
+                if (map[x][y] == -1) {
+                    System.out.print(' ');
+                } else {
+                    System.out.print(' ');
+                }
+            }
+            System.out.print('\n');
+        }
     }
 }

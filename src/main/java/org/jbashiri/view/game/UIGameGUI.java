@@ -17,4 +17,9 @@ public class UIGameGUI implements UIGame {
     public void inputError() {
 
     }
+
+    @Override
+    public void printMap(int[][] map) {
+
+    }
 }

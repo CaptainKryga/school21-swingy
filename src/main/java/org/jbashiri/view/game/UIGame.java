@@ -8,4 +8,6 @@ public interface UIGame {
     public void printDirections();
 
     public void inputError();
+
+    public void printMap(int[][] map);
 }

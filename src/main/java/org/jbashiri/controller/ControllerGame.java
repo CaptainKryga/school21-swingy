@@ -7,11 +7,14 @@ import org.jbashiri.view.game.UIGameGUI;
 
 import java.util.Scanner;
 
+import static org.jbashiri.utils.CustomMath.getRandom;
+
 public class ControllerGame {
     private UIGame uiGame;
     private Player player;
 
     private boolean isLoop;
+    private int[][] map;
 
     public void init(String name, String clas, boolean isConsole) {
         player = new Player(name, clas);
@@ -36,6 +39,9 @@ public class ControllerGame {
 
         //name
         while (sc.hasNextLine()) {
+
+            map = generateEnemy(createMap(getSizeMap()));
+
             String line = sc.nextLine().toLowerCase();
 
             if (line.equals("north")) {
@@ -55,6 +61,8 @@ public class ControllerGame {
                 uiGame.printDirections();
             }
 
+            uiGame.printMap(map);
+
         }
         sc.close();
     }
@@ -65,5 +73,28 @@ public class ControllerGame {
         } else {
             return new UIGameGUI();
         }
+    }
+
+    private int getSizeMap() {
+        return (player.getLevel() - 1) * 5 + 10;
+    }
+
+    private int[][] createMap(int size) {
+        int[][] map = new int[size][size];
+        return map;
+    }
+
+    private int[][] generateEnemy(int[][] map) {
+        for (int x = 0; x < map.length; x++) {
+            for (int y = 0; y < map.length; y++) {
+                if (getRandom(0, 100) > 65) {
+                    map[x][y] = player.getLevel();
+                }
+                else {
+                    map[x][y] = -1;
+                }
+            }
+        }
+        return map;
     }
 }
