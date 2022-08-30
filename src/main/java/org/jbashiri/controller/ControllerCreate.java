@@ -44,7 +44,8 @@ public class ControllerCreate {
         if (state == 1 && isConsole) {
             uiCreate.printState(state);
             Scanner sc = new Scanner(System.in);
-            while(true) {
+            while(sc.hasNextLine()) {
+                System.out.println("iter");
                 String line = sc.nextLine().toLowerCase();
 
                 if (line.equals("warrior") || line.equals("mage") || line.equals("ranger") || line.equals("paladin")) {
@@ -57,6 +58,8 @@ public class ControllerCreate {
 
                 CustomLogger.singleton.printLog("while", 3);
             }
+            sc.close();
+
         }
     }
 

@@ -32,7 +32,7 @@ public class ControllerInit {
 
         if (isConsole) {
             Scanner sc = new Scanner(System.in);
-            while(true) {
+            while(sc.hasNextLine()) {
                 String line = sc.nextLine().toLowerCase();
 
                 if (line.equals("create")) {
