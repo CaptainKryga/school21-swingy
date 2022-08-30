@@ -8,9 +8,16 @@ public class CustomMath {
     }
     public static int getPow(int num, int pow) {
         int result = num;
+        pow--;
         for (; pow > 0; pow--) {
             result *= num;
         }
         return result;
+    }
+
+    public static int Abs(int num) {
+        if (num < 0)
+            num *= -1;
+        return num;
     }
 }

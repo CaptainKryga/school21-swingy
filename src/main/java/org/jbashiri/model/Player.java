@@ -15,14 +15,18 @@ public class Player {
     protected Artifact chest;
     protected Artifact head;
 
-    public void GainExperience(int exp) {
+    //если получаем уровень возвращаем тру и алармим о получении нового уровня
+    public boolean GainExperience(int exp) {
         experience += exp;
-        if (experience >= calculateExperience()) {
-
+        if (experience >= calculateExperience(level + 1)) {
+            experience -= calculateExperience(level + 1);
+            level++;
+            return true;
         }
+        return false;
     }
 
-    private int calculateExperience() {
+    private int calculateExperience(int level) {
         return level * 1000 + getPow(level, 2) * 450;
     }
 }

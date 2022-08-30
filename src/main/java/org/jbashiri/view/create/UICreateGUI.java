@@ -7,7 +7,23 @@ public class UICreateGUI implements UICreate {
 
     @Override
     public void printName(String name) {
-        System.out.println("CREATE HERO NAME this must be gui...");
+        System.out.println("CREATE HERO this must be gui...");
+    }
+
+    @Override
+    public void printClass(String name) {
+        System.out.println("CREATE HERO this must be gui...");
+    }
+
+    @Override
+    public void printConfirm() {
+        System.out.println("CREATE HERO this must be gui...");
+    }
+
+    @Override
+    public void inputError(int state) {
+        System.out.println("INPUT ERROR");
+        printState(state);
     }
 
     @Override

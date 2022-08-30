@@ -1,7 +1,7 @@
 package org.jbashiri.model.classes;
 
 public class Ranger extends Class {
-    Ranger() {
+    public Ranger() {
         name = "Ranger";
         hp = 100;
         attack = 25;

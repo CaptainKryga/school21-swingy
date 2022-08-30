@@ -1,7 +1,7 @@
 package org.jbashiri.model.classes;
 
 public class Mage extends Class {
-    Mage() {
+    public Mage() {
         name = "Mage";
         hp = 50;
         attack = 0;

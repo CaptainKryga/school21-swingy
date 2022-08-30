@@ -1,5 +1,6 @@
 package org.jbashiri.controller;
 
+import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.view.create.UICreate;
 import org.jbashiri.view.create.UICreateConsole;
 import org.jbashiri.view.create.UICreateGUI;
@@ -26,16 +27,36 @@ public class ControllerCreate {
         if (uiCreate != null)
             uiCreate = null;
         uiCreate = getCreate(isConsole);
-        uiCreate.printState(state);
 
+        //name
         if (state == 0 && isConsole) {
+            uiCreate.printState(state);
             Scanner sc = new Scanner(System.in);
             String line = sc.nextLine().toLowerCase();
             uiCreate.printName(line);
 
             sc.close();
-        } else if (state == 1 && isConsole) {
 
+            state = 1;
+        }
+
+        //class
+        if (state == 1 && isConsole) {
+            uiCreate.printState(state);
+            Scanner sc = new Scanner(System.in);
+            while(true) {
+                String line = sc.nextLine().toLowerCase();
+
+                if (line.equals("warrior") || line.equals("mage") || line.equals("ranger") || line.equals("paladin")) {
+                    uiCreate.printClass(line);
+                    break;
+                } else {
+                    uiCreate.inputError(state);
+                }
+                uiCreate.printName(line);
+
+                CustomLogger.singleton.printLog("while", 3);
+            }
         }
     }
 
