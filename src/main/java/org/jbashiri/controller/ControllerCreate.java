@@ -13,6 +13,8 @@ public class ControllerCreate {
 
     //state 0=>name 1=>class
     private int state;
+    private String playerName;
+    private String playerClass;
 
     ControllerCreate(ControllerGame game) {
         this.game = game;
@@ -27,15 +29,14 @@ public class ControllerCreate {
         if (uiCreate != null)
             uiCreate = null;
         uiCreate = getCreate(isConsole);
+        Scanner sc = new Scanner(System.in);
 
         //name
         if (state == 0 && isConsole) {
             uiCreate.printState(state);
-            Scanner sc = new Scanner(System.in);
             String line = sc.nextLine().toLowerCase();
             uiCreate.printName(line);
-
-            sc.close();
+            playerName = line;
 
             state = 1;
         }
@@ -43,24 +44,24 @@ public class ControllerCreate {
         //class
         if (state == 1 && isConsole) {
             uiCreate.printState(state);
-            Scanner sc = new Scanner(System.in);
             while(sc.hasNextLine()) {
-                System.out.println("iter");
                 String line = sc.nextLine().toLowerCase();
 
                 if (line.equals("warrior") || line.equals("mage") || line.equals("ranger") || line.equals("paladin")) {
                     uiCreate.printClass(line);
+                    playerClass = line;
                     break;
                 } else {
                     uiCreate.inputError(state);
                 }
-                uiCreate.printName(line);
-
-                CustomLogger.singleton.printLog("while", 3);
             }
-            sc.close();
 
+            state = 2;
         }
+        if (state == 2) {
+            game.init(playerName, playerClass, isConsole);
+        }
+        sc.close();
     }
 
     private UICreate getCreate(boolean isConsole) {

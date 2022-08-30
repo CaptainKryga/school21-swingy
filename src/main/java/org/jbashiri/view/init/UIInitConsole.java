@@ -15,6 +15,7 @@ public class UIInitConsole implements UIInit {
     private void printChoise() {
         System.out.println("CREATE => Create new HERO");
         System.out.println("LOAD => Load old save HERO");
+        System.out.println("SWITCH => Swap to GUI");
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.jbashiri.model.artifats;
 
 import org.jbashiri.utils.CustomLogger;
-import org.jbashiri.utils.CustomMath;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,9 +12,6 @@ public class Artifact {
     protected int bonusHp;
     protected int bonusAttack;
     protected int bonusDefence;
-    protected int bonusAgility;
-    protected int bonusMagic;
-    protected int bonusLuck; //max 100
 
     private String S = "QWRTPSDFGHKLZXCVBNMJ";
     private String G = "EYUIOA";
@@ -24,41 +20,26 @@ public class Artifact {
         int type = getRandom(0, 3);
 
         if (type == 0) {
-            name = "Weapon: " + getName();
-            CustomLogger.singleton.printLog(name, 2);
+            this.type = "Weapon";
+            name = this.type + ": " + getName();
             bonusHp = 0;
             bonusAttack = getRandom(luck * level, luck * level + 50);
             bonusDefence = 0;
-            bonusAgility = getRandom(level, luck * level);
-            bonusMagic = getRandom(luck * level, luck * level + 50);
-            bonusLuck = 0;
-            CustomLogger.singleton.printLog("\nbonusHP = " + bonusHp + "\nbonusAttack = " + bonusAttack +
-                    "\nbonusDefence = " + bonusDefence + "\nbonusMagic = " + bonusMagic + "\nbonusLuck = " +
-                    bonusLuck, 3);
+            CustomLogger.singleton.printLog(name + "\nbonusAttack = " + bonusAttack, 2);
         } else if (type == 1) {
-            name = "Chest: " + getName();
-            CustomLogger.singleton.printLog(name, 2);
-            bonusHp = getRandom(luck * level, luck * level + 50);
+            this.type = "Chest";
+            name = this.type + ": " + getName();
+            bonusHp = 0;
             bonusAttack = 0;
             bonusDefence = getRandom(luck * level, luck * level + 50);
-            bonusAgility = getRandom(luck * level, luck * level + 50);
-            bonusMagic = 0;
-            bonusLuck = 0;
-            CustomLogger.singleton.printLog("\nbonusHP = " + bonusHp + "\nbonusAttack = " + bonusAttack +
-                    "\nbonusDefence = " + bonusDefence + "\nbonusMagic = " + bonusMagic + "\nbonusLuck = " +
-                    bonusLuck, 3);
+            CustomLogger.singleton.printLog(name + "\nbonusDefence = " + bonusDefence, 2);
         } else if (type == 2) {
-            name = "Head: " + getName();
-            CustomLogger.singleton.printLog(name, 2);
-            bonusHp = getRandom(level, luck + 50);
+            this.type = "Head";
+            name = this.type + ": " + getName();
+            bonusHp = getRandom(luck * level, luck * level + 50);
             bonusAttack = 0;
-            bonusDefence = getRandom(level, luck + 50);
-            bonusAgility = getRandom(level, luck + 50);
-            bonusMagic = getRandom(level, luck + 50);
-            bonusLuck = getRandom(level, 100);
-            CustomLogger.singleton.printLog("\nbonusHP = " + bonusHp + "\nbonusAttack = " + bonusAttack +
-                    "\nbonusDefence = " + bonusDefence + "\nbonusMagic = " + bonusMagic + "\nbonusLuck = " +
-                    bonusLuck, 3);
+            bonusDefence = 0;
+            CustomLogger.singleton.printLog(name + "\nbonusHP = " + bonusHp, 2);
         }
     }
 
@@ -73,5 +54,14 @@ public class Artifact {
             }
         }
         return result.toString();
+    }
+
+    public String getNameAndStats() {
+        if (type.equals("Weapon"))
+            return name + "bonus attack + " + bonusAttack;
+        else if (type.equals("Chest"))
+            return name + "bonus defence + " + bonusAttack;
+        else
+            return name + "bonus hp + " + bonusAttack;
     }
 }

@@ -9,9 +9,7 @@ public class Class {
     protected int hp;
     protected int attack;
     protected int defence;
-    protected int agility;
-    protected int magic;
-    protected int luck;//max 100
+    protected int luck;
 
     public String getAllDefaultStats() {
         String result = "";
@@ -19,9 +17,27 @@ public class Class {
         result += hp + getSpaces(Abs(5 - getLengthNumber(hp)));
         result += attack + getSpaces(Abs(5 - getLengthNumber(attack)));
         result += defence + getSpaces(Abs(5 - getLengthNumber(defence)));
-        result += agility + getSpaces(Abs(5 - getLengthNumber(agility)));
-        result += magic + getSpaces(Abs(5 - getLengthNumber(magic)));
         result += luck + getSpaces(Abs(5 - getLengthNumber(luck)));
         return result;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public int getLuck() {
+        return luck;
     }
 }

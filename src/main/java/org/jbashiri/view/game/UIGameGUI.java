@@ -1,4 +1,10 @@
 package org.jbashiri.view.game;
 
-public class UIGameGUI {
+import org.jbashiri.model.Player;
+
+public class UIGameGUI implements UIGame {
+    @Override
+    public void printPlayerInfo(Player player) {
+
+    }
 }

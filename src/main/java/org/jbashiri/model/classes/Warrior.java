@@ -6,8 +6,6 @@ public class Warrior extends Class {
         hp = 200;
         attack = 20;
         defence = 20;
-        agility = 10;
-        magic = 0;
         luck = 10;
     }
 }

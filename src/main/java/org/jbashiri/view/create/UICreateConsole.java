@@ -35,7 +35,6 @@ public class UICreateConsole implements UICreate {
             System.out.println(new Mage().getAllDefaultStats());
             System.out.println(new Ranger().getAllDefaultStats());
             System.out.println(new Paladin().getAllDefaultStats());
-            System.out.println("");
         }
     }
 
