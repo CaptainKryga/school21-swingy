@@ -1,7 +1,8 @@
 package org.jbashiri.view.init;
 
 public interface UIInit {
-    public void delete();
+
+    public void init();
 
     public boolean isConsole();
 

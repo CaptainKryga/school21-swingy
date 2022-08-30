@@ -1,5 +1,6 @@
 package org.jbashiri.controller;
 
+import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.view.init.UIInit;
 import org.jbashiri.view.init.UIInitConsole;
 import org.jbashiri.view.init.UIInitGUI;
@@ -7,20 +8,27 @@ import org.jbashiri.view.init.UIInitGUI;
 import java.util.Scanner;
 
 public class ControllerInit {
+    private ControllerGame game = null;
     private ControllerCreate create;
     private ControllerLoad load;
-    private UIInit init;
+    private UIInit uiInit;
 
-    public ControllerInit() {
-        create = new ControllerCreate();
-        load = new ControllerLoad();
+    public ControllerInit(boolean isConsole) {
+        ControllerGame game = new ControllerGame();
+
+        create = new ControllerCreate(game);
+        load = new ControllerLoad(game);
+
+        CustomLogger.singleton.printLog("GG", 3);
+
+        switchUI(isConsole);
     }
 
     public void switchUI(boolean isConsole) {
-        if (init != null)
-            init.delete();
-
-        init = getInit(isConsole);
+        if (uiInit != null)
+            uiInit = null;
+        uiInit = getInit(isConsole);
+        uiInit.init();
 
         if (isConsole) {
             Scanner sc = new Scanner(System.in);
@@ -28,17 +36,19 @@ public class ControllerInit {
                 String line = sc.nextLine().toLowerCase();
 
                 if (line.equals("create")) {
-                    create.init();
+                    create.init(isConsole);
                     break;
                 } else if (line.equals("load")) {
-                    load.init();
+                    load.init(isConsole);
                     break;
                 } else if (line.equals("switch")) {
-                    switchUI(!init.isConsole());
+                    switchUI(!uiInit.isConsole());
                     break;
                 } else {
-                    init.inputError();
+                    uiInit.inputError();
                 }
+
+                CustomLogger.singleton.printLog("while", 3);
             }
             sc.close();
         }

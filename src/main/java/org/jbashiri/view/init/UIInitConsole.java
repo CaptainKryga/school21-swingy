@@ -1,7 +1,8 @@
 package org.jbashiri.view.init;
 
 public class UIInitConsole implements UIInit {
-    public UIInitConsole() {
+    @Override
+    public void init() {
         printStartMessage();
         printChoise();
     }
@@ -14,12 +15,6 @@ public class UIInitConsole implements UIInit {
     private void printChoise() {
         System.out.println("CREATE => Create new HERO");
         System.out.println("LOAD => Load old save HERO");
-    }
-
-    //отключение при необходимости
-    @Override
-    public void delete() {
-
     }
 
     @Override
