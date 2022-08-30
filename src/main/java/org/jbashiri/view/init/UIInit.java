@@ -1,4 +1,5 @@
 package org.jbashiri.view.init;
 
-public interface Init {
+public interface UIInit {
+    public void delete();
 }

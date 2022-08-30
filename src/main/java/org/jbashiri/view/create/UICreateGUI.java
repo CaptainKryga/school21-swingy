@@ -1,2 +1,4 @@
-package org.jbashiri.view.create;public class UICreateGUI {
+package org.jbashiri.view.create;
+
+public class UICreateGUI {
 }

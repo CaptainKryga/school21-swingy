@@ -1,2 +1,4 @@
-package org.jbashiri.view.game;public class UIGameGUI {
+package org.jbashiri.view.game;
+
+public class UIGameGUI {
 }

@@ -1,2 +1,4 @@
-package org.jbashiri.view.select;public interface UISelect {
+package org.jbashiri.view.select;
+
+public interface UISelect {
 }

@@ -1,2 +1,4 @@
-package org.jbashiri.view.create;public interface UICreate {
+package org.jbashiri.view.create;
+
+public interface UICreate {
 }
