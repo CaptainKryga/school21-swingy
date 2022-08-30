@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class ControllerInit {
     private ControllerCreate create;
-    private ControllerSelect select;
+    private ControllerLoad load;
     private UIInit init;
 
     public ControllerInit() {
         create = new ControllerCreate();
-        select = new ControllerSelect();
+        load = new ControllerLoad();
     }
 
     public void switchUI(boolean isConsole) {
@@ -25,15 +25,22 @@ public class ControllerInit {
         if (isConsole) {
             Scanner sc = new Scanner(System.in);
             while(true) {
-                String line = sc.nextLine();
-                System.out.println(line);
+                String line = sc.nextLine().toLowerCase();
 
                 if (line.equals("create")) {
+                    create.init();
                     break;
+                } else if (line.equals("load")) {
+                    load.init();
+                    break;
+                } else if (line.equals("switch")) {
+                    switchUI(!init.isConsole());
+                    break;
+                } else {
+                    init.inputError();
                 }
             }
             sc.close();
-
         }
     }
 

@@ -6,7 +6,18 @@ public class UIInitGUI implements UIInit {
     }
 
     //отключение при необходимости
+    @Override
     public void delete() {
+
+    }
+
+    @Override
+    public boolean isConsole() {
+        return false;
+    }
+
+    @Override
+    public void inputError() {
 
     }
 }
