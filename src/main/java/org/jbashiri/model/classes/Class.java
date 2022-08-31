@@ -6,10 +6,10 @@ import static org.jbashiri.utils.CustomMath.Abs;
 
 public class Class {
     protected String name;
-    protected int hp;
-    protected int attack;
-    protected int defence;
-    protected int luck;
+    public int hp;
+    public int attack;
+    public int defence;
+    public int luck;
 
     public String getAllDefaultStats() {
         String result = "";
@@ -19,6 +19,13 @@ public class Class {
         result += defence + getSpaces(Abs(5 - getLengthNumber(defence)));
         result += luck + getSpaces(Abs(5 - getLengthNumber(luck)));
         return result;
+    }
+
+    public void levelUp(int level) {
+        hp = hp + hp * level / 10;
+        attack = attack + attack * level / 10;
+        defence = defence + defence * level / 10;
+        luck = luck + luck * level / 10;
     }
 
     public String getName() {

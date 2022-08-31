@@ -4,8 +4,8 @@ public class Ranger extends Class {
     public Ranger() {
         name = "Ranger";
         hp = 100;
-        attack = 25;
-        defence = 10;
-        luck = 25;
+        attack = 75;
+        defence = 25;
+        luck = 20;
     }
 }

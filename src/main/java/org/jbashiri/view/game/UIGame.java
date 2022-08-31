@@ -17,4 +17,8 @@ public interface UIGame {
     public void printDefeat(int score);
     public void printDivider();
     public void printFight(Player player, Enemy enemy);
+    public void printStartFight();
+    public void printAttack();
+    public void printFightFirstAttack(boolean isWinRollPlayer, int rollPlayer, int rollEnemy, int atk);
+    public void printFightSecondAttack(boolean isWinRollPlayer, int chance, int atk);
 }

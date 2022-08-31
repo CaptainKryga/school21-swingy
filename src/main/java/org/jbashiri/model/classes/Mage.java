@@ -6,9 +6,9 @@ public class Mage extends Class {
     public Mage() {
         name = "Mage";
         hp = 50;
-        attack = 0;
+        attack = 100;
         defence = 10;
-        luck = 20;
+        luck = 30;
 
         CustomLogger.singleton.printLog("Create class", 2);
     }

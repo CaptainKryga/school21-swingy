@@ -48,4 +48,24 @@ public class UIGameGUI implements UIGame {
     public void printFight(Player player, Enemy enemy) {
 
     }
+
+    @Override
+    public void printStartFight() {
+
+    }
+
+    @Override
+    public void printAttack() {
+
+    }
+
+    @Override
+    public void printFightFirstAttack(boolean isWinRollPlayer, int rollPlayer, int rollEnemy, int atk) {
+
+    }
+
+    @Override
+    public void printFightSecondAttack(boolean isWinRollPlayer, int chance, int atk) {
+
+    }
 }

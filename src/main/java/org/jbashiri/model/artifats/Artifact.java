@@ -43,6 +43,11 @@ public class Artifact {
         }
     }
 
+    public Artifact() {
+        name = "no weapon";
+        type = "0";
+    }
+
     private String getName() {
         StringBuilder result = new StringBuilder();
         int words = ThreadLocalRandom.current().nextInt(4, 10);
@@ -63,5 +68,17 @@ public class Artifact {
             return name + "bonus defence + " + bonusAttack;
         else
             return name + "bonus hp + " + bonusAttack;
+    }
+
+    public int getBonusAttack() {
+        return bonusAttack;
+    }
+
+    public int getBonusHp() {
+        return bonusHp;
+    }
+
+    public int getBonusDefence() {
+        return bonusDefence;
     }
 }

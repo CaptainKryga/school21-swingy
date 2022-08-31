@@ -23,6 +23,6 @@ public class Enemy {
         hp = data[rnd].getHp() / 2 + data[rnd].getHp() * level / 10;
         attack = data[rnd].getAttack() / 2 + data[rnd].getAttack() * level / 10;
         defence = data[rnd].getDefence() / 2 + data[rnd].getDefence() * level / 10;
-        luck = data[rnd].getLuck() / 2 + data[rnd].getLuck() * level / 10;
+        luck = data[rnd].getLuck() + data[rnd].getLuck() * level / 10;
     }
 }

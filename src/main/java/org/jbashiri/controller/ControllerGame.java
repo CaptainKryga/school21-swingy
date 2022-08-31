@@ -10,6 +10,7 @@ import org.jbashiri.view.game.UIGameGUI;
 import java.util.Scanner;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
+import static org.jbashiri.utils.CustomMath.getRandomCustom;
 
 public class ControllerGame {
     private UIGame uiGame;
@@ -50,6 +51,8 @@ public class ControllerGame {
 
         uiGame.printMapEnemy(mapEnemy);
         uiGame.printMapPlayer(mapPlayer);
+
+        uiGame.printDivider();
 
         //name
         while (sc.hasNextLine()) {
@@ -104,7 +107,7 @@ public class ControllerGame {
                 if (getRandom(0, 100) > 65) {
                     map[x][y] = player.getLevel();
                 } else {
-                    map[x][y] = -1;
+                    map[x][y] = 0;
                 }
             }
         }
@@ -138,8 +141,8 @@ public class ControllerGame {
 
         mapPlayer[pos.x][pos.y] = 'P';
         //fight
-        if (mapEnemy[pos.x][pos.y] != -1) {
-            mapEnemy[pos.x][pos.y] = -1;
+        if (mapEnemy[pos.x][pos.y] != 0) {
+            mapEnemy[pos.x][pos.y] = 0;
             Fight(sc);
             return;
         }
@@ -147,24 +150,75 @@ public class ControllerGame {
 
     private void Fight(Scanner sc) {
         enemy = new Enemy(player.getLevel());
+        boolean isStartFight = true;
         uiGame.printFight(player, enemy);
-
-        while(sc.hasNextLine()) {
-            if (player.getHeroClass().getHp() <= 0) {
-                isDefeat = true;
-                return;
-            }
-            if (enemy.hp < 0) {
-                //player win ++ exp
-                player.gainExperience(450 * player.getLevel());
-                return;
-            }
-
+        uiGame.printStartFight();
+        while (sc.hasNextLine()) {
             String line = sc.nextLine().toLowerCase();
-            //if FIGHT => fight
 
-            //else RUN => if rnd > 50 to RUN if < 50 to FIGHT
+            if (isStartFight && line.equals("fight")) {
+                uiGame.printDivider();
+                isStartFight = false;
+            } else if (line.equals("info")) {
+                uiGame.printPlayerInfo(player);
+                uiGame.printDivider();
+            } else if (line.equals("atk")) {
+                uiGame.printDivider();
+                //roll
+                int rndPlayer = getRandom(player.getHeroClass().getLuck(), 100);
+                int rndEnemy = getRandom(enemy.luck, 100);
 
+                //atk
+                int atkPlayer = getRandomCustom(
+                        player.getHeroClass().getAttack() + player.getArtifactWeapon().getBonusAttack(),
+                        player.getHeroClass().getLuck());
+                int atkEnemy = getRandomCustom(enemy.attack + enemy.luck, enemy.luck);
+
+                uiGame.printFightFirstAttack(rndPlayer >= rndEnemy, rndPlayer, rndEnemy,
+                        rndPlayer >= rndEnemy ? atkPlayer : atkEnemy);
+
+                if (rndPlayer >= rndEnemy) {
+                    enemy.hp -= atkPlayer;
+                    if (enemy.hp < 0) {
+                        player.gainExperience(450 * player.getLevel());
+                        return;
+                    }
+                } else {
+                    player.getHeroClass().hp -= atkEnemy;
+                    if (player.getHeroClass().hp <= 0) {
+                        isDefeat = true;
+                        return;
+                    }
+                }
+
+                //roll
+                int chancePlayer = getRandom(player.getHeroClass().getLuck(), 100);
+                int chanceEnemy = getRandom(enemy.luck, 100);
+
+                if (rndPlayer >= rndEnemy && chanceEnemy >= 50) {
+                    player.getHeroClass().hp -= atkEnemy;
+                } else if (chancePlayer >= 50) {
+                    enemy.hp -= atkPlayer;
+                }
+
+                uiGame.printFightSecondAttack(rndPlayer >= rndEnemy, rndPlayer >= rndEnemy ? chanceEnemy : chancePlayer,
+                        rndPlayer >= rndEnemy ? atkEnemy : atkPlayer);
+
+                uiGame.printFight(player, enemy);
+                uiGame.printDivider();
+
+            }
+
+            if (!isStartFight) {
+                uiGame.printAttack();
+            }
         }
+
+
+
+        //if FIGHT => fight
+
+        //else RUN => if rnd > 50 to RUN if < 50 to FIGHT
+
     }
 }

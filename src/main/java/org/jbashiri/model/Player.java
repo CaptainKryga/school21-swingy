@@ -20,6 +20,9 @@ public class Player {
         level = 1;
         this.name = name;
         heroClass = setClass(clas);
+        weapon = new Artifact();
+        chest = new Artifact();
+        head = new Artifact();
     }
 
     private Class setClass(String type) {
@@ -40,6 +43,7 @@ public class Player {
         if (experience >= calculateExperience(level + 1)) {
             experience -= calculateExperience(level + 1);
             level++;
+            heroClass.levelUp(level);
             return true;
         }
         return false;
