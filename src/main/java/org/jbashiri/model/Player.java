@@ -17,6 +17,7 @@ public class Player {
     protected Artifact head;
 
     public Player(String name, String clas) {
+        level = 1;
         this.name = name;
         heroClass = setClass(clas);
     }
@@ -34,7 +35,7 @@ public class Player {
     }
 
     //если получаем уровень возвращаем тру и алармим о получении нового уровня
-    public boolean GainExperience(int exp) {
+    public boolean gainExperience(int exp) {
         experience += exp;
         if (experience >= calculateExperience(level + 1)) {
             experience -= calculateExperience(level + 1);

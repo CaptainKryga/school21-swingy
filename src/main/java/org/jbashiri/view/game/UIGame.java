@@ -1,5 +1,6 @@
 package org.jbashiri.view.game;
 
+import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 
 public interface UIGame {
@@ -13,6 +14,7 @@ public interface UIGame {
     public void printMapPlayer(char[][] map);
 
     public void printWin(int score);
-    public void printGameOver();
+    public void printDefeat(int score);
     public void printDivider();
+    public void printFight(Player player, Enemy enemy);
 }

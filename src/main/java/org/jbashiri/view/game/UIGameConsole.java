@@ -1,5 +1,6 @@
 package org.jbashiri.view.game;
 
+import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
@@ -76,7 +77,7 @@ public class UIGameConsole implements UIGame {
     }
 
     @Override
-    public void printGameOver() {
+    public void printDefeat(int score) {
         System.out.println("YOU ARE DEAD.");
         System.out.println("Your HERO has been DELETED.");
     }
@@ -84,5 +85,10 @@ public class UIGameConsole implements UIGame {
     @Override
     public void printDivider() {
         System.out.println("- - - - - - - - - - - - - - - - - -");
+    }
+
+    @Override
+    public void printFight(Player player, Enemy enemy) {
+
     }
 }

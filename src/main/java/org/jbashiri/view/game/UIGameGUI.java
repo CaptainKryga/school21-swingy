@@ -1,5 +1,6 @@
 package org.jbashiri.view.game;
 
+import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 
 public class UIGameGUI implements UIGame {
@@ -34,12 +35,17 @@ public class UIGameGUI implements UIGame {
     }
 
     @Override
-    public void printGameOver() {
+    public void printDefeat(int score) {
 
     }
 
     @Override
     public void printDivider() {
+
+    }
+
+    @Override
+    public void printFight(Player player, Enemy enemy) {
 
     }
 }
