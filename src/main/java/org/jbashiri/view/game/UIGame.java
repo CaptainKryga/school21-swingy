@@ -9,5 +9,10 @@ public interface UIGame {
 
     public void inputError();
 
-    public void printMap(int[][] map);
+    public void printMapEnemy(int[][] map);
+    public void printMapPlayer(char[][] map);
+
+    public void printWin(int score);
+    public void printGameOver();
+    public void printDivider();
 }

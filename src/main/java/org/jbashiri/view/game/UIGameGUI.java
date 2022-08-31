@@ -19,7 +19,27 @@ public class UIGameGUI implements UIGame {
     }
 
     @Override
-    public void printMap(int[][] map) {
+    public void printMapEnemy(int[][] map) {
+
+    }
+
+    @Override
+    public void printMapPlayer(char[][] map) {
+
+    }
+
+    @Override
+    public void printWin(int score) {
+
+    }
+
+    @Override
+    public void printGameOver() {
+
+    }
+
+    @Override
+    public void printDivider() {
 
     }
 }

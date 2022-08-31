@@ -1,6 +1,7 @@
 package org.jbashiri.controller;
 
 import org.jbashiri.model.Player;
+import org.jbashiri.utils.Vector2;
 import org.jbashiri.view.game.UIGame;
 import org.jbashiri.view.game.UIGameConsole;
 import org.jbashiri.view.game.UIGameGUI;
@@ -14,7 +15,11 @@ public class ControllerGame {
     private Player player;
 
     private boolean isLoop;
-    private int[][] map;
+    private int[][] mapEnemy;
+    private char[][] mapPlayer;
+    private Vector2 pos;
+    private int sizeMap;
+    private boolean isWin = false;
 
     public void init(String name, String clas, boolean isConsole) {
         player = new Player(name, clas);
@@ -37,32 +42,38 @@ public class ControllerGame {
         Scanner sc = new Scanner(System.in);
         uiGame.printDirections();
 
+        mapEnemy = generateEnemy(getSizeMap());
+        mapPlayer = generatePlayer(getSizeMap());
+
+        uiGame.printMapEnemy(mapEnemy);
+        uiGame.printMapPlayer(mapPlayer);
+
         //name
         while (sc.hasNextLine()) {
-
-            map = generateEnemy(createMap(getSizeMap()));
-
             String line = sc.nextLine().toLowerCase();
 
             if (line.equals("north")) {
-
-            }
-            else if (line.equals("south")) {
-
-            }
-            else if (line.equals("west")) {
-
-            }
-            else if (line.equals("east")) {
-
-            }
-            else {
+                UpdateMap(new Vector2(-1, 0));
+            } else if (line.equals("south")) {
+                UpdateMap(new Vector2(1, 0));
+            } else if (line.equals("west")) {
+                UpdateMap(new Vector2(0, -1));
+            } else if (line.equals("east")) {
+                UpdateMap(new Vector2(0, 1));
+            } else {
                 uiGame.inputError();
                 uiGame.printDirections();
             }
 
-            uiGame.printMap(map);
+            if (isWin) {
+                uiGame.printWin(player.getScore());
+                break;
+            }
 
+            uiGame.printDirections();
+            uiGame.printMapEnemy(mapEnemy);
+            uiGame.printMapPlayer(mapPlayer);
+            uiGame.printDivider();
         }
         sc.close();
     }
@@ -79,22 +90,50 @@ public class ControllerGame {
         return (player.getLevel() - 1) * 5 + 10;
     }
 
-    private int[][] createMap(int size) {
+    private int[][] generateEnemy(int size) {
         int[][] map = new int[size][size];
-        return map;
-    }
-
-    private int[][] generateEnemy(int[][] map) {
         for (int x = 0; x < map.length; x++) {
             for (int y = 0; y < map.length; y++) {
                 if (getRandom(0, 100) > 65) {
                     map[x][y] = player.getLevel();
-                }
-                else {
+                } else {
                     map[x][y] = -1;
                 }
             }
         }
         return map;
+    }
+
+    private char[][] generatePlayer(int size) {
+        char[][] map = new char[size][size];
+        for (int x = 0; x < map.length; x++) {
+            for (int y = 0; y < map.length; y++) {
+                map[x][y] = '#';
+            }
+        }
+        sizeMap = size;
+        size /= 2;
+        pos = new Vector2(size, size);
+        map[pos.x][pos.y] = 'P';
+        return map;
+    }
+
+    private void UpdateMap(Vector2 vec) {
+        mapPlayer[pos.x][pos.y] = '*';
+        pos = new Vector2(this.pos.x + vec.x, this.pos.y + vec.y);
+
+        //win
+        if (pos.x < 0 || pos.x >= sizeMap ||
+                pos.y < 0 || pos.y >= sizeMap) {
+            isWin = true;
+            return;
+        }
+
+        mapPlayer[pos.x][pos.y] = 'P';
+        //fight
+        if (mapEnemy[pos.x][pos.y] != -1) {
+            mapEnemy[pos.x][pos.y] = -1;
+            return;
+        }
     }
 }

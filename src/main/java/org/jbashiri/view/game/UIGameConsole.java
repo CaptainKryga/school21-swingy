@@ -38,7 +38,7 @@ public class UIGameConsole implements UIGame {
     }
 
     @Override
-    public void printMap(int[][] map) {
+    public void printMapEnemy(int[][] map) {
         for (int x = 0; x < map.length; x++) {
             for (int y = 0; y < map.length; y++) {
                 if (map[x][y] == 0) {
@@ -53,5 +53,36 @@ public class UIGameConsole implements UIGame {
             }
             System.out.print('\n');
         }
+    }
+
+    @Override
+    public void printMapPlayer(char[][] map) {
+        for (int x = 0; x < map.length; x++) {
+            for (int y = 0; y < map.length; y++) {
+                System.out.print(' ');
+                System.out.print(map[x][y]);
+                System.out.print(' ');
+            }
+            System.out.print('\n');
+        }
+    }
+
+    @Override
+    public void printWin(int score) {
+        System.out.println("You made it to the edge of the map.");
+        System.out.println("CONGRATULATION, it's a WIN!!!");
+        System.out.println("YOU SCORE: " + score);
+        System.out.println("Your HERO has been DELETED.");
+    }
+
+    @Override
+    public void printGameOver() {
+        System.out.println("YOU ARE DEAD.");
+        System.out.println("Your HERO has been DELETED.");
+    }
+
+    @Override
+    public void printDivider() {
+        System.out.println("- - - - - - - - - - - - - - - - - -");
     }
 }
