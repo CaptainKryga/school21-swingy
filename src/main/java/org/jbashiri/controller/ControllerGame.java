@@ -196,8 +196,16 @@ public class ControllerGame {
 
                 if (rndPlayer >= rndEnemy && chanceEnemy >= 50) {
                     player.getHeroClass().hp -= atkEnemy;
+                    if (player.getHeroClass().hp <= 0) {
+                        isDefeat = true;
+                        return;
+                    }
                 } else if (chancePlayer >= 50) {
                     enemy.hp -= atkPlayer;
+                    if (enemy.hp < 0) {
+                        player.gainExperience(450 * player.getLevel());
+                        return;
+                    }
                 }
 
                 uiGame.printFightSecondAttack(rndPlayer >= rndEnemy, rndPlayer >= rndEnemy ? chanceEnemy : chancePlayer,
