@@ -68,7 +68,6 @@ public class ControllerGame {
                 UpdateMap(sc, new Vector2(0, 1));
             } else {
                 uiGame.inputError();
-                uiGame.printDirections();
             }
 
             if (isWin) {
