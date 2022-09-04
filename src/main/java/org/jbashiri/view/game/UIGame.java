@@ -21,4 +21,5 @@ public interface UIGame {
     public void printAttack();
     public void printFightFirstAttack(boolean isWinRollPlayer, int rollPlayer, int rollEnemy, int atk);
     public void printFightSecondAttack(boolean isWinRollPlayer, int chance, int atk);
+    public void printChanceLeave(boolean isLeave, int rnd);
 }

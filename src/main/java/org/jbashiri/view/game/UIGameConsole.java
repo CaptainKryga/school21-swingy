@@ -116,4 +116,9 @@ public class UIGameConsole implements UIGame {
         System.out.println((!isWinRollPlayer ? "Player " : "Enemy ") + "roll: " + chance + "/" + 50);
         System.out.println((!isWinRollPlayer ? "Player " : "Enemy ") + (chance >= 50 ? "atk: " + atk : "missed."));
     }
+
+    @Override
+    public void printChanceLeave(boolean isLeave, int rnd) {
+        System.out.println(rnd + "/50 " +  (isLeave ? "You leave fight." : "You don't leave fight."));
+    }
 }

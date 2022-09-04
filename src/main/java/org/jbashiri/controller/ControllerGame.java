@@ -158,6 +158,16 @@ public class ControllerGame {
             if (isStartFight && line.equals("fight")) {
                 uiGame.printDivider();
                 isStartFight = false;
+            } else if (line.equals("leave")) {
+                int rnd = getRandom(player.getHeroClass().luck, 100);
+                uiGame.printChanceLeave(rnd > 50, rnd);
+                if (rnd > 50) {
+                    uiGame.printDivider();
+                    return;
+                }
+                uiGame.printFight(player, enemy);
+                uiGame.printDivider();
+                uiGame.printAttack();
             } else if (line.equals("info")) {
                 uiGame.printPlayerInfo(player);
                 uiGame.printDivider();
@@ -220,12 +230,5 @@ public class ControllerGame {
                 uiGame.printAttack();
             }
         }
-
-
-
-        //if FIGHT => fight
-
-        //else RUN => if rnd > 50 to RUN if < 50 to FIGHT
-
     }
 }

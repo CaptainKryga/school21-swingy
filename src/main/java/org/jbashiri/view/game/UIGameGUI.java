@@ -68,4 +68,9 @@ public class UIGameGUI implements UIGame {
     public void printFightSecondAttack(boolean isWinRollPlayer, int chance, int atk) {
 
     }
+
+    @Override
+    public void printChanceLeave(boolean isLeave, int rnd) {
+
+    }
 }
