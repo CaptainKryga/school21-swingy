@@ -28,4 +28,9 @@ public class UIInitConsole implements UIInit {
         System.out.println("INPUT ERROR");
         printChoise();
     }
+
+    @Override
+    public void printDivider() {
+        System.out.println("- - - - - - - - - - - - - - - - - -");
+    }
 }

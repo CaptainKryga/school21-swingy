@@ -5,10 +5,15 @@ import org.jbashiri.utils.CustomLogger;
 public class Mage extends Class {
     public Mage() {
         name = "Mage";
-        hp = 50;
-        attack = 100;
-        defence = 10;
-        luck = 30;
+        maxHp = 50;
+        maxAttack = 100;
+        maxDefence = 10;
+        maxLuck = 30;
+
+        hp = maxHp;
+        atk = maxAttack;
+        def = maxDefence;
+        luck = maxLuck;
 
         CustomLogger.singleton.printLog("Create class", 2);
     }

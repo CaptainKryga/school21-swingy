@@ -15,4 +15,9 @@ public class UIInitGUI implements UIInit {
     public void inputError() {
 
     }
+
+    @Override
+    public void printDivider() {
+
+    }
 }

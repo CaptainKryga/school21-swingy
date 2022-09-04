@@ -7,4 +7,7 @@ public interface UIInit {
     public boolean isConsole();
 
     public void inputError();
+
+    public void printDivider();
+
 }

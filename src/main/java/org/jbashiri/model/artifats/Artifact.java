@@ -21,21 +21,21 @@ public class Artifact {
 
         if (type == 0) {
             this.type = "Weapon";
-            name = this.type + ": " + getName();
+            name = getNewName();
             bonusHp = 0;
             bonusAttack = getRandom(luck * level, luck * level + 50);
             bonusDefence = 0;
             CustomLogger.singleton.printLog(name + "\nbonusAttack = " + bonusAttack, 2);
         } else if (type == 1) {
             this.type = "Chest";
-            name = this.type + ": " + getName();
+            name = getNewName();
             bonusHp = 0;
             bonusAttack = 0;
             bonusDefence = getRandom(luck * level, luck * level + 50);
             CustomLogger.singleton.printLog(name + "\nbonusDefence = " + bonusDefence, 2);
         } else if (type == 2) {
             this.type = "Head";
-            name = this.type + ": " + getName();
+            name = getNewName();
             bonusHp = getRandom(luck * level, luck * level + 50);
             bonusAttack = 0;
             bonusDefence = 0;
@@ -44,11 +44,11 @@ public class Artifact {
     }
 
     public Artifact() {
-        name = "no weapon";
-        type = "0";
+        name = "-1";
+        type = "-1";
     }
 
-    private String getName() {
+    private String getNewName() {
         StringBuilder result = new StringBuilder();
         int words = ThreadLocalRandom.current().nextInt(4, 10);
         while (words-- > 0) {
@@ -80,5 +80,11 @@ public class Artifact {
 
     public int getBonusDefence() {
         return bonusDefence;
+    }
+    public String getType() {
+        return type;
+    }
+    public String getName() {
+        return name;
     }
 }

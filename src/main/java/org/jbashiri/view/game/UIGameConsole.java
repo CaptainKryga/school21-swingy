@@ -2,8 +2,7 @@ package org.jbashiri.view.game;
 
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
-
-import static org.jbashiri.utils.CustomMath.getRandom;
+import org.jbashiri.model.artifats.Artifact;
 
 public class UIGameConsole implements UIGame {
     @Override
@@ -13,21 +12,24 @@ public class UIGameConsole implements UIGame {
         System.out.println("SCORE: " + player.getScore());
         System.out.println("CLASS: " + player.getHeroClass().getName());
         System.out.println("LVL: " + player.getLevel());
-        System.out.println("EXP: " + player.getExperience());
-        System.out.println("HP: " + player.getHeroClass().getHp());
-        System.out.println("ATK: " + player.getHeroClass().getAttack());
-        System.out.println("DEF: " + player.getHeroClass().getDefence());
-        System.out.println("LCK: " + player.getHeroClass().getLuck());
+        System.out.println("EXP: " + player.getExperience() + "/" + player.calculateExperience(player.getLevel()));
+        System.out.println("HP: " + player.getHeroClass().hp + "/" + player.getHeroClass().getMaxHp());
+        System.out.println("ATK: " + player.getHeroClass().atk);
+        System.out.println("DEF: " + player.getHeroClass().def);
+        System.out.println("LCK: " + player.getHeroClass().luck);
         System.out.println("WEAPON: " +
-                (player.getArtifactWeapon() == null ? "no weapon" : player.getArtifactWeapon().getNameAndStats()));
+                (player.getArtifactWeapon().getType().equals("-1") ? "no weapon" : player.getArtifactWeapon().getNameAndStats()));
         System.out.println("CHEST: " +
-                (player.getArtifactChest() == null ? "no chest" : player.getArtifactChest().getNameAndStats()));
+                (player.getArtifactChest().getType().equals("-1") ? "no chest" : player.getArtifactChest().getNameAndStats()));
         System.out.println("HEAD: " +
-                (player.getArtifactHead() == null ? "no head" : player.getArtifactHead().getNameAndStats()));
+                (player.getArtifactHead().getType().equals("-1") ? "no head" : player.getArtifactHead().getNameAndStats()));
     }
 
     @Override
     public void printDirections() {
+        System.out.println("SWITCH => change to GUI");
+        System.out.println("HEALTH => restore hp if have health banks.");
+        System.out.println("INFO => get player info.");
         System.out.println("Directions:      NORTH");
         System.out.println("          WEST     X     EAST");
         System.out.println("                 SOUTH");
@@ -87,8 +89,8 @@ public class UIGameConsole implements UIGame {
         System.out.println("You stumbled upon the enemy!!!");
         System.out.println("####   HERO   ENEMY");
         System.out.println("HP     " + player.getHeroClass().hp + "     " + enemy.hp);
-        System.out.println("ATK    " + player.getHeroClass().attack + "     " + enemy.attack);
-        System.out.println("DEF    " + player.getHeroClass().defence + "     " + enemy.defence);
+        System.out.println("ATK    " + player.getHeroClass().atk + "     " + enemy.attack);
+        System.out.println("DEF    " + player.getHeroClass().def + "     " + enemy.defence);
     }
 
     @Override
@@ -106,7 +108,6 @@ public class UIGameConsole implements UIGame {
     public void printFightFirstAttack(boolean isWinRollPlayer, int rollPlayer, int rollEnemy, int atk) {
         System.out.println("Player roll: " + rollPlayer + "/100");
         System.out.println("Enemy  roll: " + rollEnemy + "/100");
-        System.out.println(isWinRollPlayer ? "Player win" : "Enemy win");
         System.out.println((isWinRollPlayer ? "Player " : "Enemy ") + "atk: " + atk);
     }
 
@@ -120,5 +121,42 @@ public class UIGameConsole implements UIGame {
     @Override
     public void printChanceLeave(boolean isLeave, int rnd) {
         System.out.println(rnd + "/50 " +  (isLeave ? "You leave fight." : "You don't leave fight."));
+    }
+
+    @Override
+    public void printUseHealthBank(int rnd) {
+        System.out.println(rnd > 0 ? "you restore health: " + rnd + "pt" : "not enough health banks");
+    }
+
+    @Override
+    public void printSwitch(boolean isConsole) {
+
+    }
+
+    @Override
+    public void printArtifact(Artifact old, Artifact _new) {
+        System.out.println("Drop new Artifact");
+        System.out.println("####        OLD     NEW");
+        System.out.println("name        " + (old.getType().equals("-1") ? "-" : old.getName()) +
+                " " + _new.getName());
+        System.out.println("bonus HP    " + (old.getType().equals("-1") ? "-" : old.getBonusHp()) +
+                " " + _new.getBonusHp());
+        System.out.println("bonus ATK   " + (old.getType().equals("-1") ? "-" : old.getBonusAttack()) +
+                " " + _new.getBonusAttack());
+        System.out.println("bonus DEF   " + (old.getType().equals("-1") ? "-" : old.getBonusDefence()) +
+                " " + _new.getBonusDefence());
+    }
+
+    @Override
+    public void printSetOrDestroyArtifact() {
+        System.out.println("SET => Use new artifact.");
+        System.out.println("IGNORE => Destroy new artifact.");
+
+        printDivider();
+    }
+
+    @Override
+    public void playerKillEnemy(int exp) {
+        System.out.println("Player KILL enemy. GAIN " + exp + " experience.");
     }
 }

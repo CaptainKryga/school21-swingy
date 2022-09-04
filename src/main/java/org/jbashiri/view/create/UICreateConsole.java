@@ -43,4 +43,9 @@ public class UICreateConsole implements UICreate {
         System.out.println("INPUT ERROR");
         printState(state);
     }
+
+    @Override
+    public void printDivider() {
+        System.out.println("- - - - - - - - - - - - - - - - - -");
+    }
 }

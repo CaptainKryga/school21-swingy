@@ -3,9 +3,14 @@ package org.jbashiri.model.classes;
 public class Paladin extends Class {
     public Paladin() {
         name = "Paladin";
-        hp = 150;
-        attack = 50;
-        defence = 35;
-        luck = 15;
+        maxHp = 150;
+        maxAttack = 50;
+        maxDefence = 35;
+        maxLuck = 15;
+
+        hp = maxHp;
+        atk = maxAttack;
+        def = maxDefence;
+        luck = maxLuck;
     }
 }

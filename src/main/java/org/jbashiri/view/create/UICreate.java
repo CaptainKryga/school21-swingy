@@ -9,4 +9,6 @@ public interface UICreate {
     void printConfirm();
 
     void inputError(int state);
+    public void printDivider();
+
 }

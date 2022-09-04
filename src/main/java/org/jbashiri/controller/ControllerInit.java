@@ -29,6 +29,7 @@ public class ControllerInit {
             uiInit = null;
         uiInit = getInit(isConsole);
         uiInit.init();
+        uiInit.printDivider();
 
         if (isConsole) {
             Scanner sc = new Scanner(System.in);

@@ -4,11 +4,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CustomMath {
     public static int getRandom(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min,max);
+        return ThreadLocalRandom.current().nextInt(min, max);
     }
 
-    public static int getRandomCustom(int min, int dop) {
-        return ThreadLocalRandom.current().nextInt(min, min + dop);
+    //get atk +- 10%
+    public static int getRandomCustom(int min) {
+        if (min <= 0)
+            return 0;
+        return ThreadLocalRandom.current().nextInt(min - min / 10, min + min / 10);
     }
 
     public static int getPow(int num, int pow) {

@@ -34,6 +34,7 @@ public class ControllerCreate {
         //name
         if (state == 0 && isConsole) {
             uiCreate.printState(state);
+            uiCreate.printDivider();
             String line = sc.nextLine().toLowerCase();
             uiCreate.printName(line);
             playerName = line;
@@ -44,6 +45,7 @@ public class ControllerCreate {
         //class
         if (state == 1 && isConsole) {
             uiCreate.printState(state);
+            uiCreate.printDivider();
             while(sc.hasNextLine()) {
                 String line = sc.nextLine().toLowerCase();
 
@@ -60,6 +62,7 @@ public class ControllerCreate {
         }
         if (state == 2) {
             game.init(playerName, playerClass, isConsole);
+            uiCreate.printDivider();
         }
         sc.close();
     }

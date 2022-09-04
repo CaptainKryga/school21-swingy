@@ -20,9 +20,9 @@ public class Enemy {
 
         int rnd = getRandom(0, data.length);
 
-        hp = data[rnd].getHp() / 2 + data[rnd].getHp() * level / 10;
-        attack = data[rnd].getAttack() / 2 + data[rnd].getAttack() * level / 10;
-        defence = data[rnd].getDefence() / 2 + data[rnd].getDefence() * level / 10;
-        luck = data[rnd].getLuck() + data[rnd].getLuck() * level / 10;
+        hp = data[rnd].hp / 2 + data[rnd].hp * level / 10;
+        attack = data[rnd].atk / 2 + data[rnd].atk * level / 10;
+        defence = data[rnd].def / 2 + data[rnd].def * level / 10;
+        luck = data[rnd].luck + data[rnd].luck * level / 10;
     }
 }

@@ -5,6 +5,7 @@ import org.jbashiri.model.classes.*;
 import org.jbashiri.model.classes.Class;
 
 import static org.jbashiri.utils.CustomMath.getPow;
+import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Player {
     protected String name;
@@ -15,6 +16,7 @@ public class Player {
     protected Artifact weapon;
     protected Artifact chest;
     protected Artifact head;
+    protected int healthBank;
 
     public Player(String name, String clas) {
         level = 1;
@@ -23,6 +25,7 @@ public class Player {
         weapon = new Artifact();
         chest = new Artifact();
         head = new Artifact();
+        healthBank = 1;
     }
 
     private Class setClass(String type) {
@@ -49,7 +52,7 @@ public class Player {
         return false;
     }
 
-    private int calculateExperience(int level) {
+    public int calculateExperience(int level) {
         return level * 1000 + getPow(level, 2) * 450;
     }
 
@@ -76,5 +79,35 @@ public class Player {
     }
     public Artifact getArtifactHead() {
         return weapon;
+    }
+    public void updateArtifact(Artifact artifact) {
+        if (artifact == null)
+            return;
+
+        if (artifact.getType().equals("Weapon"))
+            weapon = artifact;
+        else if (artifact.getType().equals("Chest"))
+            chest = artifact;
+        else if (artifact.getType().equals("Head"))
+            head = artifact;
+    }
+    public Artifact getNowArtifact(String type) {
+        if (type.equals("Weapon"))
+            return weapon;
+        else if (type.equals("Chest"))
+            return chest;
+        else if (type.equals("Head"))
+            return head;
+        return null;
+    }
+
+    public int useHealthBank() {
+        if (healthBank > 0) {
+            healthBank--;
+            int rnd = getRandom(1, heroClass.getMaxHp());
+            heroClass.updateHp(rnd);
+            return rnd;
+        }
+        return -1;
     }
 }

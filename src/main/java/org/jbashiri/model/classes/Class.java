@@ -7,44 +7,77 @@ import static org.jbashiri.utils.CustomMath.Abs;
 public class Class {
     protected String name;
     public int hp;
-    public int attack;
-    public int defence;
+    protected int maxHp;
+    public int atk;
+    protected int maxAttack;
+    public int def;
+    protected int maxDefence;
     public int luck;
+    protected int maxLuck;
 
     public String getAllDefaultStats() {
         String result = "";
         result += name + getSpaces(Abs(10 - name.length()));
         result += hp + getSpaces(Abs(5 - getLengthNumber(hp)));
-        result += attack + getSpaces(Abs(5 - getLengthNumber(attack)));
-        result += defence + getSpaces(Abs(5 - getLengthNumber(defence)));
+        result += atk + getSpaces(Abs(5 - getLengthNumber(atk)));
+        result += def + getSpaces(Abs(5 - getLengthNumber(def)));
         result += luck + getSpaces(Abs(5 - getLengthNumber(luck)));
         return result;
     }
 
     public void levelUp(int level) {
-        hp = hp + hp * level / 10;
-        attack = attack + attack * level / 10;
-        defence = defence + defence * level / 10;
-        luck = luck + luck * level / 10;
+        updateHp(maxHp * level / 10);
+        updateMaxAttack(maxAttack * level / 10);
+        updateMaxDefence(maxDefence * level / 10);
+        updateMaxLuck(maxLuck * level / 10);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getHp() {
-        return hp;
+    public int getMaxHp() {
+        return maxHp;
     }
 
-    public int getAttack() {
-        return attack;
+    public int getAtk() {
+        return atk;
     }
 
-    public int getDefence() {
-        return defence;
+    public int getDef() {
+        return def;
     }
 
     public int getLuck() {
         return luck;
+    }
+
+    public void updateHp(int add) {
+        hp += add;
+        if (hp > maxHp)
+            hp = maxHp;
+    }
+
+    public void updateMaxHp(boolean isLevelUp, int add) {
+        maxHp += add;
+        hp += add;
+
+        if (isLevelUp)
+            hp = maxHp;
+    }
+
+    public void updateMaxDefence(int add) {
+        maxDefence += add;
+        def = maxDefence;
+    }
+
+    public void updateMaxAttack(int add) {
+        maxAttack += add;
+        atk = maxAttack;
+    }
+
+    public void updateMaxLuck(int add) {
+        maxLuck += add;
+        luck = maxLuck;
     }
 }

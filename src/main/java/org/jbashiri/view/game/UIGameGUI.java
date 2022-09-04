@@ -2,6 +2,7 @@ package org.jbashiri.view.game;
 
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
+import org.jbashiri.model.artifats.Artifact;
 
 public class UIGameGUI implements UIGame {
     @Override
@@ -71,6 +72,31 @@ public class UIGameGUI implements UIGame {
 
     @Override
     public void printChanceLeave(boolean isLeave, int rnd) {
+
+    }
+
+    @Override
+    public void printUseHealthBank(int rnd) {
+
+    }
+
+    @Override
+    public void printSwitch(boolean isConsole) {
+
+    }
+
+    @Override
+    public void printArtifact(Artifact nowArtifact, Artifact artifact) {
+
+    }
+
+    @Override
+    public void printSetOrDestroyArtifact() {
+
+    }
+
+    @Override
+    public void playerKillEnemy(int exp) {
 
     }
 }

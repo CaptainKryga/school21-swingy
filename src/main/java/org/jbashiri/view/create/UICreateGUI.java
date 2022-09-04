@@ -27,6 +27,11 @@ public class UICreateGUI implements UICreate {
     }
 
     @Override
+    public void printDivider() {
+
+    }
+
+    @Override
     public void printState(int state) {
         if (state == 0) {
             System.out.println("CREATE \"NAME\" this must be gui...");
