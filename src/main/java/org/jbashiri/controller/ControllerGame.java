@@ -31,6 +31,7 @@ public class ControllerGame {
 
     public void init(String name, String clas, boolean isConsole) {
         player = new Player(name, clas);
+        tempArtifact = new Artifact();
         switchUI(isConsole);
     }
 
@@ -188,14 +189,14 @@ public class ControllerGame {
 
                 //atk               attack +- 10%
                 int atkPlayer = getRandomCustom(player.getHeroClass().getAtk() +
-                        player.getArtifactWeapon().getBonusAttack()) - enemy.defence;
-                int atkEnemy = getRandomCustom(enemy.attack) - player.getHeroClass().def;
+                        player.getArtifactWeapon().getBonusAttack()) - enemy.def;
+                int atkEnemy = getRandomCustom(enemy.atk) - player.getHeroClass().def;
 
 
                 if (atkPlayer <= 0)
                     atkPlayer = player.getHeroClass().atk / 10;
                 if (atkEnemy <= 0)
-                    atkEnemy = enemy.attack / 10;
+                    atkEnemy = enemy.atk / 10;
 
 
                 uiGame.printFightFirstAttack(rndPlayer >= rndEnemy, rndPlayer, rndEnemy,
@@ -243,7 +244,7 @@ public class ControllerGame {
             player.gainExperience(450 * player.getLevel());
 
             int temp = getRandom(0, 100);
-            if (temp > 80) {
+            if (temp < tempArtifact.getChanceDrop()) {
                 CustomLogger.singleton.printLog("CREATE ARTIFACT: Random: " + temp, 2);
                 tempArtifact = new Artifact(player.getLevel(), player.getHeroClass().luck);
                 uiGame.printArtifact(player.getNowArtifact(tempArtifact.getType()), tempArtifact);

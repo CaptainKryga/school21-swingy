@@ -26,7 +26,7 @@ public class Class {
     }
 
     public void levelUp(int level) {
-        updateHp(maxHp * level / 10);
+        updateMaxHp(true, maxHp * level / 10);
         updateMaxAttack(maxAttack * level / 10);
         updateMaxDefence(maxDefence * level / 10);
         updateMaxLuck(maxLuck * level / 10);

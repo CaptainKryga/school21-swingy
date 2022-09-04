@@ -4,6 +4,8 @@ import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;
 
+import static org.jbashiri.utils.CustomStrings.*;
+
 public class UIGameConsole implements UIGame {
     @Override
     public void printPlayerInfo(Player player) {
@@ -87,10 +89,13 @@ public class UIGameConsole implements UIGame {
     @Override
     public void printFight(Player player, Enemy enemy) {
         System.out.println("You stumbled upon the enemy!!!");
-        System.out.println("####   HERO   ENEMY");
-        System.out.println("HP     " + player.getHeroClass().hp + "     " + enemy.hp);
-        System.out.println("ATK    " + player.getHeroClass().atk + "     " + enemy.attack);
-        System.out.println("DEF    " + player.getHeroClass().def + "     " + enemy.defence);
+        System.out.println("####   HERO      ENEMY");
+        System.out.println("HP     " + player.getHeroClass().hp +
+                getSpaces(10 - getLengthNumber(player.getHeroClass().hp)) + "" + enemy.hp);
+        System.out.println("ATK    " + player.getHeroClass().atk +
+                getSpaces(10 - getLengthNumber(player.getHeroClass().atk)) + "" + enemy.atk);
+        System.out.println("DEF    " + player.getHeroClass().def +
+                getSpaces(10 - getLengthNumber(player.getHeroClass().def)) + "" + enemy.def);
     }
 
     @Override
@@ -136,15 +141,18 @@ public class UIGameConsole implements UIGame {
     @Override
     public void printArtifact(Artifact old, Artifact _new) {
         System.out.println("Drop new Artifact");
-        System.out.println("####        OLD     NEW");
-        System.out.println("name        " + (old.getType().equals("-1") ? "-" : old.getName()) +
-                " " + _new.getName());
-        System.out.println("bonus HP    " + (old.getType().equals("-1") ? "-" : old.getBonusHp()) +
-                " " + _new.getBonusHp());
-        System.out.println("bonus ATK   " + (old.getType().equals("-1") ? "-" : old.getBonusAttack()) +
-                " " + _new.getBonusAttack());
-        System.out.println("bonus DEF   " + (old.getType().equals("-1") ? "-" : old.getBonusDefence()) +
-                " " + _new.getBonusDefence());
+        System.out.println("####      OLD         NEW");
+        System.out.println("name      " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
+                        old.getName() + getSpaces(12 - getLengthNumber(old.getName().length()))) +
+                "" + _new.getName());
+        System.out.println("bonus HP  " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
+                old.getBonusHp() + getSpaces(12 - getLengthNumber(old.getBonusHp()))) + "" + _new.getBonusHp());
+        System.out.println("bonus ATK " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
+                old.getBonusAttack() + getSpaces(12 - getLengthNumber(old.getBonusAttack()))) +
+                "" + _new.getBonusAttack());
+        System.out.println("bonus DEF " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
+                old.getBonusDefence() + getSpaces(12 - getLengthNumber(old.getBonusDefence()))) +
+                "" + _new.getBonusDefence());
     }
 
     @Override

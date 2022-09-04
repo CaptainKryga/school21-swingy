@@ -75,21 +75,30 @@ public class Player {
         return weapon;
     }
     public Artifact getArtifactChest() {
-        return weapon;
+        return chest;
     }
     public Artifact getArtifactHead() {
-        return weapon;
+        return head;
     }
-    public void updateArtifact(Artifact artifact) {
-        if (artifact == null)
+    public void updateArtifact(Artifact _new) {
+        if (_new == null)
             return;
 
-        if (artifact.getType().equals("Weapon"))
-            weapon = artifact;
-        else if (artifact.getType().equals("Chest"))
-            chest = artifact;
-        else if (artifact.getType().equals("Head"))
-            head = artifact;
+        if (_new.getType().equals("Weapon")) {
+            heroClass.updateMaxAttack(-weapon.getBonusAttack());
+            weapon = _new;
+            heroClass.updateMaxAttack(weapon.getBonusAttack());
+        }
+        else if (_new.getType().equals("Chest")) {
+            heroClass.updateMaxDefence(-chest.getBonusDefence());
+            chest = _new;
+            heroClass.updateMaxDefence(chest.getBonusDefence());
+        }
+        else if (_new.getType().equals("Head")) {
+            heroClass.updateMaxHp(false, -head.getBonusHp());
+            head = _new;
+            heroClass.updateMaxHp(false, head.getBonusHp());
+        }
     }
     public Artifact getNowArtifact(String type) {
         if (type.equals("Weapon"))

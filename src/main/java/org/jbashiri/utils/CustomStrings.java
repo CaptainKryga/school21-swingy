@@ -2,6 +2,8 @@ package org.jbashiri.utils;
 
 public class CustomStrings {
     public static String getSpaces(int num) {
+        if (num < 0)
+            return "";
         String result = "";
         for (int i = 0; i < num; i++) {
             result += " ";

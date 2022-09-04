@@ -13,6 +13,8 @@ public class Artifact {
     protected int bonusAttack;
     protected int bonusDefence;
 
+    private int chanceDrop = 100;
+
     private String S = "QWRTPSDFGHKLZXCVBNMJ";
     private String G = "EYUIOA";
 
@@ -63,11 +65,11 @@ public class Artifact {
 
     public String getNameAndStats() {
         if (type.equals("Weapon"))
-            return name + "bonus attack + " + bonusAttack;
+            return name + " bonus attack +" + bonusAttack;
         else if (type.equals("Chest"))
-            return name + "bonus defence + " + bonusAttack;
+            return name + " bonus defence +" + bonusDefence;
         else
-            return name + "bonus hp + " + bonusAttack;
+            return name + " bonus hp +" + bonusHp;
     }
 
     public int getBonusAttack() {
@@ -86,5 +88,9 @@ public class Artifact {
     }
     public String getName() {
         return name;
+    }
+
+    public int getChanceDrop() {
+        return chanceDrop;
     }
 }

@@ -7,8 +7,8 @@ import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Enemy {
     public int hp;
-    public int attack;
-    public int defence;
+    public int atk;
+    public int def;
     public int luck;
 
     public Enemy(int level) {
@@ -21,8 +21,8 @@ public class Enemy {
         int rnd = getRandom(0, data.length);
 
         hp = data[rnd].hp / 2 + data[rnd].hp * level / 10;
-        attack = data[rnd].atk / 2 + data[rnd].atk * level / 10;
-        defence = data[rnd].def / 2 + data[rnd].def * level / 10;
+        atk = data[rnd].atk / 2 + data[rnd].atk * level / 10;
+        def = data[rnd].def / 2 + data[rnd].def * level / 10;
         luck = data[rnd].luck + data[rnd].luck * level / 10;
     }
 }
