@@ -36,20 +36,7 @@ public class DataBase {
             connect();
         return connection;
     }
-//protected String name;
-//    protected Class heroClass;
-//    protected int level;
-//    protected int experience;
-//    protected int score;
-//    protected Artifact weapon;
-//    protected Artifact chest;
-//    protected Artifact head;
-//    protected int healthBank;
-//protected String name;
-//    protected String type;
-//    protected int bonusHp;
-//    protected int bonusAttack;
-//    protected int bonusDefence;
+
     public static int addNewHero(Player player, Class heroClass) {
                             //player:
         String sqlQuery = "INSERT INTO heroes(playerName, level, experience, score, healthBanks, " +
