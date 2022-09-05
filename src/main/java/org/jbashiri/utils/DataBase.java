@@ -7,15 +7,18 @@ import org.jbashiri.model.classes.Class;
 import java.sql.*;
 
 public class DataBase {
-    private static final String dbLink = "jdbc:sqlite::resource:heroes.db";
+    private static final String dbLink = "jdbc:sqlite:resource:heroes.db";
     private static Connection connection;
 
     public static void connect() throws CustomException {
         Connection connect;
         try {
-            connect = DriverManager.getConnection(dbLink);
+            java.lang.Class.forName("org.sqlite.JDBC");
+            connect = DriverManager.getConnection("jdbc:sqlite::resource:heroes.db");
         } catch (SQLException e) {
             throw new CustomException("connect to database failed: " + e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         connection = connect;
     }
@@ -47,32 +50,32 @@ public class DataBase {
                 //values [?]
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int id = 0;
-        try (PreparedStatement pstmt = getConnect().prepareStatement(sqlQuery)) {
+        try (PreparedStatement prepare = getConnect().prepareStatement(sqlQuery)) {
             //player
-            pstmt.setString(1, player.getName());
-            pstmt.setInt(2, player.getLevel());
-            pstmt.setInt(3, player.getExperience());
-            pstmt.setInt(4, player.getScore());
-            pstmt.setInt(5, player.getCountHealthBanks());
+            prepare.setString(1, player.getName());
+            prepare.setInt(2, player.getLevel());
+            prepare.setInt(3, player.getExperience());
+            prepare.setInt(4, player.getScore());
+            prepare.setInt(5, player.getCountHealthBanks());
             //class
             Class temp = player.getHeroClass();
-            pstmt.setString(6, temp.getName());
-            pstmt.setInt(7, temp.hp);
-            pstmt.setInt(8, temp.getMaxHp());
-            pstmt.setInt(9, temp.atk);
-            pstmt.setInt(10, temp.getMaxAtk());
-            pstmt.setInt(11, temp.def);
-            pstmt.setInt(12, temp.getMaxDef());
-            pstmt.setInt(13, temp.luck);
-            pstmt.setInt(14, temp.getMaxLuck());
+            prepare.setString(6, temp.getName());
+            prepare.setInt(7, temp.hp);
+            prepare.setInt(8, temp.getMaxHp());
+            prepare.setInt(9, temp.atk);
+            prepare.setInt(10, temp.getMaxAtk());
+            prepare.setInt(11, temp.def);
+            prepare.setInt(12, temp.getMaxDef());
+            prepare.setInt(13, temp.luck);
+            prepare.setInt(14, temp.getMaxLuck());
             //artifacts
-            pstmt.setString(15, player.getArtifactWeapon().getName());
-            pstmt.setInt(16, player.getArtifactWeapon().getBonus());
-            pstmt.setString(17, player.getArtifactChest().getName());
-            pstmt.setInt(18, player.getArtifactChest().getBonus());
-            pstmt.setString(19, player.getArtifactHead().getName());
-            pstmt.setInt(20, player.getArtifactHead().getBonus());
-            pstmt.executeUpdate();
+            prepare.setString(15, player.getArtifactWeapon().getName());
+            prepare.setInt(16, player.getArtifactWeapon().getBonus());
+            prepare.setString(17, player.getArtifactChest().getName());
+            prepare.setInt(18, player.getArtifactChest().getBonus());
+            prepare.setString(19, player.getArtifactHead().getName());
+            prepare.setInt(20, player.getArtifactHead().getBonus());
+            prepare.executeUpdate();
 
             Statement stmt = getConnect().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT seq FROM sqlite_sequence WHERE name=\"heroes\"");

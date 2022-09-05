@@ -1,19 +1,25 @@
 package org.jbashiri;
 
 import org.jbashiri.controller.ControllerInit;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.utils.CustomLogger;
+import org.jbashiri.utils.DataBase;
+
+import javax.xml.crypto.Data;
 
 import static org.jbashiri.utils.CustomMath.getPow;
 
 public class Main {
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws CustomException {
         if (argv.length != 1 || (!argv[0].equals("gui") && !argv[0].equals("console"))) {
             System.out.println("usage: java -jar swingy.jar <gui or console>");
             return;
         }
 
         boolean isConsole = argv[0].toLowerCase().equals("console");
+
+        DataBase.connect();
 
         new CustomLogger(2);
         new ControllerInit(isConsole);

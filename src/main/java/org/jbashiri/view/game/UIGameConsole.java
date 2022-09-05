@@ -145,16 +145,25 @@ public class UIGameConsole implements UIGame {
         System.out.println("Drop new Artifact");
         System.out.println("####      OLD         NEW");
         System.out.println("name      " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                        old.getName() + getSpaces(12 - old.getName().length())) +
-                "" + _new.getName());
-        System.out.println("bonus HP  " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) + "" + _new.getBonus());
-        System.out.println("bonus ATK " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
-                "" + _new.getBonus());
-        System.out.println("bonus DEF " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
-                "" + _new.getBonus());
+                        old.getName() + getSpaces(12 - old.getName().length())) + "" + _new.getName());
+
+        System.out.println("bonus HP  " + GetArtifactBonus(old, "Head") + "" + _new.getBonus());
+        System.out.println("bonus ATK " + GetArtifactBonus(old, "Weapon") + "" + _new.getBonus());
+        System.out.println("bonus DEF " + GetArtifactBonus(old, "Chest") + "" + _new.getBonus());
+//        System.out.println("bonus ATK " + (old.getType().equals("-1") || !old.getType().equals("Weapon") ?
+//                "-" + getSpaces(11) :
+//                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
+//                "" + _new.getBonus());
+//        System.out.println("bonus DEF " + (old.getType().equals("-1") || !old.getType().equals("Chest") ?
+//                "-" + getSpaces(11) :
+//                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
+//                "" + _new.getBonus());
+    }
+
+    private String GetArtifactBonus(Artifact art, String type) {
+        if (!art.getType().equals(type))
+            return "-" + getSpaces(11);
+        return art.getBonus() + getSpaces(12 - getLengthNumber(art.getBonus()));
     }
 
     @Override
