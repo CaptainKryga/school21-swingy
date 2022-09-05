@@ -9,9 +9,7 @@ import static org.jbashiri.utils.CustomMath.getRandom;
 public class Artifact {
     protected String name;
     protected String type;
-    protected int bonusHp;
-    protected int bonusAttack;
-    protected int bonusDefence;
+    protected int bonus;
 
     private int chanceDrop = 100;
 
@@ -24,24 +22,18 @@ public class Artifact {
         if (type == 0) {
             this.type = "Weapon";
             name = getNewName();
-            bonusHp = 0;
-            bonusAttack = getRandom(1, luck / 5 * level);
-            bonusDefence = 0;
-            CustomLogger.singleton.printLog(name + "\nbonusAttack = " + bonusAttack, 2);
+            bonus = getRandom(1, luck / 5 * level);
+            CustomLogger.singleton.printLog(name + "\nbonusAttack = " + bonus, 2);
         } else if (type == 1) {
             this.type = "Chest";
             name = getNewName();
-            bonusHp = 0;
-            bonusAttack = 0;
-            bonusDefence = getRandom(1, luck / 5 * level);
-            CustomLogger.singleton.printLog(name + "\nbonusDefence = " + bonusDefence, 2);
+            bonus = getRandom(1, luck / 5 * level);
+            CustomLogger.singleton.printLog(name + "\nbonusDefence = " + bonus, 2);
         } else if (type == 2) {
             this.type = "Head";
             name = getNewName();
-            bonusHp = getRandom(1, luck / 5 * level);
-            bonusAttack = 0;
-            bonusDefence = 0;
-            CustomLogger.singleton.printLog(name + "\nbonusHP = " + bonusHp, 2);
+            bonus = getRandom(1, luck / 5 * level);
+            CustomLogger.singleton.printLog(name + "\nbonusHP = " + bonus, 2);
         }
     }
 
@@ -65,24 +57,17 @@ public class Artifact {
 
     public String getNameAndStats() {
         if (type.equals("Weapon"))
-            return name + " bonus attack +" + bonusAttack;
+            return name + " bonus attack +" + bonus;
         else if (type.equals("Chest"))
-            return name + " bonus defence +" + bonusDefence;
+            return name + " bonus defence +" + bonus;
         else
-            return name + " bonus hp +" + bonusHp;
+            return name + " bonus hp +" + bonus;
     }
 
-    public int getBonusAttack() {
-        return bonusAttack;
+    public int getBonus() {
+        return bonus;
     }
 
-    public int getBonusHp() {
-        return bonusHp;
-    }
-
-    public int getBonusDefence() {
-        return bonusDefence;
-    }
     public String getType() {
         return type;
     }

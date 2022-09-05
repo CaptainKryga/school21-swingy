@@ -9,11 +9,11 @@ public class Class {
     public int hp;
     protected int maxHp;
     public int atk;
-    protected int maxAttack;
+    protected int maxAtk;
     public int def;
-    protected int maxDefence;
+    protected int maxDef;
     public int luck;
-    protected int maxLuck;
+    protected int maxLuck; //max 75
 
     public String getAllDefaultStats() {
         String result = "";
@@ -27,8 +27,8 @@ public class Class {
 
     public void levelUp(int level) {
         updateMaxHp(true, maxHp * level / 10);
-        updateMaxAttack(maxAttack * level / 10);
-        updateMaxDefence(maxDefence * level / 10);
+        updateMaxAttack(maxAtk * level / 10);
+        updateMaxDefence(maxDef * level / 10);
         updateMaxLuck(maxLuck * level / 10);
     }
 
@@ -40,16 +40,16 @@ public class Class {
         return maxHp;
     }
 
-    public int getAtk() {
-        return atk;
+    public int getMaxAtk() {
+        return maxAtk;
     }
 
-    public int getDef() {
-        return def;
+    public int getMaxDef() {
+        return maxDef;
     }
 
-    public int getLuck() {
-        return luck;
+    public int getMaxLuck() {
+        return maxLuck;
     }
 
     public void updateHp(int add) {
@@ -67,17 +67,20 @@ public class Class {
     }
 
     public void updateMaxDefence(int add) {
-        maxDefence += add;
-        def = maxDefence;
+        maxDef += add;
+        def = maxDef;
     }
 
     public void updateMaxAttack(int add) {
-        maxAttack += add;
-        atk = maxAttack;
+        maxAtk += add;
+        atk = maxAtk;
     }
 
     public void updateMaxLuck(int add) {
         maxLuck += add;
+        if (maxLuck >= 75) {
+            maxLuck = 75;
+        }
         luck = maxLuck;
     }
 }

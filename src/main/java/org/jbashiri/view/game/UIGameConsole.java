@@ -25,7 +25,7 @@ public class UIGameConsole implements UIGame {
                 (player.getArtifactChest().getType().equals("-1") ? "no chest" : player.getArtifactChest().getNameAndStats()));
         System.out.println("HEAD: " +
                 (player.getArtifactHead().getType().equals("-1") ? "no head" : player.getArtifactHead().getNameAndStats()));
-        System.out.println("Health banks: " + player.getHealthBank());
+        System.out.println("Health banks: " + player.getCountHealthBanks());
     }
 
     @Override
@@ -148,13 +148,13 @@ public class UIGameConsole implements UIGame {
                         old.getName() + getSpaces(12 - old.getName().length())) +
                 "" + _new.getName());
         System.out.println("bonus HP  " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                old.getBonusHp() + getSpaces(12 - getLengthNumber(old.getBonusHp()))) + "" + _new.getBonusHp());
+                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) + "" + _new.getBonus());
         System.out.println("bonus ATK " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                old.getBonusAttack() + getSpaces(12 - getLengthNumber(old.getBonusAttack()))) +
-                "" + _new.getBonusAttack());
+                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
+                "" + _new.getBonus());
         System.out.println("bonus DEF " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                old.getBonusDefence() + getSpaces(12 - getLengthNumber(old.getBonusDefence()))) +
-                "" + _new.getBonusDefence());
+                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
+                "" + _new.getBonus());
     }
 
     @Override

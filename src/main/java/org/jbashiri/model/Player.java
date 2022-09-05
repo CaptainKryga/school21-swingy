@@ -87,19 +87,19 @@ public class Player {
             return;
 
         if (_new.getType().equals("Weapon")) {
-            heroClass.updateMaxAttack(-weapon.getBonusAttack());
+            heroClass.updateMaxAttack(-weapon.getBonus());
             weapon = _new;
-            heroClass.updateMaxAttack(weapon.getBonusAttack());
+            heroClass.updateMaxAttack(weapon.getBonus());
         }
         else if (_new.getType().equals("Chest")) {
-            heroClass.updateMaxDefence(-chest.getBonusDefence());
+            heroClass.updateMaxDefence(-chest.getBonus());
             chest = _new;
-            heroClass.updateMaxDefence(chest.getBonusDefence());
+            heroClass.updateMaxDefence(chest.getBonus());
         }
         else if (_new.getType().equals("Head")) {
-            heroClass.updateMaxHp(false, -head.getBonusHp());
+            heroClass.updateMaxHp(false, -head.getBonus());
             head = _new;
-            heroClass.updateMaxHp(false, head.getBonusHp());
+            heroClass.updateMaxHp(false, head.getBonus());
         }
     }
     public Artifact getNowArtifact(String type) {
@@ -122,7 +122,7 @@ public class Player {
         return -1;
     }
 
-    public int getHealthBank() {
+    public int getCountHealthBanks() {
         return healthBank;
     }
 

@@ -73,7 +73,7 @@ public class ControllerGame {
                 UpdateMap(sc, new Vector2(0, 1));
             } else if (line.equals("health")) {
                 int rnd = player.useHealthBank();
-                uiGame.printUseHealthBank(rnd, player.getHealthBank());
+                uiGame.printUseHealthBank(rnd, player.getCountHealthBanks());
             } else if (line.equals("switch")) {
                 uiGame.printSwitch(false);
             }  else if (line.equals("info")) {
@@ -190,12 +190,12 @@ public class ControllerGame {
                 uiGame.printAttack();
             } else if (line.equals("atk")) {
                 //roll
-                int rndPlayer = getRandom(player.getHeroClass().getLuck(), 100);
+                int rndPlayer = getRandom(player.getHeroClass().luck, 100);
                 int rndEnemy = getRandom(enemy.luck, 100);
 
                 //atk               attack +- 10%
-                int atkPlayer = getRandomCustom(player.getHeroClass().getAtk() +
-                        player.getArtifactWeapon().getBonusAttack()) - enemy.def;
+                int atkPlayer = getRandomCustom(player.getHeroClass().atk +
+                        player.getArtifactWeapon().getBonus()) - enemy.def;
                 int atkEnemy = getRandomCustom(enemy.atk) - player.getHeroClass().def;
 
 

@@ -6,13 +6,13 @@ public class Mage extends Class {
     public Mage() {
         name = "Mage";
         maxHp = 50;
-        maxAttack = 100;
-        maxDefence = 10;
+        maxAtk = 100;
+        maxDef = 10;
         maxLuck = 30;
 
         hp = maxHp;
-        atk = maxAttack;
-        def = maxDefence;
+        atk = maxAtk;
+        def = maxDef;
         luck = maxLuck;
 
         CustomLogger.singleton.printLog("Create class", 2);
