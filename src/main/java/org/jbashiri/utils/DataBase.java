@@ -37,7 +37,7 @@ public class DataBase {
         return connection;
     }
 
-    public static int addNewHero(Player player, Class heroClass) {
+    public static int addNewHero(Player player) {
                             //player:
         String sqlQuery = "INSERT INTO heroes(playerName, level, experience, score, healthBanks, " +
                 //class

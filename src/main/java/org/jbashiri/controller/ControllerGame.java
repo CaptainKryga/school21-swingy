@@ -13,10 +13,12 @@ import java.util.Scanner;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
 import static org.jbashiri.utils.CustomMath.getRandomCustom;
+import static org.jbashiri.utils.DataBase.addNewHero;
 
 public class ControllerGame {
     private UIGame uiGame;
     private Player player;
+    private int playerIdDB;
 
     private boolean isLoop;
     private int[][] mapEnemy;
@@ -32,6 +34,7 @@ public class ControllerGame {
     public void init(String name, String clas, boolean isConsole) {
         player = new Player(name, clas);
         tempArtifact = new Artifact();
+        playerIdDB = addNewHero(player);
         switchUI(isConsole);
     }
 
