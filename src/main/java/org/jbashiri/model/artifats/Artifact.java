@@ -25,7 +25,7 @@ public class Artifact {
             this.type = "Weapon";
             name = getNewName();
             bonusHp = 0;
-            bonusAttack = getRandom(luck * level, luck * level + 50);
+            bonusAttack = getRandom(1, luck / 5 * level);
             bonusDefence = 0;
             CustomLogger.singleton.printLog(name + "\nbonusAttack = " + bonusAttack, 2);
         } else if (type == 1) {
@@ -33,12 +33,12 @@ public class Artifact {
             name = getNewName();
             bonusHp = 0;
             bonusAttack = 0;
-            bonusDefence = getRandom(luck * level, luck * level + 50);
+            bonusDefence = getRandom(1, luck / 5 * level);
             CustomLogger.singleton.printLog(name + "\nbonusDefence = " + bonusDefence, 2);
         } else if (type == 2) {
             this.type = "Head";
             name = getNewName();
-            bonusHp = getRandom(luck * level, luck * level + 50);
+            bonusHp = getRandom(1, luck / 5 * level);
             bonusAttack = 0;
             bonusDefence = 0;
             CustomLogger.singleton.printLog(name + "\nbonusHP = " + bonusHp, 2);

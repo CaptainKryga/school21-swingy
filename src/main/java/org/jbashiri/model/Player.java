@@ -3,6 +3,7 @@ package org.jbashiri.model;
 import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.model.classes.*;
 import org.jbashiri.model.classes.Class;
+import org.jbashiri.utils.CustomLogger;
 
 import static org.jbashiri.utils.CustomMath.getPow;
 import static org.jbashiri.utils.CustomMath.getRandom;
@@ -43,8 +44,9 @@ public class Player {
     //если получаем уровень возвращаем тру и алармим о получении нового уровня
     public boolean gainExperience(int exp) {
         experience += exp;
-        if (experience >= calculateExperience(level + 1)) {
-            experience -= calculateExperience(level + 1);
+        CustomLogger.singleton.printLog("exp: " + experience + "|max: " + calculateExperience(level), 2);
+        if (experience >= calculateExperience(level)) {
+            experience -= calculateExperience(level);
             level++;
             heroClass.levelUp(level);
             return true;
@@ -118,5 +120,23 @@ public class Player {
             return rnd;
         }
         return -1;
+    }
+
+    public int getHealthBank() {
+        return healthBank;
+    }
+
+    public void updateHealthBanks(int add) {
+        healthBank += add;
+        if (healthBank > 3) {
+            healthBank = 3;
+        }
+    }
+
+    public void updateScore(int add) {
+        score += add;
+        if (score < 0) {
+            score = 0;
+        }
     }
 }

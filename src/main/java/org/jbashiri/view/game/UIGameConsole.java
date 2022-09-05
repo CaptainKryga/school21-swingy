@@ -25,6 +25,7 @@ public class UIGameConsole implements UIGame {
                 (player.getArtifactChest().getType().equals("-1") ? "no chest" : player.getArtifactChest().getNameAndStats()));
         System.out.println("HEAD: " +
                 (player.getArtifactHead().getType().equals("-1") ? "no head" : player.getArtifactHead().getNameAndStats()));
+        System.out.println("Health banks: " + player.getHealthBank());
     }
 
     @Override
@@ -78,6 +79,7 @@ public class UIGameConsole implements UIGame {
     @Override
     public void printDefeat(int score) {
         System.out.println("YOU ARE DEAD.");
+        System.out.println("SCORE: " + score + ".");
         System.out.println("Your HERO has been DELETED.");
     }
 
@@ -129,8 +131,8 @@ public class UIGameConsole implements UIGame {
     }
 
     @Override
-    public void printUseHealthBank(int rnd) {
-        System.out.println(rnd > 0 ? "you restore health: " + rnd + "pt" : "not enough health banks");
+    public void printUseHealthBank(int rnd, int countHealthBanks) {
+        System.out.println(rnd > 0 ? "you restore health: " + rnd + "pt | health banks left: " + countHealthBanks : "not enough health banks");
     }
 
     @Override
@@ -143,7 +145,7 @@ public class UIGameConsole implements UIGame {
         System.out.println("Drop new Artifact");
         System.out.println("####      OLD         NEW");
         System.out.println("name      " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                        old.getName() + getSpaces(12 - getLengthNumber(old.getName().length()))) +
+                        old.getName() + getSpaces(12 - old.getName().length())) +
                 "" + _new.getName());
         System.out.println("bonus HP  " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
                 old.getBonusHp() + getSpaces(12 - getLengthNumber(old.getBonusHp()))) + "" + _new.getBonusHp());
@@ -166,5 +168,16 @@ public class UIGameConsole implements UIGame {
     @Override
     public void playerKillEnemy(int exp) {
         System.out.println("Player KILL enemy. GAIN " + exp + " experience.");
+    }
+
+    @Override
+    public void printHealthBanks(int banks) {
+        System.out.println("DROP health banks: " + banks);
+    }
+
+    @Override
+    public void printLevelUp(Player player) {
+        System.out.println("LEVEL UP!!!!!!!!!!!!");
+        System.out.println("NOW YOUR LEVEL: " + player.getLevel());
     }
 }

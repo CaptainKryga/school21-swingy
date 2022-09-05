@@ -23,10 +23,12 @@ public interface UIGame {
     public void printFightFirstAttack(boolean isWinRollPlayer, int rollPlayer, int rollEnemy, int atk);
     public void printFightSecondAttack(boolean isWinRollPlayer, int chance, int atk);
     public void printChanceLeave(boolean isLeave, int rnd);
-    public void printUseHealthBank(int rnd);
+    public void printUseHealthBank(int rnd, int countHealthBanks);
     public void printSwitch(boolean isConsole);
     public void printArtifact(Artifact nowArtifact, Artifact artifact);
     public void printSetOrDestroyArtifact();
     public void playerKillEnemy(int exp);
+    public void printHealthBanks(int banks);
 
+    public void printLevelUp(Player player);
 }

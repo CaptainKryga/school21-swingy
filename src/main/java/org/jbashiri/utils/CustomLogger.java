@@ -15,7 +15,7 @@ public class CustomLogger {
 
     public void printLog(String log, int lvl) {
         if (lvl <= this.lvl) {
-            System.out.println("CustomLogger: " + log);
+            System.out.println(">>> CustomLogger: " + log);
         }
     }
 }

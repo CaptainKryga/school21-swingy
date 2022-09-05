@@ -76,7 +76,7 @@ public class UIGameGUI implements UIGame {
     }
 
     @Override
-    public void printUseHealthBank(int rnd) {
+    public void printUseHealthBank(int rnd, int countHealthBanks) {
 
     }
 
@@ -97,6 +97,16 @@ public class UIGameGUI implements UIGame {
 
     @Override
     public void playerKillEnemy(int exp) {
+
+    }
+
+    @Override
+    public void printHealthBanks(int banks) {
+
+    }
+
+    @Override
+    public void printLevelUp(Player player) {
 
     }
 }

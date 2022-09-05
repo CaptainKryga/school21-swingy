@@ -73,7 +73,7 @@ public class ControllerGame {
                 UpdateMap(sc, new Vector2(0, 1));
             } else if (line.equals("health")) {
                 int rnd = player.useHealthBank();
-                uiGame.printUseHealthBank(rnd);
+                uiGame.printUseHealthBank(rnd, player.getHealthBank());
             } else if (line.equals("switch")) {
                 uiGame.printSwitch(false);
             }  else if (line.equals("info")) {
@@ -148,8 +148,14 @@ public class ControllerGame {
         if (pos.x < 0 || pos.x >= sizeMap ||
                 pos.y < 0 || pos.y >= sizeMap) {
             isWin = true;
+            player.updateScore(player.getLevel() * 25);
             return;
         }
+
+        if (mapPlayer[pos.x][pos.y] == '#')
+            player.updateScore(1);
+        else
+            player.updateScore(-1);
 
         mapPlayer[pos.x][pos.y] = 'P';
         //fight
@@ -240,8 +246,22 @@ public class ControllerGame {
         CustomLogger.singleton.printLog("Player Attack: " + atkPlayer, 2);
         enemy.hp -= atkPlayer;
         if (enemy.hp < 0) {
-            uiGame.playerKillEnemy(450 * player.getLevel());
-            player.gainExperience(450 * player.getLevel());
+            uiGame.playerKillEnemy(250 + 450 * player.getLevel());
+            if (player.gainExperience(450 * player.getLevel())) {
+                uiGame.printLevelUp(player);
+
+                mapEnemy = generateEnemy(getSizeMap());
+                mapPlayer = generatePlayer(getSizeMap());
+            }
+
+            player.updateScore(10);
+
+            int rnd = getRandom(0, 2);
+            CustomLogger.singleton.printLog("generate health banks: " + rnd, 2);
+            if (rnd > 0) {
+                player.updateHealthBanks(rnd);
+                uiGame.printHealthBanks(rnd);
+            }
 
             int temp = getRandom(0, 100);
             if (temp < tempArtifact.getChanceDrop()) {
