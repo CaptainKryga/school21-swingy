@@ -139,7 +139,7 @@ public class DataBase {
         try (Statement stmt = getConnect().createStatement()) {
             ResultSet res = stmt.executeQuery(sql);
             for (int i = 1; res.next(); i++) {
-                list.add(String.format("%d. %s (%s)", i, res.getString("playerName"), res.getString("className")));
+                list.add(String.format("%s (%s)", res.getString("playerName"), res.getString("className")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -147,5 +147,20 @@ public class DataBase {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    //delete all heroes
+    public static void deleteAllHeroes() {
+        ArrayList<String> list = getAll();
+        try (Connection connection = getConnect()) {
+            for(int i = 0; i < list.size(); i++) {
+                PreparedStatement st = connection.prepareStatement("DELETE FROM heroes WHERE playerName = '" + list.get(i).split(" ")[0] + "';");
+                st.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (CustomException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
