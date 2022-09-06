@@ -15,6 +15,10 @@ public class Class {
     public int luck;
     protected int maxLuck; //max 75
 
+    public Class loadClass(String clas) {
+        return this;
+    }
+
     public String getAllDefaultStats() {
         String result = "";
         result += name + getSpaces(Abs(10 - name.length()));

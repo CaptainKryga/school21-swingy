@@ -16,14 +16,14 @@ public class UICreateGUI implements UICreate {
     }
 
     @Override
-    public void printConfirm() {
-        System.out.println("CREATE HERO this must be gui...");
-    }
-
-    @Override
     public void inputError(int state) {
         System.out.println("INPUT ERROR");
         printState(state);
+    }
+
+    @Override
+    public void inputErrorName(String line) {
+
     }
 
     @Override

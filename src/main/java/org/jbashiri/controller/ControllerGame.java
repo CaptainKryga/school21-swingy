@@ -36,6 +36,13 @@ public class ControllerGame {
         switchUI(isConsole);
     }
 
+    public void init(Player player, boolean isConsole) {
+        this.player = player;
+        tempArtifact = new Artifact();
+        addNewHero(player);
+        switchUI(isConsole);
+    }
+
     public void switchUI(boolean isConsole) {
         if (uiGame != null)
             uiGame = null;

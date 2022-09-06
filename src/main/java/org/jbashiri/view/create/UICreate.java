@@ -6,9 +6,9 @@ public interface UICreate {
     void printState(int state);
     void printName(String name);
     void printClass(String name);
-    void printConfirm();
 
     void inputError(int state);
+    void inputErrorName(String line);
     public void printDivider();
 
 }

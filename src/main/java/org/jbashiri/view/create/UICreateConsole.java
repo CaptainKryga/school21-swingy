@@ -19,11 +19,6 @@ public class UICreateConsole implements UICreate {
     }
 
     @Override
-    public void printConfirm() {
-        System.out.println("Are you confident in your choice?");
-    }
-
-    @Override
     public void printState(int state) {
         if (state == 0) {
             System.out.println("CREATing a new character.");
@@ -42,6 +37,11 @@ public class UICreateConsole implements UICreate {
     public void inputError(int state) {
         System.out.println("INPUT ERROR");
         printState(state);
+    }
+
+    @Override
+    public void inputErrorName(String line) {
+        System.out.println("Name " + line.split(" ")[0] + " is taken. Please write other.");
     }
 
     @Override

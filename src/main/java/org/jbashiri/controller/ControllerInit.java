@@ -8,7 +8,6 @@ import org.jbashiri.view.init.UIInitGUI;
 import java.util.Scanner;
 
 public class ControllerInit {
-    private ControllerGame game = null;
     private ControllerCreate create;
     private ControllerLoad load;
     private UIInit uiInit;
@@ -17,7 +16,7 @@ public class ControllerInit {
         ControllerGame game = new ControllerGame();
 
         create = new ControllerCreate(game);
-        load = new ControllerLoad(game);
+        load = new ControllerLoad(game, create);
 
         CustomLogger.singleton.printLog("GG", 3);
 

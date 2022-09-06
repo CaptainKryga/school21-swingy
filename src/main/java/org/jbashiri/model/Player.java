@@ -29,6 +29,17 @@ public class Player {
         healthBank = 1;
     }
 
+    public Player PlayerLoad(String data) {
+        level = 1;
+        this.name = data;
+        heroClass = setClass(data);
+        weapon = new Artifact();
+        chest = new Artifact();
+        head = new Artifact();
+        healthBank = 1;
+        return this;
+    }
+
     private Class setClass(String type) {
         if (type.equals("warrior"))
             return new Warrior();

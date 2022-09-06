@@ -1,10 +1,13 @@
 package org.jbashiri.controller;
 
+import org.jbashiri.model.Player;
 import org.jbashiri.utils.CustomLogger;
+import org.jbashiri.utils.DataBase;
 import org.jbashiri.view.create.UICreate;
 import org.jbashiri.view.create.UICreateConsole;
 import org.jbashiri.view.create.UICreateGUI;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControllerCreate {
@@ -33,13 +36,36 @@ public class ControllerCreate {
 
         //name
         if (state == 0 && isConsole) {
+            ArrayList<String> list = DataBase.getAll();
+            boolean isCorrectName = false;
+
             uiCreate.printState(state);
             uiCreate.printDivider();
-            String line = sc.nextLine().toLowerCase();
-            uiCreate.printName(line);
-            playerName = line;
 
-            state = 1;
+            while(sc.hasNextLine()) {
+
+                String line = sc.nextLine().toLowerCase();
+
+                isCorrectName = true;
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).toLowerCase().split(" ")[0].equals(line)) {
+                        isCorrectName = false;
+                        break;
+                    }
+                }
+
+                if (isCorrectName) {
+                    uiCreate.printName(line);
+                    playerName = line;
+                    state = 1;
+                    break;
+                }
+                else {
+                    uiCreate.inputErrorName(line);
+                    uiCreate.printState(state);
+                    uiCreate.printDivider();
+                }
+            }
         }
 
         //class

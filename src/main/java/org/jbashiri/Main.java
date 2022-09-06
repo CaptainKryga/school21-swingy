@@ -21,12 +21,7 @@ public class Main {
 //        DataBase.createNewDatabase("heroes.db");
 //        DataBase.createTable();
         DataBase.connect();
-
-        ArrayList<String> list = DataBase.getAll();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
-        DataBase.deleteAllHeroes();
+//        DataBase.deleteAllHeroes();
 
         new CustomLogger(2);
         new ControllerInit(isConsole);
