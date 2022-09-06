@@ -18,8 +18,6 @@ import static org.jbashiri.utils.DataBase.addNewHero;
 public class ControllerGame {
     private UIGame uiGame;
     private Player player;
-    private int playerIdDB;
-
     private boolean isLoop;
     private int[][] mapEnemy;
     private char[][] mapPlayer;
@@ -34,7 +32,7 @@ public class ControllerGame {
     public void init(String name, String clas, boolean isConsole) {
         player = new Player(name, clas);
         tempArtifact = new Artifact();
-        playerIdDB = addNewHero(player);
+        addNewHero(player);
         switchUI(isConsole);
     }
 

@@ -2,16 +2,15 @@ package org.jbashiri;
 
 import org.jbashiri.controller.ControllerInit;
 import org.jbashiri.exceptions.CustomException;
-import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
 
 import javax.xml.crypto.Data;
-
-import static org.jbashiri.utils.CustomMath.getPow;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] argv) throws CustomException {
+    public static void main(String[] argv) throws CustomException, SQLException, ClassNotFoundException {
         if (argv.length != 1 || (!argv[0].equals("gui") && !argv[0].equals("console"))) {
             System.out.println("usage: java -jar swingy.jar <gui or console>");
             return;
@@ -19,26 +18,18 @@ public class Main {
 
         boolean isConsole = argv[0].toLowerCase().equals("console");
 
+//        DataBase.createNewDatabase("heroes.db");
+//        DataBase.createTable();
         DataBase.connect();
+
+        ArrayList<String> list = DataBase.getAll();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
 
         new CustomLogger(2);
         new ControllerInit(isConsole);
-
-//        new Artifact(1,50);
-//        new Artifact(1,50);
-//        new Artifact(1,50);
-//        new Artifact(1,50);
-//        new Artifact(1,50);
-//        new Artifact(1,50);
-
-//        for (int i = 0; i < 10; i++) {
-//            int str = (i - 1) * 5 + 10;
-//            CustomLogger.singleton.printLog("(" + i + " * 1000 + getPow(" + i + " - 1, 2) * 450)", 3);
-//            CustomLogger.singleton.printLog("(" + i + "000 + " + getPow(i - 1, 2) + " * 450)", 3);
-//            CustomLogger.singleton.printLog("(" + i + "000 + " + getPow(i - 1, 2) * 450, 3);
-//            CustomLogger.singleton.printLog(str + "", 3);
-//        }
-
-
+//
+        DataBase.disconnect();
     }
 }

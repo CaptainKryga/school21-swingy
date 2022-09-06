@@ -5,16 +5,17 @@ import org.jbashiri.model.Player;
 import org.jbashiri.model.classes.Class;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataBase {
-    private static final String dbLink = "jdbc:sqlite:resource:heroes.db";
+    private static final String dbLink = "jdbc:sqlite:src/main/resources/heroes.db";
     private static Connection connection;
 
     public static void connect() throws CustomException {
         Connection connect;
         try {
             java.lang.Class.forName("org.sqlite.JDBC");
-            connect = DriverManager.getConnection("jdbc:sqlite::resource:heroes.db");
+            connect = DriverManager.getConnection(dbLink);
         } catch (SQLException e) {
             throw new CustomException("connect to database failed: " + e);
         } catch (ClassNotFoundException e) {
@@ -34,22 +35,70 @@ public class DataBase {
     }
 
 
-    private static Connection getConnect() throws CustomException {
+    public static Connection getConnect() throws CustomException {
         if (connection == null)
             connect();
         return connection;
     }
 
-    public static int addNewHero(Player player) {
+    //gen file db
+    public static void createNewDatabase(String fileName) {
+        String url = "jdbc:sqlite:/src/main/resources/" + fileName;
+
+        try (Connection conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                DatabaseMetaData meta = conn.getMetaData();
+                System.out.println("The driver name is " + meta.getDriverName());
+                System.out.println("A new database has been created.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //gen table
+    public static void createTable() throws SQLException, ClassNotFoundException, CustomException {
+        java.lang.Class.forName("org.sqlite.JDBC");
+        Connection connection = DriverManager.getConnection(dbLink);
+        Statement stmt = connection.createStatement();
+        String query = "create table " + "heroes" + " ( " +
+                "id int , " +
+                "playerName varchar(30), " +
+                "playerLevel int , " +
+                "experience int , " +
+                "score int , " +
+                "countHealthBanks int , " +
+                "className varchar(30) , " +
+                "hp int , " +
+                "maxHp int , " +
+                "atk int , " +
+                "maxAtk int , " +
+                "def int , " +
+                "maxDef int , " +
+                "luck int , " +
+                "maxLuck int , " +
+                "weaponName varchar(30) , " +
+                "weaponBonus varchar(30) , " +
+                "chestName varchar(30) , " +
+                "chestBonus varchar(30) , " +
+                "headName varchar(30) , " +
+                "headBonus varchar(30) " +
+                " )";
+        System.out.println(query);
+        System.out.println(stmt);
+        stmt.executeUpdate(query);
+        stmt.close();
+    }
+
+    public static void addNewHero(Player player) {
                             //player:
-        String sqlQuery = "INSERT INTO heroes(playerName, level, experience, score, healthBanks, " +
+        String sqlQuery = "INSERT INTO heroes(playerName, playerLevel, experience, score, countHealthBanks, " +
                 //class
                 "className, hp, maxHp, atk, maxAtk, def, maxDef, luck, maxLuck, " +
                 //artifacts
-                "artWeaponName, artWeaponBonus, artChestName, artChestBonus, artHeadName, artHeadBonus) " +
+                "weaponName, weaponBonus, chestName, chestBonus, headName, headBonus) " +
                 //values [?]
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        int id = 0;
         try (PreparedStatement prepare = getConnect().prepareStatement(sqlQuery)) {
             //player
             prepare.setString(1, player.getName());
@@ -76,16 +125,27 @@ public class DataBase {
             prepare.setString(19, player.getArtifactHead().getName());
             prepare.setInt(20, player.getArtifactHead().getBonus());
             prepare.executeUpdate();
-
-            Statement stmt = getConnect().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT seq FROM sqlite_sequence WHERE name=\"heroes\"");
-            if (rs.next())
-                id = rs.getInt("seq");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } catch (CustomException e) {
             throw new RuntimeException(e);
         }
-        return id;
+    }
+
+    public static ArrayList<String> getAll() {
+        String sql = "SELECT * FROM heroes";
+        ArrayList<String> list = new ArrayList<>();
+
+        try (Statement stmt = getConnect().createStatement()) {
+            ResultSet res = stmt.executeQuery(sql);
+            for (int i = 1; res.next(); i++) {
+                list.add(String.format("%d. %s (%s)", i, res.getString("playerName"), res.getString("className")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (CustomException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 }
