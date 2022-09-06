@@ -4,27 +4,36 @@ import org.jbashiri.model.M_Init;
 import org.jbashiri.utils.CustomLogger;
 
 public class C_Init {
-    private ControllerCreate create;
-    private ControllerLoad load;
+    private C_Create c_create;
+    private C_Load c_load;
+    private C_Game c_game;
     private M_Init m_init;
 
+    //инициализируем все контроллеры для дальнейшего взаимодействия
     public C_Init(boolean isConsole) {
         m_init = new M_Init(this);
-        create
+        c_game = new C_Game();
+        c_create = new C_Create(c_game);
+        c_load = new C_Load(c_game, c_create);
+
         switchUI(isConsole);
 
         CustomLogger.singleton.printLog("constructor c_init", 3);
     }
 
-    public void initCreate() {
-
+    //запуск окна создания персонажей
+    public void initCreate(boolean isConsole) {
+        c_create.init(isConsole);
     }
 
-    public void initLoad() {
-
+    //открытие окна загрузки персонажей из бд
+    public void initLoad(boolean isConsole) {
+        c_load.init(isConsole);
     }
 
+    //смена юай
     public void switchUI(boolean isConsole) {
+        CustomLogger.singleton.printLog("switchUI", 3);
         m_init.reInit(isConsole);
     }
 }

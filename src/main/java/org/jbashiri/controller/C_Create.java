@@ -6,15 +6,14 @@ import org.jbashiri.view.create.UICreate;
 import org.jbashiri.view.create.UICreateConsole;
 import org.jbashiri.view.create.UICreateGUI;
 
-import javax.validation.Validation;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.jbashiri.utils.CustomStrings.isOnlyWords;
 
-public class ControllerCreate {
-    private ControllerGame game;
+public class C_Create {
+    private C_Game game;
     private UICreate uiCreate;
 
     //state 0=>name 1=>class
@@ -23,7 +22,7 @@ public class ControllerCreate {
     private String playerName;
     private String playerClass;
 
-    ControllerCreate(ControllerGame game) {
+    C_Create(C_Game game) {
         this.game = game;
         this.state = 0;
 

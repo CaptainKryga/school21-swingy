@@ -1,6 +1,5 @@
 package org.jbashiri.controller;
 
-import org.jbashiri.model.Player;
 import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
 import org.jbashiri.view.load.UILoad;
@@ -10,12 +9,12 @@ import org.jbashiri.view.load.UILoadGUI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ControllerLoad {
-    private ControllerGame game;
-    private ControllerCreate create;
+public class C_Load {
+    private C_Game game;
+    private C_Create create;
     private UILoad uiLoad;
 
-    ControllerLoad(ControllerGame game, ControllerCreate create) {
+    C_Load(C_Game game, C_Create create) {
         this.game = game;
         this.create = create;
 

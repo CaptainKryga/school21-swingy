@@ -25,7 +25,7 @@ public class Main {
         connectDataBase();
         boolean isConsole = argv[0].toLowerCase().equals("console");
 
-        new CustomLogger(2);
+        new CustomLogger(3);
         new CustomValidator();
         new C_Init(isConsole);
 
@@ -39,12 +39,15 @@ public class Main {
         return scanner;
     }
     public static void closeScanner() {
+        CustomLogger.singleton.printLog("closeScanner: " + scanner, 3);
         if (scanner != null)
             scanner.close();
+        CustomLogger.singleton.printLog("closeScanner: " + scanner, 3);
     }
 
     //GUI
     public static JFrame getFrame() {
+        CustomLogger.singleton.printLog("getFrame", 3);
         if (frame == null) {
             frame = new JFrame();
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

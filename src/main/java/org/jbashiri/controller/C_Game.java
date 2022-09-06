@@ -15,9 +15,8 @@ import java.util.Scanner;
 import static org.jbashiri.utils.CustomMath.getRandom;
 import static org.jbashiri.utils.CustomMath.getRandomCustom;
 import static org.jbashiri.utils.DataBase.addNewHero;
-import static org.jbashiri.utils.DataBase.createNewDatabase;
 
-public class ControllerGame {
+public class C_Game {
     private UIGame uiGame;
     private Player player;
     private boolean isLoop;
