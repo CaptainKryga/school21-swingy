@@ -4,6 +4,7 @@ import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.utils.CustomLogger;
+import org.jbashiri.utils.DataBase;
 import org.jbashiri.utils.Vector2;
 import org.jbashiri.view.game.UIGame;
 import org.jbashiri.view.game.UIGameConsole;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 import static org.jbashiri.utils.CustomMath.getRandom;
 import static org.jbashiri.utils.CustomMath.getRandomCustom;
 import static org.jbashiri.utils.DataBase.addNewHero;
+import static org.jbashiri.utils.DataBase.createNewDatabase;
 
 public class ControllerGame {
     private UIGame uiGame;
@@ -90,12 +92,15 @@ public class ControllerGame {
                 uiGame.inputError();
             }
 
+            DataBase.saveHero(player);
+
             if (isWin) {
                 uiGame.printWin(player.getScore());
                 break;
             }
             if (isDefeat) {
                 uiGame.printDefeat(player.getScore());
+                DataBase.deleteHero(player.getPlayerName());
                 break;
             }
 
@@ -274,6 +279,7 @@ public class ControllerGame {
             if (temp < tempArtifact.getChanceDrop()) {
                 CustomLogger.singleton.printLog("CREATE ARTIFACT: Random: " + temp, 2);
                 tempArtifact = new Artifact(player.getLevel(), player.getHeroClass().luck);
+                CustomLogger.singleton.printLog("ARTIFACT: " + tempArtifact.getArtName(), 2);
                 uiGame.printArtifact(player.getNowArtifact(tempArtifact.getType()), tempArtifact);
                 uiGame.printSetOrDestroyArtifact();
 
@@ -281,7 +287,11 @@ public class ControllerGame {
                     String line = sc.nextLine().toLowerCase();
 
                     if (line.equals("set")) {
+                        CustomLogger.singleton.printLog("ARTIFACT: " + tempArtifact.getArtName(), 2);
                         player.updateArtifact(tempArtifact);
+                        CustomLogger.singleton.printLog("ARTIFACT: " + player.getArtifactWeapon().getArtName() +
+                                "|" + player.getArtifactChest().getArtName() +
+                                "|" + player.getArtifactHead().getArtName(), 2);
                         break;
                     } else if (line.equals("ignore")) {
                         break;

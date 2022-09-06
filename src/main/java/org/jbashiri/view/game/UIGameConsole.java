@@ -21,13 +21,13 @@ public class UIGameConsole implements UIGame {
         System.out.println("DEF: " + player.getHeroClass().def);
         System.out.println("LCK: " + player.getHeroClass().luck);
         System.out.println("WEAPON: " +
-                (player.getArtifactWeapon().getType() == CustomEnums.TypeArt.Null ? "no weapon" :
+                (player.getArtifactWeapon().getArtName().equals("-1") ? "no weapon" :
                         player.getArtifactWeapon().getNameAndStats()));
         System.out.println("CHEST: " +
-                (player.getArtifactChest().getType() == CustomEnums.TypeArt.Null ? "no chest" :
+                (player.getArtifactChest().getArtName().equals("-1") ? "no chest" :
                         player.getArtifactChest().getNameAndStats()));
         System.out.println("HEAD: " +
-                (player.getArtifactHead().getType() == CustomEnums.TypeArt.Null ? "no head" :
+                (player.getArtifactHead().getArtName().equals("-1") ? "no head" :
                         player.getArtifactHead().getNameAndStats()));
         System.out.println("Health banks: " + player.getCountHealthBanks());
     }
@@ -77,7 +77,6 @@ public class UIGameConsole implements UIGame {
         System.out.println("You made it to the edge of the map.");
         System.out.println("CONGRATULATION, it's a WIN!!!");
         System.out.println("YOU SCORE: " + score);
-        System.out.println("Your HERO has been DELETED.");
     }
 
     @Override
@@ -148,7 +147,7 @@ public class UIGameConsole implements UIGame {
     public void printArtifact(Artifact old, Artifact _new) {
         System.out.println("Drop new Artifact");
         System.out.println("####      OLD         NEW");
-        System.out.println("name      " + (old.getType() == CustomEnums.TypeArt.Null ? "-" + getSpaces(11) :
+        System.out.println("name      " + (old.getArtName().equals("-1") ? "-" + getSpaces(11) :
                         old.getArtName() + getSpaces(12 - old.getArtName().length())) + "" + _new.getArtName());
 
         System.out.println("bonus HP  " + GetArtifactBonus(old, CustomEnums.TypeArt.Head) +

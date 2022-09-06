@@ -196,4 +196,57 @@ public class DataBase {
 
         return load;
     }
+
+    public static void deleteHero(String playerName) {
+        try (Connection connection = getConnect()) {
+            PreparedStatement st = connection.prepareStatement("DELETE FROM heroes WHERE playerName = '" + playerName + "';");
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (CustomException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void saveHero(Player player) {
+        CustomLogger.singleton.printLog("SAVE HERO >> " + player.getPlayerName(), 2);
+
+        String sql = "UPDATE heroes SET playerLevel = ?, experience = ?, score = ?, countHealthBanks = ?, " +
+                "className = ?, hp = ?, maxHp = ?, atk = ?, maxAtk = ?, def = ?, maxDef = ?, luck = ?, maxLuck = ?, " +
+                "weaponName = ?, weaponBonus = ?, chestName = ?, chestBonus = ?, headName = ?, headBonus = ? " +
+                "WHERE playerName = ?";
+
+        try (PreparedStatement ps = getConnect().prepareStatement(sql)) {
+            ps.setInt(1, player.getLevel());
+            ps.setInt(2, player.getExperience());
+            ps.setInt(3, player.getScore());
+            ps.setInt(4, player.getCountHealthBanks());
+
+            HeroClass heroClass = player.getHeroClass();
+            ps.setString(5, heroClass.getClassName().toString());
+            ps.setInt(6, heroClass.hp);
+            ps.setInt(7, heroClass.getMaxHp());
+            ps.setInt(8, heroClass.atk);
+            ps.setInt(9, heroClass.getMaxAtk());
+            ps.setInt(10, heroClass.def);
+            ps.setInt(11, heroClass.getMaxDef());
+            ps.setInt(12, heroClass.luck);
+            ps.setInt(13, heroClass.getMaxLuck());
+
+            ps.setString(14, player.getArtifactWeapon().getArtName());
+            ps.setInt(15, player.getArtifactWeapon().getBonus());
+            ps.setString(16, player.getArtifactChest().getArtName());
+            ps.setInt(17, player.getArtifactChest().getBonus());
+            ps.setString(18, player.getArtifactHead().getArtName());
+            ps.setInt(19, player.getArtifactHead().getBonus());
+
+            ps.setString(20, player.getPlayerName());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (CustomException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

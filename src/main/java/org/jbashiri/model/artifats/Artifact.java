@@ -64,11 +64,11 @@ public class Artifact {
 
     public String getNameAndStats() {
         if (type == CustomEnums.TypeArt.Weapon)
-            return artName + " bonus attack +" + bonus;
+            return (artName.equals("-1") ? "-" : artName + " bonus attack +" + bonus);
         else if (type == CustomEnums.TypeArt.Chest)
-            return artName + " bonus defence +" + bonus;
+            return (artName.equals("-1") ? "-" : artName + " bonus defence +" + bonus);
         else
-            return artName + " bonus hp +" + bonus;
+            return (artName.equals("-1") ? "-" : artName + " bonus hp +" + bonus);
     }
 
     public int getBonus() {
@@ -79,6 +79,7 @@ public class Artifact {
         return type;
     }
     public String getArtName() {
+        CustomLogger.singleton.printLog(">> ARTIFACT NAME: " + artName, 3);
         return artName;
     }
 
