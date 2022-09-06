@@ -147,17 +147,9 @@ public class UIGameConsole implements UIGame {
         System.out.println("name      " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
                         old.getArtName() + getSpaces(12 - old.getArtName().length())) + "" + _new.getArtName());
 
-        System.out.println("bonus HP  " + GetArtifactBonus(old, "Head") + "" + _new.getBonus());
-        System.out.println("bonus ATK " + GetArtifactBonus(old, "Weapon") + "" + _new.getBonus());
-        System.out.println("bonus DEF " + GetArtifactBonus(old, "Chest") + "" + _new.getBonus());
-//        System.out.println("bonus ATK " + (old.getType().equals("-1") || !old.getType().equals("Weapon") ?
-//                "-" + getSpaces(11) :
-//                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
-//                "" + _new.getBonus());
-//        System.out.println("bonus DEF " + (old.getType().equals("-1") || !old.getType().equals("Chest") ?
-//                "-" + getSpaces(11) :
-//                old.getBonus() + getSpaces(12 - getLengthNumber(old.getBonus()))) +
-//                "" + _new.getBonus());
+        System.out.println("bonus HP  " + GetArtifactBonus(old, "Head") + "" + GetArtifactBonus(_new, "Head"));
+        System.out.println("bonus ATK " + GetArtifactBonus(old, "Weapon") + "" + GetArtifactBonus(_new, "Weapon"));
+        System.out.println("bonus DEF " + GetArtifactBonus(old, "Chest") + "" + GetArtifactBonus(_new, "Chest"));
     }
 
     private String GetArtifactBonus(Artifact art, String type) {
