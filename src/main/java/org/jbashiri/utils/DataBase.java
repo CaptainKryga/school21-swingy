@@ -108,7 +108,7 @@ public class DataBase {
             prepare.setInt(5, player.getCountHealthBanks());
             //class
             HeroClass temp = player.getHeroClass();
-            prepare.setString(6, temp.getClassName());
+            prepare.setString(6, temp.getClassName().toString());
             prepare.setInt(7, temp.hp);
             prepare.setInt(8, temp.getMaxHp());
             prepare.setInt(9, temp.atk);

@@ -100,28 +100,28 @@ public class Player {
         if (_new == null)
             return;
 
-        if (_new.getType().equals("Weapon")) {
+        if (_new.getType() == CustomEnums.TypeArt.Weapon) {
             heroClass.updateMaxAttack(-weapon.getBonus());
             weapon = _new;
             heroClass.updateMaxAttack(weapon.getBonus());
         }
-        else if (_new.getType().equals("Chest")) {
+        else if (_new.getType() == CustomEnums.TypeArt.Chest) {
             heroClass.updateMaxDefence(-chest.getBonus());
             chest = _new;
             heroClass.updateMaxDefence(chest.getBonus());
         }
-        else if (_new.getType().equals("Head")) {
+        else if (_new.getType() == CustomEnums.TypeArt.Head) {
             heroClass.updateMaxHp(false, -head.getBonus());
             head = _new;
             heroClass.updateMaxHp(false, head.getBonus());
         }
     }
-    public Artifact getNowArtifact(String type) {
-        if (type.equals("Weapon"))
+    public Artifact getNowArtifact(CustomEnums.TypeArt type) {
+        if (type == CustomEnums.TypeArt.Weapon)
             return weapon;
-        else if (type.equals("Chest"))
+        else if (type == CustomEnums.TypeArt.Chest)
             return chest;
-        else if (type.equals("Head"))
+        else if (type == CustomEnums.TypeArt.Head)
             return head;
         return null;
     }

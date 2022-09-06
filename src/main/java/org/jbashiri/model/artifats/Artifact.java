@@ -1,5 +1,6 @@
 package org.jbashiri.model.artifats;
 
+import org.jbashiri.model.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -8,7 +9,7 @@ import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Artifact {
     protected String artName;
-    protected String type;
+    protected CustomEnums.TypeArt type;
     protected int bonus;
 
     private static int chanceDrop = 100;
@@ -20,17 +21,17 @@ public class Artifact {
         int type = getRandom(0, 3);
 
         if (type == 0) {
-            this.type = "Weapon";
+            this.type = CustomEnums.TypeArt.Weapon;
             artName = getNewName();
             bonus = getRandom(1, luck / 5 * level);
             CustomLogger.singleton.printLog(artName + "\nbonusAttack = " + bonus, 2);
         } else if (type == 1) {
-            this.type = "Chest";
+            this.type = CustomEnums.TypeArt.Chest;
             artName = getNewName();
             bonus = getRandom(1, luck / 5 * level);
             CustomLogger.singleton.printLog(artName + "\nbonusDefence = " + bonus, 2);
         } else if (type == 2) {
-            this.type = "Head";
+            this.type = CustomEnums.TypeArt.Head;
             artName = getNewName();
             bonus = getRandom(1, luck / 5 * level);
             CustomLogger.singleton.printLog(artName + "\nbonusHP = " + bonus, 2);
@@ -39,12 +40,12 @@ public class Artifact {
 
     public Artifact() {
         artName = "-1";
-        type = "-1";
+        type = CustomEnums.TypeArt.Null;
     }
 
     public Artifact(String artName, String type, int bonus) {
         this.artName = artName;
-        this.type = type;
+        this.type = CustomEnums.getTypeArt(type);
         this.bonus = bonus;
     }
 
@@ -62,9 +63,9 @@ public class Artifact {
     }
 
     public String getNameAndStats() {
-        if (type.equals("Weapon"))
+        if (type == CustomEnums.TypeArt.Weapon)
             return artName + " bonus attack +" + bonus;
-        else if (type.equals("Chest"))
+        else if (type == CustomEnums.TypeArt.Chest)
             return artName + " bonus defence +" + bonus;
         else
             return artName + " bonus hp +" + bonus;
@@ -74,7 +75,7 @@ public class Artifact {
         return bonus;
     }
 
-    public String getType() {
+    public CustomEnums.TypeArt getType() {
         return type;
     }
     public String getArtName() {

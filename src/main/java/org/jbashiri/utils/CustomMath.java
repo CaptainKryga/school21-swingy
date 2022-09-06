@@ -4,6 +4,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CustomMath {
     public static int getRandom(int min, int max) {
+        CustomLogger.singleton.printLog("RANDOM min: " + min + " max: " + max, 3);
+        if (max <= min)
+            max = min + 1;
         return ThreadLocalRandom.current().nextInt(min, max);
     }
 
@@ -11,7 +14,7 @@ public class CustomMath {
     public static int getRandomCustom(int min) {
         if (min <= 0)
             return 0;
-        return ThreadLocalRandom.current().nextInt(min - min / 10, min + min / 10);
+        return getRandom(min - min / 10, min + min / 10);
     }
 
     public static int getPow(int num, int pow) {

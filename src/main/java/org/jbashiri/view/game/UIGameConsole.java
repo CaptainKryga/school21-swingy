@@ -1,5 +1,6 @@
 package org.jbashiri.view.game;
 
+import org.jbashiri.model.CustomEnums;
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;
@@ -20,11 +21,14 @@ public class UIGameConsole implements UIGame {
         System.out.println("DEF: " + player.getHeroClass().def);
         System.out.println("LCK: " + player.getHeroClass().luck);
         System.out.println("WEAPON: " +
-                (player.getArtifactWeapon().getType().equals("-1") ? "no weapon" : player.getArtifactWeapon().getNameAndStats()));
+                (player.getArtifactWeapon().getType() == CustomEnums.TypeArt.Null ? "no weapon" :
+                        player.getArtifactWeapon().getNameAndStats()));
         System.out.println("CHEST: " +
-                (player.getArtifactChest().getType().equals("-1") ? "no chest" : player.getArtifactChest().getNameAndStats()));
+                (player.getArtifactChest().getType() == CustomEnums.TypeArt.Null ? "no chest" :
+                        player.getArtifactChest().getNameAndStats()));
         System.out.println("HEAD: " +
-                (player.getArtifactHead().getType().equals("-1") ? "no head" : player.getArtifactHead().getNameAndStats()));
+                (player.getArtifactHead().getType() == CustomEnums.TypeArt.Null ? "no head" :
+                        player.getArtifactHead().getNameAndStats()));
         System.out.println("Health banks: " + player.getCountHealthBanks());
     }
 
@@ -144,16 +148,19 @@ public class UIGameConsole implements UIGame {
     public void printArtifact(Artifact old, Artifact _new) {
         System.out.println("Drop new Artifact");
         System.out.println("####      OLD         NEW");
-        System.out.println("name      " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
+        System.out.println("name      " + (old.getType() == CustomEnums.TypeArt.Null ? "-" + getSpaces(11) :
                         old.getArtName() + getSpaces(12 - old.getArtName().length())) + "" + _new.getArtName());
 
-        System.out.println("bonus HP  " + GetArtifactBonus(old, "Head") + "" + GetArtifactBonus(_new, "Head"));
-        System.out.println("bonus ATK " + GetArtifactBonus(old, "Weapon") + "" + GetArtifactBonus(_new, "Weapon"));
-        System.out.println("bonus DEF " + GetArtifactBonus(old, "Chest") + "" + GetArtifactBonus(_new, "Chest"));
+        System.out.println("bonus HP  " + GetArtifactBonus(old, CustomEnums.TypeArt.Head) +
+                "" + GetArtifactBonus(_new, CustomEnums.TypeArt.Head));
+        System.out.println("bonus ATK " + GetArtifactBonus(old, CustomEnums.TypeArt.Weapon) +
+                "" + GetArtifactBonus(_new, CustomEnums.TypeArt.Weapon));
+        System.out.println("bonus DEF " + GetArtifactBonus(old, CustomEnums.TypeArt.Chest) +
+                "" + GetArtifactBonus(_new, CustomEnums.TypeArt.Chest));
     }
 
-    private String GetArtifactBonus(Artifact art, String type) {
-        if (!art.getType().equals(type))
+    private String GetArtifactBonus(Artifact art, CustomEnums.TypeArt type) {
+        if (art.getType() != type)
             return "-" + getSpaces(11);
         return art.getBonus() + getSpaces(12 - getLengthNumber(art.getBonus()));
     }

@@ -2,7 +2,7 @@ package org.jbashiri.model.classes;
 
 public class Warrior extends HeroClass {
     public Warrior() {
-        className = "Warrior";
+        className = getHeroClass("Warrior");
         maxHp = 200;
         maxAtk = 50;
         maxDef = 40;

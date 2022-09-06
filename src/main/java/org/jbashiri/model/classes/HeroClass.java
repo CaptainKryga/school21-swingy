@@ -1,11 +1,13 @@
 package org.jbashiri.model.classes;
 
+import org.jbashiri.model.CustomEnums;
+
 import static org.jbashiri.utils.CustomStrings.getLengthNumber;
 import static org.jbashiri.utils.CustomStrings.getSpaces;
 import static org.jbashiri.utils.CustomMath.Abs;
 
 public class HeroClass {
-    protected String className;
+    protected CustomEnums.HeroClass className;
     public int hp;
     protected int maxHp;
     public int atk;
@@ -16,7 +18,7 @@ public class HeroClass {
     protected int maxLuck; //max 75
 
     public HeroClass LoadClass(String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck) {
-        this.className = className;
+        this.className = getHeroClass(className);
         this.hp = hp;
         this.maxHp = maxHp;
         this.atk = atk;
@@ -30,7 +32,7 @@ public class HeroClass {
 
     public String getAllDefaultStats() {
         String result = "";
-        result += className + getSpaces(Abs(10 - className.length()));
+        result += className + getSpaces(Abs(10 - className.toString().length()));
         result += hp + getSpaces(Abs(5 - getLengthNumber(hp)));
         result += atk + getSpaces(Abs(5 - getLengthNumber(atk)));
         result += def + getSpaces(Abs(5 - getLengthNumber(def)));
@@ -45,7 +47,7 @@ public class HeroClass {
         updateMaxLuck(maxLuck * level / 10);
     }
 
-    public String getClassName() {
+    public CustomEnums.HeroClass getClassName() {
         return className;
     }
 
@@ -95,5 +97,16 @@ public class HeroClass {
             maxLuck = 75;
         }
         luck = maxLuck;
+    }
+
+    public CustomEnums.HeroClass getHeroClass(String str) {
+        if (str.equals("Warrior"))
+            return CustomEnums.HeroClass.Warrior;
+        else if (str.equals("Paladin"))
+            return CustomEnums.HeroClass.Paladin;
+        else if (str.equals("Ranger"))
+            return CustomEnums.HeroClass.Ranger;
+        else
+            return CustomEnums.HeroClass.Mage;
     }
 }

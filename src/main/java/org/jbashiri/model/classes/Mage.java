@@ -4,7 +4,7 @@ import org.jbashiri.utils.CustomLogger;
 
 public class Mage extends HeroClass {
     public Mage() {
-        className = "Mage";
+        className = getHeroClass("Mage");
         maxHp = 50;
         maxAtk = 100;
         maxDef = 10;
