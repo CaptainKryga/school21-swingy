@@ -39,7 +39,6 @@ public class ControllerGame {
     public void init(Player player, boolean isConsole) {
         this.player = player;
         tempArtifact = new Artifact();
-        addNewHero(player);
         switchUI(isConsole);
     }
 

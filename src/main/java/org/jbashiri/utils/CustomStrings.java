@@ -1,6 +1,7 @@
 package org.jbashiri.utils;
 
 public class CustomStrings {
+    private static String correctChars = "qwertyuioplkjhgfdsazxcvbnm";
     public static String getSpaces(int num) {
         if (num < 0)
             return "";
@@ -25,5 +26,21 @@ public class CustomStrings {
             }
         }
         return res;
+    }
+
+    public static boolean isOnlyWords(char[] str) {
+        char[] correct = correctChars.toCharArray();
+        for (int x = 0; x < str.length; x++) {
+            boolean isCorrect = false;
+            for (int y = 0; y < correct.length; y++) {
+                if (str[x] == correct[y]) {
+                    isCorrect = true;
+                }
+            }
+            if (!isCorrect) {
+                return false;
+            }
+        }
+        return true;
     }
 }

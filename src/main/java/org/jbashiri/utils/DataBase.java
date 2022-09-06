@@ -90,6 +90,7 @@ public class DataBase {
     }
 
     public static void addNewHero(Player player) {
+        CustomLogger.singleton.printLog("ADD NEW HERO", 2);
                             //player:
         String sqlQuery = "INSERT INTO heroes(playerName, playerLevel, experience, score, countHealthBanks, " +
                 //class

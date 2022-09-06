@@ -10,6 +10,8 @@ import org.jbashiri.view.create.UICreateGUI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.jbashiri.utils.CustomStrings.isOnlyWords;
+
 public class ControllerCreate {
     private ControllerGame game;
     private UICreate uiCreate;
@@ -44,11 +46,16 @@ public class ControllerCreate {
 
             while(sc.hasNextLine()) {
 
-                String line = sc.nextLine().toLowerCase();
+                String line = sc.nextLine();
 
                 isCorrectName = true;
+
+                if (!isOnlyWords(line.toLowerCase().toCharArray()))
+                    isCorrectName = false;
+
                 for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i).toLowerCase().split(" ")[0].equals(line)) {
+                    String temp = list.get(i).toLowerCase().split(" ")[0];
+                    if (temp.equals(line.toLowerCase())) {
                         isCorrectName = false;
                         break;
                     }

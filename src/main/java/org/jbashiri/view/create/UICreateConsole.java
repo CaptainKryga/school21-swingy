@@ -41,7 +41,7 @@ public class UICreateConsole implements UICreate {
 
     @Override
     public void inputErrorName(String line) {
-        System.out.println("Name " + line.split(" ")[0] + " is taken. Please write other.");
+        System.out.println("Name " + line.split(" ")[0] + " is taken or incorrect input[only words]. Please write other.");
     }
 
     @Override
