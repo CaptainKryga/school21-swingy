@@ -10,12 +10,7 @@ import org.jbashiri.view.game.UIGame;
 import org.jbashiri.view.game.UIGameConsole;
 import org.jbashiri.view.game.UIGameGUI;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Scanner;
-import java.util.Set;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
 import static org.jbashiri.utils.CustomMath.getRandomCustom;

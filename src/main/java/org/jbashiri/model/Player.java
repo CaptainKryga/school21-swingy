@@ -1,9 +1,9 @@
 package org.jbashiri.model;
 
-import org.hibernate.validator.constraints.Length;
 import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.model.classes.*;
 import org.jbashiri.model.classes.HeroClass;
+import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 
 import javax.validation.constraints.Size;

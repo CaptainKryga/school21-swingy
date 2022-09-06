@@ -1,6 +1,6 @@
 package org.jbashiri.model.classes;
 
-import org.jbashiri.model.CustomEnums;
+import org.jbashiri.utils.CustomEnums;
 
 import static org.jbashiri.utils.CustomStrings.getLengthNumber;
 import static org.jbashiri.utils.CustomStrings.getSpaces;

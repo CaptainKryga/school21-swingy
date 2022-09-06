@@ -1,6 +1,6 @@
 package org.jbashiri.view.game;
 
-import org.jbashiri.model.CustomEnums;
+import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;

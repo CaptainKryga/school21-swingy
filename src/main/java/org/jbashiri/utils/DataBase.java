@@ -11,6 +11,10 @@ public class DataBase {
     private static final String dbLink = "jdbc:sqlite:src/main/resources/heroes.db";
     private static Connection connection;
 
+    public DataBase() throws CustomException {
+        connect();
+    }
+
     public static void connect() throws CustomException {
         Connection connect;
         try {
@@ -56,11 +60,11 @@ public class DataBase {
     }
 
     //gen table
-    public static void createTable() throws SQLException, ClassNotFoundException, CustomException {
+    public static void createTable(String name) throws SQLException, ClassNotFoundException, CustomException {
         java.lang.Class.forName("org.sqlite.JDBC");
         Connection connection = DriverManager.getConnection(dbLink);
         Statement stmt = connection.createStatement();
-        String query = "create table " + "heroes" + " ( " +
+        String query = "create table " + name + " ( " +
                 "id int , " +
                 "playerName varchar(30), " +
                 "playerLevel int , " +

@@ -1,6 +1,7 @@
 package org.jbashiri.controller;
 
 import org.jbashiri.model.Player;
+import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
 import org.jbashiri.view.load.UILoad;
 import org.jbashiri.view.load.UILoadConsole;
@@ -17,6 +18,8 @@ public class ControllerLoad {
     ControllerLoad(ControllerGame game, ControllerCreate create) {
         this.game = game;
         this.create = create;
+
+        CustomLogger.singleton.printLog("constructor c_load", 3);
     }
 
     public void init(boolean isConsole) {

@@ -1,7 +1,6 @@
 package org.jbashiri.model.artifats;
 
-import org.hibernate.validator.constraints.Length;
-import org.jbashiri.model.CustomEnums;
+import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 
 import javax.validation.constraints.NotNull;

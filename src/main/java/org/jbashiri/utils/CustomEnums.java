@@ -1,4 +1,4 @@
-package org.jbashiri.model;
+package org.jbashiri.utils;
 
 public class CustomEnums {
     //artifacts
@@ -29,9 +29,25 @@ public class CustomEnums {
 
     //game states
     public static enum State {
-        Main,
+        Init,
+        Switch,
         Create,
         Load,
         Game
+    }
+
+    //button's
+    public static enum Button {
+        InitCreate,
+        InitLoad,
+        InitSwitch,
+        Error,
+    }
+    public static Button getEnumButton(String btn) {
+        if (btn.equals("create")) return Button.InitCreate;
+        else if (btn.equals("load")) return Button.InitLoad;
+        else if (btn.equals("switch")) return Button.InitSwitch;
+
+        else return Button.Error;
     }
 }

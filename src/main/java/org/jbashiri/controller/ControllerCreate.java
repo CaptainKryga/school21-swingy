@@ -1,5 +1,6 @@
 package org.jbashiri.controller;
 
+import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
 import org.jbashiri.view.create.UICreate;
 import org.jbashiri.view.create.UICreateConsole;
@@ -25,6 +26,8 @@ public class ControllerCreate {
     ControllerCreate(ControllerGame game) {
         this.game = game;
         this.state = 0;
+
+        CustomLogger.singleton.printLog("constructor c_create", 3);
     }
 
     public void init(boolean isConsole) {
