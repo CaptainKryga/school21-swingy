@@ -2,7 +2,7 @@ package org.jbashiri.view.load;
 
 import java.util.ArrayList;
 
-public class UILoadGUI implements UILoad {
+public class V_LoadGUI implements V_Load {
     @Override
     public void init(ArrayList<String> list) {
 

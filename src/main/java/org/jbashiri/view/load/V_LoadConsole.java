@@ -2,7 +2,7 @@ package org.jbashiri.view.load;
 
 import java.util.ArrayList;
 
-public class UILoadConsole implements UILoad {
+public class V_LoadConsole implements V_Load {
     @Override
     public void init(ArrayList<String> list) {
         System.out.println("CREATE => create new hero.");

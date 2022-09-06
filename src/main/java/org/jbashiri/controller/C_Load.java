@@ -2,9 +2,9 @@ package org.jbashiri.controller;
 
 import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
-import org.jbashiri.view.load.UILoad;
-import org.jbashiri.view.load.UILoadConsole;
-import org.jbashiri.view.load.UILoadGUI;
+import org.jbashiri.view.load.V_Load;
+import org.jbashiri.view.load.V_LoadConsole;
+import org.jbashiri.view.load.V_LoadGUI;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class C_Load {
     private C_Game game;
     private C_Create create;
-    private UILoad uiLoad;
+    private V_Load uiLoad;
 
     C_Load(C_Game game, C_Create create) {
         this.game = game;
@@ -57,11 +57,11 @@ public class C_Load {
         }
     }
 
-    private UILoad getLoad(boolean isConsole) {
+    private V_Load getLoad(boolean isConsole) {
         if (isConsole) {
-            return new UILoadConsole();
+            return new V_LoadConsole();
         } else {
-            return new UILoadGUI();
+            return new V_LoadGUI();
         }
     }
 }
