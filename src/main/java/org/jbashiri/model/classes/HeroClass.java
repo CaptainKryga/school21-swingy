@@ -4,8 +4,8 @@ import static org.jbashiri.utils.CustomStrings.getLengthNumber;
 import static org.jbashiri.utils.CustomStrings.getSpaces;
 import static org.jbashiri.utils.CustomMath.Abs;
 
-public class Class {
-    protected String name;
+public class HeroClass {
+    protected String className;
     public int hp;
     protected int maxHp;
     public int atk;
@@ -15,13 +15,22 @@ public class Class {
     public int luck;
     protected int maxLuck; //max 75
 
-    public Class loadClass(String clas) {
+    public HeroClass LoadClass(String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck) {
+        this.className = className;
+        this.hp = hp;
+        this.maxHp = maxHp;
+        this.atk = atk;
+        this.maxAtk = maxAtk;
+        this.def = def;
+        this.maxDef = maxDef;
+        this.luck = luck;
+        this.maxLuck = maxLuck;
         return this;
     }
 
     public String getAllDefaultStats() {
         String result = "";
-        result += name + getSpaces(Abs(10 - name.length()));
+        result += className + getSpaces(Abs(10 - className.length()));
         result += hp + getSpaces(Abs(5 - getLengthNumber(hp)));
         result += atk + getSpaces(Abs(5 - getLengthNumber(atk)));
         result += def + getSpaces(Abs(5 - getLengthNumber(def)));
@@ -36,8 +45,8 @@ public class Class {
         updateMaxLuck(maxLuck * level / 10);
     }
 
-    public String getName() {
-        return name;
+    public String getClassName() {
+        return className;
     }
 
     public int getMaxHp() {

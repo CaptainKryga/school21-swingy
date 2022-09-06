@@ -10,9 +10,9 @@ public class UIGameConsole implements UIGame {
     @Override
     public void printPlayerInfo(Player player) {
         System.out.println("--- I.N.F.O.R.M.A.T.I.O.N. ---");
-        System.out.println("NAME: " + player.getName());
+        System.out.println("NAME: " + player.getPlayerName());
         System.out.println("SCORE: " + player.getScore());
-        System.out.println("CLASS: " + player.getHeroClass().getName());
+        System.out.println("CLASS: " + player.getHeroClass().getClassName());
         System.out.println("LVL: " + player.getLevel());
         System.out.println("EXP: " + player.getExperience() + "/" + player.calculateExperience(player.getLevel()));
         System.out.println("HP: " + player.getHeroClass().hp + "/" + player.getHeroClass().getMaxHp());
@@ -145,7 +145,7 @@ public class UIGameConsole implements UIGame {
         System.out.println("Drop new Artifact");
         System.out.println("####      OLD         NEW");
         System.out.println("name      " + (old.getType().equals("-1") ? "-" + getSpaces(11) :
-                        old.getName() + getSpaces(12 - old.getName().length())) + "" + _new.getName());
+                        old.getArtName() + getSpaces(12 - old.getArtName().length())) + "" + _new.getArtName());
 
         System.out.println("bonus HP  " + GetArtifactBonus(old, "Head") + "" + _new.getBonus());
         System.out.println("bonus ATK " + GetArtifactBonus(old, "Weapon") + "" + _new.getBonus());

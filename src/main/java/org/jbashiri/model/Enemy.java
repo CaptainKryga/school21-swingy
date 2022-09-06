@@ -1,7 +1,7 @@
 package org.jbashiri.model;
 
 import org.jbashiri.model.classes.*;
-import org.jbashiri.model.classes.Class;
+import org.jbashiri.model.classes.HeroClass;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
 
@@ -12,7 +12,7 @@ public class Enemy {
     public int luck;
 
     public Enemy(int level) {
-        Class[] data = new Class[4];
+        HeroClass[] data = new HeroClass[4];
         data[0] = new Warrior();
         data[1] = new Mage();
         data[2] = new Ranger();

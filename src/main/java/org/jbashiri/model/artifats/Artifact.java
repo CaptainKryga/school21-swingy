@@ -7,11 +7,11 @@ import java.util.concurrent.ThreadLocalRandom;
 import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Artifact {
-    protected String name;
+    protected String artName;
     protected String type;
     protected int bonus;
 
-    private int chanceDrop = 100;
+    private static int chanceDrop = 100;
 
     private String S = "QWRTPSDFGHKLZXCVBNMJ";
     private String G = "EYUIOA";
@@ -21,25 +21,31 @@ public class Artifact {
 
         if (type == 0) {
             this.type = "Weapon";
-            name = getNewName();
+            artName = getNewName();
             bonus = getRandom(1, luck / 5 * level);
-            CustomLogger.singleton.printLog(name + "\nbonusAttack = " + bonus, 2);
+            CustomLogger.singleton.printLog(artName + "\nbonusAttack = " + bonus, 2);
         } else if (type == 1) {
             this.type = "Chest";
-            name = getNewName();
+            artName = getNewName();
             bonus = getRandom(1, luck / 5 * level);
-            CustomLogger.singleton.printLog(name + "\nbonusDefence = " + bonus, 2);
+            CustomLogger.singleton.printLog(artName + "\nbonusDefence = " + bonus, 2);
         } else if (type == 2) {
             this.type = "Head";
-            name = getNewName();
+            artName = getNewName();
             bonus = getRandom(1, luck / 5 * level);
-            CustomLogger.singleton.printLog(name + "\nbonusHP = " + bonus, 2);
+            CustomLogger.singleton.printLog(artName + "\nbonusHP = " + bonus, 2);
         }
     }
 
     public Artifact() {
-        name = "-1";
+        artName = "-1";
         type = "-1";
+    }
+
+    public Artifact(String artName, String type, int bonus) {
+        this.artName = artName;
+        this.type = type;
+        this.bonus = bonus;
     }
 
     private String getNewName() {
@@ -57,11 +63,11 @@ public class Artifact {
 
     public String getNameAndStats() {
         if (type.equals("Weapon"))
-            return name + " bonus attack +" + bonus;
+            return artName + " bonus attack +" + bonus;
         else if (type.equals("Chest"))
-            return name + " bonus defence +" + bonus;
+            return artName + " bonus defence +" + bonus;
         else
-            return name + " bonus hp +" + bonus;
+            return artName + " bonus hp +" + bonus;
     }
 
     public int getBonus() {
@@ -71,8 +77,8 @@ public class Artifact {
     public String getType() {
         return type;
     }
-    public String getName() {
-        return name;
+    public String getArtName() {
+        return artName;
     }
 
     public int getChanceDrop() {

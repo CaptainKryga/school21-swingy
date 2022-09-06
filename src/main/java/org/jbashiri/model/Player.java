@@ -2,45 +2,48 @@ package org.jbashiri.model;
 
 import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.model.classes.*;
-import org.jbashiri.model.classes.Class;
+import org.jbashiri.model.classes.HeroClass;
 import org.jbashiri.utils.CustomLogger;
 
 import static org.jbashiri.utils.CustomMath.getPow;
 import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Player {
-    protected String name;
-    protected Class heroClass;
+    protected String playerName;
+    protected HeroClass heroClass;
     protected int level;
     protected int experience;
     protected int score;
     protected Artifact weapon;
     protected Artifact chest;
     protected Artifact head;
-    protected int healthBank;
+    protected int countHealthBanks;
 
     public Player(String name, String clas) {
         level = 1;
-        this.name = name;
+        this.playerName = name;
         heroClass = setClass(clas);
         weapon = new Artifact();
         chest = new Artifact();
         head = new Artifact();
-        healthBank = 1;
+        countHealthBanks = 1;
     }
 
-    public Player PlayerLoad(String data) {
-        level = 1;
-        this.name = data;
-        heroClass = setClass(data);
-        weapon = new Artifact();
-        chest = new Artifact();
-        head = new Artifact();
-        healthBank = 1;
-        return this;
+    public Player(String playerName, int playerLevel, int experience, int score, int countHealthBanks,
+                           String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck,
+                           String weaponName, int weaponBonus, String chestName, int chestBonus, String headName, int headBonus) {
+        this.playerName = playerName;
+        this.level = playerLevel;
+        this.experience = experience;
+        this.score = score;
+        this.countHealthBanks = countHealthBanks;
+        this.heroClass = new HeroClass().LoadClass(className, hp, maxHp, atk, maxAtk, def, maxDef, luck, maxLuck);
+        this.weapon = new Artifact(weaponName, "Weapon", weaponBonus);
+        this.chest = new Artifact(chestName, "Chest", chestBonus);
+        this.head = new Artifact(headName, "Head", headBonus);
     }
 
-    private Class setClass(String type) {
+    private HeroClass setClass(String type) {
         if (type.equals("warrior"))
             return new Warrior();
         else if (type.equals("mage"))
@@ -69,10 +72,10 @@ public class Player {
         return level * 1000 + getPow(level, 2) * 450;
     }
 
-    public String getName() {
-        return name;
+    public String getPlayerName() {
+        return playerName;
     }
-    public Class getHeroClass() {
+    public HeroClass getHeroClass() {
         return heroClass;
     }
     public int getLevel() {
@@ -124,8 +127,8 @@ public class Player {
     }
 
     public int useHealthBank() {
-        if (healthBank > 0) {
-            healthBank--;
+        if (countHealthBanks > 0) {
+            countHealthBanks--;
             int rnd = getRandom(1, heroClass.getMaxHp());
             heroClass.updateHp(rnd);
             return rnd;
@@ -134,13 +137,13 @@ public class Player {
     }
 
     public int getCountHealthBanks() {
-        return healthBank;
+        return countHealthBanks;
     }
 
     public void updateHealthBanks(int add) {
-        healthBank += add;
-        if (healthBank > 3) {
-            healthBank = 3;
+        countHealthBanks += add;
+        if (countHealthBanks > 3) {
+            countHealthBanks = 3;
         }
     }
 

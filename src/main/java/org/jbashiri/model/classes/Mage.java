@@ -2,9 +2,9 @@ package org.jbashiri.model.classes;
 
 import org.jbashiri.utils.CustomLogger;
 
-public class Mage extends Class {
+public class Mage extends HeroClass {
     public Mage() {
-        name = "Mage";
+        className = "Mage";
         maxHp = 50;
         maxAtk = 100;
         maxDef = 10;

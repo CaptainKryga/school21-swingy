@@ -38,7 +38,7 @@ public class ControllerLoad {
 
                 for (int i = 0; i < list.size(); i++) {
                     if (list.get(i).toLowerCase().split(" ")[0].equals(line)) {
-                        game.init(new Player(list.get(i), list.get(i)), isConsole);
+                        game.init(DataBase.getHero(list.get(i).split(" ")[0]), isConsole);
                         return;
                     }
                 }

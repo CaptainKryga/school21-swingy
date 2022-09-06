@@ -1,8 +1,8 @@
 package org.jbashiri.model.classes;
 
-public class Ranger extends Class {
+public class Ranger extends HeroClass {
     public Ranger() {
-        name = "Ranger";
+        className = "Ranger";
         maxHp = 100;
         maxAtk = 75;
         maxDef = 25;

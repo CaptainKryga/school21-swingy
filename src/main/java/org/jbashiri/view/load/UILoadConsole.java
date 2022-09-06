@@ -9,7 +9,7 @@ public class UILoadConsole implements UILoad {
         System.out.println("SWITCH => switch on GUI.");
         System.out.println("SELECTing a old hero: ");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + "] " + list.get(i));
+            System.out.println(i + ") " + list.get(i));
         }
         System.out.println(list.size() > 0 ? "Write a old name hero or CREATE new hero." :
                 "No save heroes. Please CREATE new hero.");

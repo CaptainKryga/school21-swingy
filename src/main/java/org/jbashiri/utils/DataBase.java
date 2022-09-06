@@ -2,7 +2,7 @@ package org.jbashiri.utils;
 
 import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.Player;
-import org.jbashiri.model.classes.Class;
+import org.jbashiri.model.classes.HeroClass;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,7 +33,6 @@ public class DataBase {
         }
         connection = null;
     }
-
 
     public static Connection getConnect() throws CustomException {
         if (connection == null)
@@ -101,14 +100,14 @@ public class DataBase {
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement prepare = getConnect().prepareStatement(sqlQuery)) {
             //player
-            prepare.setString(1, player.getName());
+            prepare.setString(1, player.getPlayerName());
             prepare.setInt(2, player.getLevel());
             prepare.setInt(3, player.getExperience());
             prepare.setInt(4, player.getScore());
             prepare.setInt(5, player.getCountHealthBanks());
             //class
-            Class temp = player.getHeroClass();
-            prepare.setString(6, temp.getName());
+            HeroClass temp = player.getHeroClass();
+            prepare.setString(6, temp.getClassName());
             prepare.setInt(7, temp.hp);
             prepare.setInt(8, temp.getMaxHp());
             prepare.setInt(9, temp.atk);
@@ -118,11 +117,11 @@ public class DataBase {
             prepare.setInt(13, temp.luck);
             prepare.setInt(14, temp.getMaxLuck());
             //artifacts
-            prepare.setString(15, player.getArtifactWeapon().getName());
+            prepare.setString(15, player.getArtifactWeapon().getArtName());
             prepare.setInt(16, player.getArtifactWeapon().getBonus());
-            prepare.setString(17, player.getArtifactChest().getName());
+            prepare.setString(17, player.getArtifactChest().getArtName());
             prepare.setInt(18, player.getArtifactChest().getBonus());
-            prepare.setString(19, player.getArtifactHead().getName());
+            prepare.setString(19, player.getArtifactHead().getArtName());
             prepare.setInt(20, player.getArtifactHead().getBonus());
             prepare.executeUpdate();
         } catch (SQLException e) {
@@ -162,5 +161,38 @@ public class DataBase {
         } catch (CustomException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static Player getHero(String playerName) {
+        String sql = "SELECT * FROM heroes";
+        Player load = null;
+
+        try (Statement stmt = getConnect().createStatement()) {
+            ResultSet res = stmt.executeQuery(sql);
+            for (int i = 1; res.next(); i++) {
+                if (res.getString("playerName").equals(playerName)) {
+                    load = new Player(res.getString("playerName"), res.getInt("playerLevel"),
+                            res.getInt("experience"), res.getInt("score"),
+                            res.getInt("countHealthBanks"),
+
+                            res.getString("className"), res.getInt("hp"),
+                            res.getInt("maxHp"), res.getInt("atk"),
+                            res.getInt("maxAtk"), res.getInt("def"),
+                            res.getInt("maxDef"), res.getInt("luck"),
+                            res.getInt("maxLuck"),
+
+                            res.getString("weaponName"), res.getInt("weaponBonus"),
+                            res.getString("chestName"), res.getInt("chestBonus"),
+                            res.getString("headName"), res.getInt("headBonus"));
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (CustomException e) {
+            throw new RuntimeException(e);
+        }
+
+        return load;
     }
 }

@@ -1,8 +1,8 @@
 package org.jbashiri.model.classes;
 
-public class Paladin extends Class {
+public class Paladin extends HeroClass {
     public Paladin() {
-        name = "Paladin";
+        className = "Paladin";
         maxHp = 150;
         maxAtk = 50;
         maxDef = 35;
