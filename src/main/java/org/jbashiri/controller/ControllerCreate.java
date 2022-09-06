@@ -1,12 +1,12 @@
 package org.jbashiri.controller;
 
-import org.jbashiri.model.Player;
-import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
 import org.jbashiri.view.create.UICreate;
 import org.jbashiri.view.create.UICreateConsole;
 import org.jbashiri.view.create.UICreateGUI;
 
+import javax.validation.Validation;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +18,7 @@ public class ControllerCreate {
 
     //state 0=>name 1=>class
     private int state;
+    @Size(min = 3, max = 10)
     private String playerName;
     private String playerClass;
 
@@ -46,6 +47,7 @@ public class ControllerCreate {
 
             while(sc.hasNextLine()) {
 
+                @Size(min = 3, max = 5, message = "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
                 String line = sc.nextLine();
 
                 isCorrectName = true;

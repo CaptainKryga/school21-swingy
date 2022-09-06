@@ -1,13 +1,16 @@
 package org.jbashiri.model.artifats;
 
+import org.hibernate.validator.constraints.Length;
 import org.jbashiri.model.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 
+import javax.validation.constraints.NotNull;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Artifact {
+    @NotNull
     protected String artName;
     protected CustomEnums.TypeArt type;
     protected int bonus;

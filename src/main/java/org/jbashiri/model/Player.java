@@ -1,14 +1,18 @@
 package org.jbashiri.model;
 
+import org.hibernate.validator.constraints.Length;
 import org.jbashiri.model.artifats.Artifact;
 import org.jbashiri.model.classes.*;
 import org.jbashiri.model.classes.HeroClass;
 import org.jbashiri.utils.CustomLogger;
 
+import javax.validation.constraints.Size;
+
 import static org.jbashiri.utils.CustomMath.getPow;
 import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Player {
+    @Size(min = 3, max = 15, message = "min = 3 simbols, max = 15 simbols")
     protected String playerName;
     protected HeroClass heroClass;
     protected int level;
@@ -29,7 +33,7 @@ public class Player {
         countHealthBanks = 1;
     }
 
-    public Player(String playerName, int playerLevel, int experience, int score, int countHealthBanks,
+    public Player(@Size(min = 3, max = 15)String playerName, int playerLevel, int experience, int score, int countHealthBanks,
                            String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck,
                            String weaponName, int weaponBonus, String chestName, int chestBonus, String headName, int headBonus) {
         this.playerName = playerName;
