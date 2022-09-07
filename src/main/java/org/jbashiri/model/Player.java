@@ -196,4 +196,9 @@ public class Player {
     public Vector2 getPos() {
         return pos;
     }
+    public void setPos(int x, int y) {
+        pos.x = x;
+        pos.y = y;
+        mapPlayer[pos.x][pos.y] = 'P';
+    }
 }

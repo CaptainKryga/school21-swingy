@@ -172,6 +172,7 @@ public class M_Game {
             }
         } else if (state == CustomEnums.StateGame.WIN) {
             v_game.printWin(player.getScore());
+            player.setPos(player.mapPlayer.length / 2, player.mapPlayer.length / 2);
             Main.closeScanner();
             Main.disconnectDataBase();
         } else if (state == CustomEnums.StateGame.DEFEAT) {
@@ -288,8 +289,8 @@ public class M_Game {
         CustomLogger.singleton.printLog("Player Attack: " + atkPlayer, 2);
         enemy.hp -= atkPlayer;
         if (enemy.hp < 0) {
-            v_game.playerKillEnemy(250 + 450 * player.getLevel());
-            if (player.gainExperience(450 * player.getLevel())) {
+            v_game.playerKillEnemy(250 * player.getLevel());
+            if (player.gainExperience(250 * player.getLevel())) {
                 v_game.printLevelUp(player);
 
                 player.mapEnemy = generateEnemy(getSizeMap());
@@ -314,6 +315,11 @@ public class M_Game {
                 v_game.printSetOrDestroyArtifact();
 
                 state = CustomEnums.StateGame.ARTIFACT;
+            } else {
+                state = CustomEnums.StateGame.MOVE;
+                v_game.printMapPlayer(player.mapPlayer);
+                v_game.printDirections();
+                v_game.printDivider();
             }
             return true;
         }

@@ -25,7 +25,7 @@ public class Main {
         connectDataBase();
         boolean isConsole = argv[0].toLowerCase().equals("console");
 
-        new CustomLogger(3);
+        new CustomLogger(-100);
         new CustomValidator();
         new C_Init(isConsole);
 
