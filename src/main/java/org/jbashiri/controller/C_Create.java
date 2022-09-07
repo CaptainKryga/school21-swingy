@@ -1,5 +1,6 @@
 package org.jbashiri.controller;
 
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Create;
 import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
@@ -22,18 +23,18 @@ public class C_Create {
         CustomLogger.singleton.printLog("constructor c_create", 3);
     }
 
-    public void init(boolean isConsole) {
+    public void init(boolean isConsole) throws CustomException {
         m_create = new M_Create(this);
         switchUI(isConsole);
 
         CustomLogger.singleton.printLog("init c_create", 3);
     }
 
-    private void switchUI(boolean isConsole) {
+    private void switchUI(boolean isConsole) throws CustomException {
         m_create.reInit(state, isConsole);
     }
 
-    public void initGame(String playerName, CustomEnums.HeroClass playerClass, boolean isConsole) {
+    public void initGame(String playerName, CustomEnums.HeroClass playerClass, boolean isConsole) throws CustomException {
         game.init(playerName, playerClass, isConsole);
     }
 }

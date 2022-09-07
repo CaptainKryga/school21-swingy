@@ -2,6 +2,7 @@ package org.jbashiri.model;
 
 import org.jbashiri.controller.C_Create;
 import org.jbashiri.exceptions.CustomError;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.CustomValidator;
@@ -26,7 +27,7 @@ public class M_Create {
         v_createGui = new V_CreateGUI(c_create, this);
     }
 
-    public void reInit(CustomEnums.StateCreate state, boolean isConsole) {
+    public void reInit(CustomEnums.StateCreate state, boolean isConsole) throws CustomException {
         if (v_create != null)
             v_create.switchUI(state, isConsole);
         v_create = switchView(isConsole);

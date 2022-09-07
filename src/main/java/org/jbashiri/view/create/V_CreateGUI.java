@@ -3,6 +3,7 @@ package org.jbashiri.view.create;
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Create;
 import org.jbashiri.exceptions.CustomError;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Create;
 import org.jbashiri.model.classes.Mage;
 import org.jbashiri.model.classes.Paladin;
@@ -95,8 +96,12 @@ public class V_CreateGUI implements V_Create {
                 m_create.setPlayerName(playerName);
                 m_create.setClassName(className);
 
-                c_create.initGame(m_create.getPlayerName(),
-                        m_create.getPlayerClass(), false);
+                try {
+                    c_create.initGame(m_create.getPlayerName(),
+                            m_create.getPlayerClass(), false);
+                } catch (CustomException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

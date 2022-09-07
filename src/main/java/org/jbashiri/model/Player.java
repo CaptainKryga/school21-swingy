@@ -5,6 +5,7 @@ import org.jbashiri.model.classes.*;
 import org.jbashiri.model.classes.HeroClass;
 import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
+import org.jbashiri.utils.Vector2;
 
 import javax.validation.constraints.Size;
 
@@ -22,6 +23,7 @@ public class Player {
     protected Artifact chest;
     protected Artifact head;
     protected int countHealthBanks;
+    protected Vector2 pos;
 
     public Player(String playerName, CustomEnums.HeroClass className) {
         level = 1;
@@ -33,6 +35,7 @@ public class Player {
         chest = new Artifact();
         head = new Artifact();
         countHealthBanks = 1;
+        pos = new Vector2(0,0);
     }
 
     public Player(String playerName, int playerLevel, int experience, int score, int countHealthBanks,

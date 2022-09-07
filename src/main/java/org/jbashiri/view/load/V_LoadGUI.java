@@ -2,6 +2,7 @@ package org.jbashiri.view.load;
 
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Load;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Load;
 import org.jbashiri.utils.CustomLogger;
 
@@ -87,13 +88,21 @@ public class V_LoadGUI implements V_Load {
         btnLoad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                c_load.initGame(lastSelectHero, false);
+                try {
+                    c_load.initGame(lastSelectHero, false);
+                } catch (CustomException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                c_load.initCreate(false);
+                try {
+                    c_load.initCreate(false);
+                } catch (CustomException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

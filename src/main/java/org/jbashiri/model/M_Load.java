@@ -1,6 +1,7 @@
 package org.jbashiri.model;
 
 import org.jbashiri.controller.C_Load;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.utils.DataBase;
 import org.jbashiri.view.load.V_Load;
 import org.jbashiri.view.load.V_LoadConsole;
@@ -17,7 +18,7 @@ public class M_Load {
         v_loadGui = new V_LoadGUI(c_load, this);
     }
 
-    public void reInit(boolean isConsole) {
+    public void reInit(boolean isConsole) throws CustomException {
         ArrayList<String> list = DataBase.getAll();
         if (v_load != null)
             v_load.switchUI(list, isConsole);

@@ -3,6 +3,7 @@ package org.jbashiri.view.create;
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Create;
 import org.jbashiri.exceptions.CustomError;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Create;
 import org.jbashiri.model.classes.*;
 import org.jbashiri.utils.CustomEnums;
@@ -20,7 +21,7 @@ public class V_CreateConsole implements V_Create {
     }
 
     @Override
-    public void switchUI(CustomEnums.StateCreate state, boolean isConsole) {
+    public void switchUI(CustomEnums.StateCreate state, boolean isConsole) throws CustomException {
         if (!isConsole)
             return;
 
@@ -34,9 +35,9 @@ public class V_CreateConsole implements V_Create {
     }
 
     @Override
-    public void init(CustomEnums.StateCreate state) {
+    public void init(CustomEnums.StateCreate state) throws CustomException {
         CustomError error;
-        while(sc.hasNextLine()) {
+        while (sc.hasNext()) {
             String line = sc.nextLine();
             if (m_create.isConsole() == this) {
                 if (state == CustomEnums.StateCreate.Name) {

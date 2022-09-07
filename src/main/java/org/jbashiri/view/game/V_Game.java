@@ -1,10 +1,12 @@
 package org.jbashiri.view.game;
 
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;
+import org.jbashiri.utils.CustomEnums;
 
-public interface UIGame {
+public interface V_Game {
     public void printPlayerInfo(Player player);
 
     public void printDirections();
@@ -28,7 +30,10 @@ public interface UIGame {
     public void printArtifact(Artifact nowArtifact, Artifact artifact);
     public void printSetOrDestroyArtifact();
     public void playerKillEnemy(int exp);
-    public void printHealthBanks(int banks);
+    public void printDropHealthBanks(int banks);
 
     public void printLevelUp(Player player);
+
+    void switchUI(CustomEnums.StateGame state, boolean isConsole) throws CustomException;
+
 }

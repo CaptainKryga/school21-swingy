@@ -2,6 +2,7 @@ package org.jbashiri.view.init;
 
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Init;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Init;
 import org.jbashiri.utils.CustomLogger;
 
@@ -36,19 +37,31 @@ public class V_InitGUI implements V_Init {
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                c_init.initCreate(false);
+                try {
+                    c_init.initCreate(false);
+                } catch (CustomException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         btnLoad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                c_init.initLoad(false);
+                try {
+                    c_init.initLoad(false);
+                } catch (CustomException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         btnSwitch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                c_init.switchUI(true);
+                try {
+                    c_init.switchUI(true);
+                } catch (CustomException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });    }
 

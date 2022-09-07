@@ -2,6 +2,7 @@ package org.jbashiri.view.init;
 
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Init;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Init;
 import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
@@ -21,12 +22,13 @@ public class V_InitConsole implements V_Init {
     }
 
     @Override
-    public void switchUI(boolean isConsole) {
+    public void switchUI(boolean isConsole) throws CustomException {
         if (!isConsole)
             return;
 
         printStartMessage();
         printChoice();
+        printDivider();
 
         if (sc == null) {
             sc = Main.getScanner();
@@ -34,8 +36,8 @@ public class V_InitConsole implements V_Init {
         }
     }
 
-    public void init() {
-        while(sc.hasNextLine()) {
+    public void init() throws CustomException {
+        while (sc.hasNext()) {
             CustomEnums.Button btn = getEnumButton(sc.nextLine().toLowerCase());
             if (m_init.isConsole() == this) {
                 if (btn == CustomEnums.Button.InitCreate) {

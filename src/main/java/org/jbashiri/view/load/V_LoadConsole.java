@@ -2,6 +2,7 @@ package org.jbashiri.view.load;
 
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Load;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Load;
 import org.jbashiri.utils.CustomEnums;
 
@@ -21,7 +22,7 @@ public class V_LoadConsole implements V_Load {
     }
 
     @Override
-    public void switchUI(ArrayList<String> list, boolean isConsole) {
+    public void switchUI(ArrayList<String> list, boolean isConsole) throws CustomException {
         if (!isConsole)
             return;
 
@@ -41,8 +42,8 @@ public class V_LoadConsole implements V_Load {
         }
     }
 
-    public void init(ArrayList<String> list) {
-        while(sc.hasNextLine()) {
+    public void init(ArrayList<String> list) throws CustomException {
+        while (sc.hasNext()) {
             String line = sc.nextLine().toLowerCase();
             if (m_load.isConsole() == this) {
                 for (int i = 0; i < list.size(); i++) {

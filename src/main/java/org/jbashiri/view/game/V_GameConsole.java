@@ -1,13 +1,61 @@
 package org.jbashiri.view.game;
 
+import org.jbashiri.Main;
+import org.jbashiri.controller.C_Game;
+import org.jbashiri.exceptions.CustomException;
+import org.jbashiri.model.M_Game;
 import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;
+import org.jbashiri.utils.DataBase;
 
+import java.util.Scanner;
+
+import static org.jbashiri.utils.CustomEnums.getEnumButtonGame;
 import static org.jbashiri.utils.CustomStrings.*;
 
-public class UIGameConsole implements UIGame {
+public class V_GameConsole implements V_Game {
+    private C_Game c_game;
+    private M_Game m_game;
+
+    private Scanner sc;
+
+    public V_GameConsole(C_Game c_game, M_Game m_game) {
+        this.c_game = c_game;
+        this.m_game = m_game;
+    }
+
+    @Override
+    public void switchUI(CustomEnums.StateGame state, boolean isConsole) throws CustomException {
+        if (!isConsole)
+            return;
+
+        printPlayerInfo(m_game.getPlayer());
+        printDivider();
+
+        if (sc == null) {
+            sc = Main.getScanner();
+            init(state);
+        }
+    }
+
+    private void init(CustomEnums.StateGame state) throws CustomException {
+//        printMapEnemy(m_game.getMapEnemy());
+        printMapPlayer(m_game.getMapPlayer());
+        printDirections();
+        printDivider();
+
+        //name
+        while (sc.hasNext()) {
+            String line = sc.nextLine().toLowerCase();
+            if (m_game.isConsole() == this) {
+                c_game.btnPress(getEnumButtonGame(line));
+            }
+        }
+    }
+
+
     @Override
     public void printPlayerInfo(Player player) {
         System.out.println("--- I.N.F.O.R.M.A.T.I.O.N. ---");
@@ -178,7 +226,7 @@ public class UIGameConsole implements UIGame {
     }
 
     @Override
-    public void printHealthBanks(int banks) {
+    public void printDropHealthBanks(int banks) {
         System.out.println("DROP health banks: " + banks);
     }
 

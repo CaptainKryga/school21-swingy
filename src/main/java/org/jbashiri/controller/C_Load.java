@@ -1,5 +1,6 @@
 package org.jbashiri.controller;
 
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.model.M_Load;
 import org.jbashiri.utils.CustomLogger;
 
@@ -15,22 +16,22 @@ public class C_Load {
         CustomLogger.singleton.printLog("constructor c_load", 3);
     }
 
-    public void init(boolean isConsole) {
+    public void init(boolean isConsole) throws CustomException {
         m_load = new M_Load(this);
         switchUI(isConsole);
 
         CustomLogger.singleton.printLog("init c_load", 3);
     }
 
-    public void switchUI(boolean isConsole) {
+    public void switchUI(boolean isConsole) throws CustomException {
         m_load.reInit(isConsole);
     }
 
-    public void initCreate(boolean isConsole) {
+    public void initCreate(boolean isConsole) throws CustomException {
         create.init(isConsole);
     }
 
-    public void initGame(String playerName, boolean isConsole) {
+    public void initGame(String playerName, boolean isConsole) throws CustomException {
         game.init(playerName, isConsole);
     }
 }

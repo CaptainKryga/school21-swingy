@@ -1,6 +1,7 @@
 package org.jbashiri.model;
 
 import org.jbashiri.controller.C_Init;
+import org.jbashiri.exceptions.CustomException;
 import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.view.init.V_InitConsole;
 import org.jbashiri.view.init.V_InitGUI;
@@ -15,7 +16,7 @@ public class M_Init {
         v_initGui = new V_InitGUI(c_init, this);
     }
 
-    public void reInit(boolean isConsole) {
+    public void reInit(boolean isConsole) throws CustomException {
         CustomLogger.singleton.printLog("reInit " + isConsole, 3);
         CustomLogger.singleton.printLog("v_init " + v_init, 3);
         if (v_init != null)
