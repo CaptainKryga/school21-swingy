@@ -24,6 +24,8 @@ public class Player {
     protected Artifact head;
     protected int countHealthBanks;
     protected Vector2 pos;
+    public int[][] mapEnemy;
+    public char[][] mapPlayer;
 
     public Player(String playerName, CustomEnums.HeroClass className) {
         level = 1;
@@ -39,8 +41,9 @@ public class Player {
     }
 
     public Player(String playerName, int playerLevel, int experience, int score, int countHealthBanks,
-                           String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck,
-                           String weaponName, int weaponBonus, String chestName, int chestBonus, String headName, int headBonus) {
+                  String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck,
+                  String weaponName, int weaponBonus, String chestName, int chestBonus, String headName, int headBonus,
+                  String playerMap, String enemyMap) {
         this.playerName = playerName;
         this.level = playerLevel;
         this.experience = experience;
@@ -50,6 +53,8 @@ public class Player {
         this.weapon = new Artifact(weaponName, "Weapon", weaponBonus);
         this.chest = new Artifact(chestName, "Chest", chestBonus);
         this.head = new Artifact(headName, "Head", headBonus);
+        this.mapPlayer = setMapPlayerString(playerMap);
+        this.mapEnemy = setMapEnemyString(playerMap);
     }
 
     private HeroClass setClass(CustomEnums.HeroClass type) {
@@ -161,5 +166,53 @@ public class Player {
         if (score < 0) {
             score = 0;
         }
+    }
+
+    public String getMapPlayerString() {
+        StringBuilder res = new StringBuilder("");
+        for (int x = 0; x < mapPlayer.length; x++) {
+            for (int y = 0; y < mapPlayer.length; y++) {
+                res.append(mapPlayer[x][y]);
+            }
+
+            if (x + 1 < mapPlayer.length)
+                res.append('>');
+        }
+        return res.toString();
+    }
+
+    public char[][] setMapPlayerString(String map) {
+        String[] array = map.split(">");
+        char[][] res = new char[array[0].length()][array[0].length()];
+        for (int x = 0; x < res.length; x++) {
+            for (int y = 0; y < res.length; y++) {
+                res[x][y] = array[x].toCharArray()[y];
+            }
+        }
+        return res;
+    }
+
+    public String getMapEnemyString() {
+        StringBuilder res = new StringBuilder("");
+        for (int x = 0; x < mapEnemy.length; x++) {
+            for (int y = 0; y < mapEnemy.length; y++) {
+                res.append(mapEnemy[x][y]);
+            }
+
+            if (x + 1 < mapEnemy.length)
+                res.append('|');
+        }
+        return res.toString();
+    }
+
+    public int[][] setMapEnemyString(String map) {
+        String[] array = map.split(">");
+        int[][] res = new int[array[0].length()][array[0].length()];
+        for (int x = 0; x < res.length; x++) {
+            for (int y = 0; y < res.length; y++) {
+                res[x][y] = array[x].toCharArray()[y];
+            }
+        }
+        return res;
     }
 }

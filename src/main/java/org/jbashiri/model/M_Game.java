@@ -22,8 +22,6 @@ public class M_Game {
 
     private CustomEnums.StateGame state;
     private Player player;
-    private int[][] mapEnemy;
-    private char[][] mapPlayer;
     private Enemy enemy;
     private Artifact tempArtifact;
 
@@ -41,8 +39,8 @@ public class M_Game {
             this.player = DataBase.getHero(playerName);
         }
 
-        mapEnemy = generateEnemy(getSizeMap());
-        mapPlayer = generatePlayer(getSizeMap());
+        player.mapEnemy = generateEnemy(getSizeMap());
+        player.mapPlayer = generatePlayer(getSizeMap());
 
         tempArtifact = new Artifact();
 
@@ -100,11 +98,11 @@ public class M_Game {
     }
 
     public int[][] getMapEnemy() {
-        return mapEnemy;
+        return player.mapEnemy;
     }
 
     public char[][] getMapPlayer() {
-        return mapPlayer;
+        return player.mapPlayer;
     }
 
     public void btnPress(CustomEnums.ButtonGame btn) throws CustomException {
@@ -122,12 +120,12 @@ public class M_Game {
                 reInit(!(isConsole() == v_gameConsole));
             } else if (btn == CustomEnums.ButtonGame.INFO) {
                 v_game.printPlayerInfo(player);
-                v_game.printMapPlayer(mapPlayer);
+                v_game.printMapPlayer(player.mapPlayer);
                 v_game.printDirections();
                 v_game.printDivider();
             } else if (btn == CustomEnums.ButtonGame.HEALTH) {
                 useHealthBank();
-                v_game.printMapPlayer(mapPlayer);
+                v_game.printMapPlayer(player.mapPlayer);
                 v_game.printDirections();
                 v_game.printDivider();
             } else {
@@ -161,12 +159,12 @@ public class M_Game {
             if (btn == CustomEnums.ButtonGame.SET) {
                 setArtifact();
                 state = CustomEnums.StateGame.MOVE;
-                v_game.printMapPlayer(mapPlayer);
+                v_game.printMapPlayer(player.mapPlayer);
                 v_game.printDirections();
                 v_game.printDivider();
             } else if (btn == CustomEnums.ButtonGame.IGNORE) {
                 state = CustomEnums.StateGame.MOVE;
-                v_game.printMapPlayer(mapPlayer);
+                v_game.printMapPlayer(player.mapPlayer);
                 v_game.printDirections();
                 v_game.printDivider();
             } else {
@@ -190,27 +188,27 @@ public class M_Game {
     }
 
     private void UpdateMap(Vector2 vec) throws CustomException {
-        mapPlayer[player.pos.x][player.pos.y] = '*';
+        player.mapPlayer[player.pos.x][player.pos.y] = '*';
         player.pos = new Vector2(player.pos.x + vec.x, player.pos.y + vec.y);
 
         //win
-        if (player.pos.x < 0 || player.pos.x >= mapPlayer.length ||
-                player.pos.y < 0 || player.pos.y >= mapPlayer.length) {
+        if (player.pos.x < 0 || player.pos.x >= player.mapPlayer.length ||
+                player.pos.y < 0 || player.pos.y >= player.mapPlayer.length) {
             player.updateScore(player.getLevel() * 25);
             state = CustomEnums.StateGame.WIN;
             btnPress(CustomEnums.ButtonGame.NULL);
             return;
         }
 
-        if (mapPlayer[player.pos.x][player.pos.y] == '#')
+        if (player.mapPlayer[player.pos.x][player.pos.y] == '#')
             player.updateScore(1);
         else
             player.updateScore(-1);
 
-        mapPlayer[player.pos.x][player.pos.y] = 'P';
+        player.mapPlayer[player.pos.x][player.pos.y] = 'P';
         //fight
-        if (mapEnemy[player.pos.x][player.pos.y] != 0) {
-            mapEnemy[player.pos.x][player.pos.y] = 0;
+        if (player.mapEnemy[player.pos.x][player.pos.y] != 0) {
+            player.mapEnemy[player.pos.x][player.pos.y] = 0;
             state = CustomEnums.StateGame.PREFIGHT;
             enemy = new Enemy(player.getLevel());
             v_game.printFight(player, enemy);
@@ -291,8 +289,8 @@ public class M_Game {
             if (player.gainExperience(450 * player.getLevel())) {
                 v_game.printLevelUp(player);
 
-                mapEnemy = generateEnemy(getSizeMap());
-                mapPlayer = generatePlayer(getSizeMap());
+                player.mapEnemy = generateEnemy(getSizeMap());
+                player.mapPlayer = generatePlayer(getSizeMap());
             }
 
             player.updateScore(10);
