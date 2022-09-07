@@ -3,6 +3,7 @@ package org.jbashiri.controller;
 import org.jbashiri.model.Enemy;
 import org.jbashiri.model.Player;
 import org.jbashiri.model.artifats.Artifact;
+import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 import org.jbashiri.utils.DataBase;
 import org.jbashiri.utils.Vector2;
@@ -30,7 +31,7 @@ public class C_Game {
 
     private Artifact tempArtifact;
 
-    public void init(String playerName, String heroClass, boolean isConsole) {
+    public void init(String playerName, CustomEnums.HeroClass heroClass, boolean isConsole) {
         player = new Player(playerName, heroClass);
         tempArtifact = new Artifact();
         addNewHero(player);

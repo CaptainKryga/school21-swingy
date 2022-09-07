@@ -24,16 +24,22 @@ public class CustomEnums {
         Warrior,
         Paladin,
         Ranger,
-        Mage
+        Mage,
+        Null
+    }
+    public static HeroClass getEnumHeroClass(String btn) {
+        if (btn.equals("warrior")) return HeroClass.Warrior;
+        else if (btn.equals("paladin")) return HeroClass.Paladin;
+        else if (btn.equals("ranger")) return HeroClass.Ranger;
+        else if (btn.equals("mage")) return HeroClass.Mage;
+
+        else return HeroClass.Null;
     }
 
     //game states
-    public static enum State {
-        Init,
-        Switch,
-        Create,
-        Load,
-        Game
+    public static enum StateCreate {
+        Name,
+        Class
     }
 
     //button's
@@ -49,5 +55,15 @@ public class CustomEnums {
         else if (btn.equals("switch")) return Button.InitSwitch;
 
         else return Button.Error;
+    }
+
+    //error's
+    public enum Error {
+        clear,
+        errorWords,
+        errorRestrictionWords,
+        errorIsTaken,
+        errorIncorrectPlayerName,
+        errorIncorrectPlayerClass
     }
 }

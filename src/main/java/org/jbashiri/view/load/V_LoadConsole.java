@@ -3,9 +3,12 @@ package org.jbashiri.view.load;
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Load;
 import org.jbashiri.model.M_Load;
+import org.jbashiri.utils.CustomEnums;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static org.jbashiri.utils.CustomEnums.getEnumButton;
 
 public class V_LoadConsole implements V_Load {
     private C_Load c_load;
@@ -48,10 +51,12 @@ public class V_LoadConsole implements V_Load {
                         return;
                     }
                 }
-                if (line.equals("create")) {
+
+                CustomEnums.Button btn = getEnumButton(sc.nextLine().toLowerCase());
+                if (btn == CustomEnums.Button.InitCreate) {
                     c_load.initCreate(true);
                     break;
-                } else if (line.equals("switch")) {
+                } else if (btn == CustomEnums.Button.InitSwitch) {
                     c_load.switchUI(false);
                     break;
                 } else {
@@ -61,11 +66,6 @@ public class V_LoadConsole implements V_Load {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean isConsole() {
-        return true;
     }
 
     private void printStartMessage() {

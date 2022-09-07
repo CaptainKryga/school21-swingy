@@ -15,13 +15,23 @@ public class CustomValidator {
         validator = factory.getValidator();
     }
 
-    private void check() {
-        String playerName = "e";
-        String heroClass = "t";
-        Player player = new Player(playerName, heroClass);
-        Set<ConstraintViolation<Player>> violations = validator.validate(new Player(playerName, heroClass));
+    public static String isCorrectPlayerClass(String newName) {
+        Set<ConstraintViolation<Player>> violations = validator.validate(new Player(newName, CustomEnums.HeroClass.Warrior));
+        CustomLogger.singleton.printLog(violations.size() + "", 1);
         for (ConstraintViolation<Player> violation : violations) {
             CustomLogger.singleton.printLog(violation.getMessage(), 1);
+            return violation.getMessage();
         }
+        return "";
+    }
+
+    public static String isCorrectPlayerClass(CustomEnums.HeroClass newClass) {
+        Set<ConstraintViolation<Player>> violations = validator.validate(new Player("player", newClass));
+        CustomLogger.singleton.printLog(violations.size() + "", 1);
+        for (ConstraintViolation<Player> violation : violations) {
+            CustomLogger.singleton.printLog(violation.getMessage(), 1);
+            return violation.getMessage();
+        }
+        return "";
     }
 }

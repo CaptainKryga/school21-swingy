@@ -15,7 +15,7 @@ public class HeroClass {
     public int def;
     protected int maxDef;
     public int luck;
-    protected int maxLuck; //max 75
+    protected int maxLuck;
 
     public HeroClass LoadClass(String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck) {
         this.className = getHeroClass(className);

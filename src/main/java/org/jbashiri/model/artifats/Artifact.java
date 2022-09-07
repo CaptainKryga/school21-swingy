@@ -3,13 +3,11 @@ package org.jbashiri.model.artifats;
 import org.jbashiri.utils.CustomEnums;
 import org.jbashiri.utils.CustomLogger;
 
-import javax.validation.constraints.NotNull;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Artifact {
-    @NotNull
     protected String artName;
     protected CustomEnums.TypeArt type;
     protected int bonus;

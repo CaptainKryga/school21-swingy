@@ -12,7 +12,7 @@ import static org.jbashiri.utils.CustomMath.getPow;
 import static org.jbashiri.utils.CustomMath.getRandom;
 
 public class Player {
-    @Size(min = 3, max = 15, message = "min = 3 simbols, max = 15 simbols")
+    @Size(min = 3, max = 15, message = "name can only be between 3 - 15 characters.")
     protected String playerName;
     protected HeroClass heroClass;
     protected int level;
@@ -23,17 +23,17 @@ public class Player {
     protected Artifact head;
     protected int countHealthBanks;
 
-    public Player(String name, String clas) {
+    public Player(String playerName, CustomEnums.HeroClass className) {
         level = 1;
-        this.playerName = name;
-        heroClass = setClass(clas);
+        this.playerName = playerName;
+        this.heroClass = setClass(className);
         weapon = new Artifact();
         chest = new Artifact();
         head = new Artifact();
         countHealthBanks = 1;
     }
 
-    public Player(@Size(min = 3, max = 15)String playerName, int playerLevel, int experience, int score, int countHealthBanks,
+    public Player(String playerName, int playerLevel, int experience, int score, int countHealthBanks,
                            String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck,
                            String weaponName, int weaponBonus, String chestName, int chestBonus, String headName, int headBonus) {
         this.playerName = playerName;
@@ -47,14 +47,14 @@ public class Player {
         this.head = new Artifact(headName, "Head", headBonus);
     }
 
-    private HeroClass setClass(String type) {
-        if (type.equals("warrior"))
+    private HeroClass setClass(CustomEnums.HeroClass type) {
+        if (type == CustomEnums.HeroClass.Warrior)
             return new Warrior();
-        else if (type.equals("mage"))
+        else if (type == CustomEnums.HeroClass.Mage)
             return new Mage();
-        else if (type.equals("ranger"))
+        else if (type == CustomEnums.HeroClass.Ranger)
             return new Ranger();
-        else if (type.equals("paladin"))
+        else if (type == CustomEnums.HeroClass.Paladin)
             return new Paladin();
         return null;
     }

@@ -21,7 +21,6 @@ public class V_LoadGUI implements V_Load {
     private JEditorPane infoPanel = new JEditorPane();
     private JButton btnLoad = new JButton("Load");
     private JButton btnCreate = new JButton("Create");
-//    private JButton btnGame = new JButton("Game");
 
     private String lastSelectHero;
 
@@ -98,11 +97,6 @@ public class V_LoadGUI implements V_Load {
             }
         });
 
-    }
-
-    @Override
-    public boolean isConsole() {
-        return false;
     }
 
     @Override
