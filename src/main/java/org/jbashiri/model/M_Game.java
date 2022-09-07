@@ -343,4 +343,8 @@ public class M_Game {
         v_game.printUseHealthBank(rnd, player.getCountHealthBanks());
     }
 
+    public CustomEnums.StateGame getState() {
+        return state;
+    }
+
 }

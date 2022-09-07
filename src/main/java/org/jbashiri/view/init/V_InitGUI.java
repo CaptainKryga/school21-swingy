@@ -32,7 +32,7 @@ public class V_InitGUI implements V_Init {
         container.add(btnCreate);
         container.add(btnLoad);
         container.add(btnSwitch);
-        frame.setSize(512,512);
+        frame.setSize(1024,1024);
 
         btnCreate.addActionListener(new ActionListener() {
             @Override
