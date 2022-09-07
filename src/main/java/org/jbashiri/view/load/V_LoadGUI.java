@@ -96,17 +96,6 @@ public class V_LoadGUI implements V_Load {
                 c_load.initCreate(false);
             }
         });
-
-    }
-
-    @Override
-    public void inputError() {
-
-    }
-
-    @Override
-    public void printDivider() {
-
     }
 
     @Override
@@ -118,5 +107,15 @@ public class V_LoadGUI implements V_Load {
         } else {
             Main.hideFrame();
         }
+    }
+
+    @Override
+    public void inputError() {
+
+    }
+
+    @Override
+    public void printDivider() {
+
     }
 }

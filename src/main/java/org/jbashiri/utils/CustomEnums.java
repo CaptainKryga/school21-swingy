@@ -28,10 +28,10 @@ public class CustomEnums {
         Null
     }
     public static HeroClass getEnumHeroClass(String btn) {
-        if (btn.equals("warrior")) return HeroClass.Warrior;
-        else if (btn.equals("paladin")) return HeroClass.Paladin;
-        else if (btn.equals("ranger")) return HeroClass.Ranger;
-        else if (btn.equals("mage")) return HeroClass.Mage;
+        if (btn.toLowerCase().equals("warrior")) return HeroClass.Warrior;
+        else if (btn.toLowerCase().equals("paladin")) return HeroClass.Paladin;
+        else if (btn.toLowerCase().equals("ranger")) return HeroClass.Ranger;
+        else if (btn.toLowerCase().equals("mage")) return HeroClass.Mage;
 
         else return HeroClass.Null;
     }

@@ -87,8 +87,10 @@ public class M_Create {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-    public void setPlayerClass(String playerClass) {
+    public void setClassName(String playerClass) {
+        CustomLogger.singleton.printLog("clas1s > " + playerClass, 3);
         this.playerClass = CustomEnums.getEnumHeroClass(playerClass);
+        CustomLogger.singleton.printLog("clas1s > " + this.playerClass, 3);
     }
 
     public String getPlayerName() {

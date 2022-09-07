@@ -33,6 +33,7 @@ public class C_Game {
 
     public void init(String playerName, CustomEnums.HeroClass heroClass, boolean isConsole) {
         player = new Player(playerName, heroClass);
+        CustomLogger.singleton.printLog("Name > " + player.getPlayerName() + " > class > " + player.getHeroClass(), 3);
         tempArtifact = new Artifact();
         addNewHero(player);
         switchUI(isConsole);

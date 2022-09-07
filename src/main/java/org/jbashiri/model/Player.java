@@ -26,6 +26,8 @@ public class Player {
     public Player(String playerName, CustomEnums.HeroClass className) {
         level = 1;
         this.playerName = playerName;
+        CustomLogger.singleton.printLog("class > " + className, 3);
+        this.heroClass = new HeroClass();
         this.heroClass = setClass(className);
         weapon = new Artifact();
         chest = new Artifact();

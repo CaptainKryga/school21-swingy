@@ -56,7 +56,7 @@ public class V_CreateConsole implements V_Create {
                 } else if (state == CustomEnums.StateCreate.Class) {
                     error = m_create.isCorrectNewClassName(line);
                     if (error.type == CustomEnums.Error.clear) {
-                        m_create.setPlayerClass(line);
+                        m_create.setClassName(line);
                         System.out.println("You have chosen a class: " + line);
                         c_create.initGame(m_create.getPlayerName(), m_create.getPlayerClass(), true);
                     }
