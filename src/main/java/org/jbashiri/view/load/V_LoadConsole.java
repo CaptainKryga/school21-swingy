@@ -53,7 +53,7 @@ public class V_LoadConsole implements V_Load {
                     }
                 }
 
-                CustomEnums.Button btn = getEnumButton(sc.nextLine().toLowerCase());
+                CustomEnums.Button btn = getEnumButton(line);
                 if (btn == CustomEnums.Button.InitCreate) {
                     c_load.initCreate(true);
                     break;
@@ -72,7 +72,7 @@ public class V_LoadConsole implements V_Load {
     private void printStartMessage() {
         System.out.println("CREATE => create new hero.");
         System.out.println("SWITCH => switch on GUI.");
-        System.out.println("SELECTing a old hero: ");
+        System.out.println("SELECTing a old hero...");
     }
 
     @Override

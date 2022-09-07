@@ -23,8 +23,6 @@ public class V_GameGUI implements V_Game {
     private M_Game m_game;
 
     private JPanel frame;
-    private String[] directions = {"North", "East", "South", "West"};
-    private JComboBox<String> directionsComboBox = new JComboBox<>(directions);
     private JButton btnMoveNorth = new JButton("NORTH");
     private JButton btnMoveSouth = new JButton("SOUTH");
     private JButton btnMoveWest = new JButton("WEST");
