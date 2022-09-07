@@ -43,4 +43,11 @@ public class CustomStrings {
         }
         return true;
     }
+
+    public static boolean checkIgnoreWords(String str) {
+        if (!str.equals("load") && !str.equals("create") &&
+            !str.equals("switch"))
+            return false;
+        return true;
+    }
 }

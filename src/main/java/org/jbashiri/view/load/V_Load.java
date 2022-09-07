@@ -3,11 +3,13 @@ package org.jbashiri.view.load;
 import java.util.ArrayList;
 
 public interface V_Load {
-    public void init(ArrayList<String> list);
+    void init(ArrayList<String> list);
 
-    public boolean isConsole();
+    boolean isConsole();
 
-    public void inputError();
+    void inputError();
 
-    public void printDivider();
+    void printDivider();
+
+    void switchUI(ArrayList<String> list, boolean isConsole);
 }

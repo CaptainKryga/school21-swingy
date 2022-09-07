@@ -14,12 +14,10 @@ public class V_InitConsole implements V_Init {
     private C_Init c_init;
     private M_Init m_init;
     private Scanner sc;
-    private int id;
 
     public V_InitConsole(C_Init c_init, M_Init m_init) {
         this.c_init = c_init;
         this.m_init = m_init;
-        id++;
     }
 
     @Override
@@ -32,12 +30,11 @@ public class V_InitConsole implements V_Init {
 
         if (sc == null) {
             sc = Main.getScanner();
-            init(id);
+            init();
         }
-
     }
 
-    public void init(int id) {
+    public void init() {
         while(sc.hasNextLine()) {
             CustomEnums.Button btn = getEnumButton(sc.nextLine().toLowerCase());
             CustomLogger.singleton.printLog("BTN: " + btn.toString(), 3);

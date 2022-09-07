@@ -3,6 +3,7 @@ package org.jbashiri.view.init;
 import org.jbashiri.Main;
 import org.jbashiri.controller.C_Init;
 import org.jbashiri.model.M_Init;
+import org.jbashiri.utils.CustomLogger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class V_InitGUI implements V_Init {
     }
 
     public void init() {
+        CustomLogger.singleton.printLog("INIT GUI INIT #", 3);
         frame = Main.getFrame();
         Main.getFrame().setTitle("SWINGY 1.0");
 
@@ -66,10 +68,8 @@ public class V_InitGUI implements V_Init {
             if (frame == null)
                 init();
             Main.showFrame();
-            frame.setVisible(true);
         } else {
             Main.hideFrame();
-            frame.setVisible(false);
         }
     }
 }

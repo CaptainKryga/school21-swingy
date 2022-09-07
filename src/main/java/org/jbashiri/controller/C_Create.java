@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.jbashiri.utils.CustomStrings.checkIgnoreWords;
 import static org.jbashiri.utils.CustomStrings.isOnlyWords;
 
 public class C_Create {
@@ -54,7 +55,7 @@ public class C_Create {
 
                 isCorrectName = true;
 
-                if (!isOnlyWords(line.toLowerCase().toCharArray()))
+                if (!isOnlyWords(line.toLowerCase().toCharArray()) && !checkIgnoreWords(line.toLowerCase()))
                     isCorrectName = false;
 
                 for (int i = 0; i < list.size(); i++) {

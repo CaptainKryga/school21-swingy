@@ -37,8 +37,8 @@ public class C_Game {
         switchUI(isConsole);
     }
 
-    public void init(Player player, boolean isConsole) {
-        this.player = player;
+    public void init(String playerName, boolean isConsole) {
+        this.player = DataBase.getHero(playerName);
         tempArtifact = new Artifact();
         switchUI(isConsole);
     }
