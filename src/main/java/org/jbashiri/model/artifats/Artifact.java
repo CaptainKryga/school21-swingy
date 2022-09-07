@@ -12,7 +12,7 @@ public class Artifact {
     protected CustomEnums.TypeArt type;
     protected int bonus;
 
-    private static int chanceDrop = 100;
+    private static int chanceDrop = 25;
 
     private String S = "QWRTPSDFGHKLZXCVBNMJ";
     private String G = "EYUIOA";

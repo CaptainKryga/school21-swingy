@@ -11,6 +11,8 @@ public class Enemy {
     public int def;
     public int luck;
 
+    private int koof = 2;
+
     public Enemy(int level) {
         HeroClass[] data = new HeroClass[4];
         data[0] = new Warrior();
@@ -20,9 +22,9 @@ public class Enemy {
 
         int rnd = getRandom(0, data.length);
 
-        hp = data[rnd].hp / 2 + data[rnd].hp * level / 10;
-        atk = data[rnd].atk / 2 + data[rnd].atk * level / 10;
-        def = data[rnd].def / 2 + data[rnd].def * level / 10;
+        hp = data[rnd].hp / koof + data[rnd].hp * level / 10;
+        atk = data[rnd].atk / koof + data[rnd].atk * level / 10;
+        def = data[rnd].def / koof + data[rnd].def * level / 10;
         luck = data[rnd].luck + data[rnd].luck * level / 10;
     }
 }
