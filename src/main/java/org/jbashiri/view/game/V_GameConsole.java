@@ -46,11 +46,15 @@ public class V_GameConsole implements V_Game {
         printDirections();
         printDivider();
 
-        //name
+        Loop();
+    }
+
+    public void Loop() throws CustomException {
         while (sc.hasNext()) {
             String line = sc.nextLine().toLowerCase();
             if (m_game.isConsole() == this) {
                 c_game.btnPress(getEnumButtonGame(line));
+                break;
             }
         }
     }

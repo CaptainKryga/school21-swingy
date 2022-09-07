@@ -216,4 +216,9 @@ public class V_GameGUI implements V_Game {
     public void switchUI(CustomEnums.StateGame state, boolean isConsole) {
 
     }
+
+    @Override
+    public void Loop() throws CustomException {
+
+    }
 }

@@ -183,6 +183,10 @@ public class M_Game {
             Main.closeScanner();
             Main.disconnectDataBase();
         }
+
+        if (state != CustomEnums.StateGame.WIN && state != CustomEnums.StateGame.DEFEAT) {
+            v_game.Loop();
+        }
     }
 
     private void UpdateMap(Vector2 vec) throws CustomException {

@@ -32,8 +32,8 @@ public class V_InitConsole implements V_Init {
 
         if (sc == null) {
             sc = Main.getScanner();
-            init();
         }
+        init();
     }
 
     public void init() throws CustomException {
@@ -42,10 +42,13 @@ public class V_InitConsole implements V_Init {
             if (m_init.isConsole() == this) {
                 if (btn == CustomEnums.Button.InitCreate) {
                     c_init.initCreate(true);
+                    break;
                 } else if (btn == CustomEnums.Button.InitLoad) {
                     c_init.initLoad(true);
+                    break;
                 } else if (btn == CustomEnums.Button.InitSwitch) {
                     c_init.switchUI(false);
+                    break;
                 } else {
                     inputError();
                     printChoice();

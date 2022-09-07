@@ -60,6 +60,7 @@ public class V_CreateConsole implements V_Create {
                         m_create.setClassName(line);
                         System.out.println("You have chosen a class: " + line);
                         c_create.initGame(m_create.getPlayerName(), m_create.getPlayerClass(), true);
+                        break;
                     }
                     else {
                         inputErrorName(error, line);

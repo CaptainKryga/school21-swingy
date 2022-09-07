@@ -36,4 +36,5 @@ public interface V_Game {
 
     void switchUI(CustomEnums.StateGame state, boolean isConsole) throws CustomException;
 
+    void Loop() throws CustomException;
 }
