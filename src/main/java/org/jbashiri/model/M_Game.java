@@ -34,13 +34,12 @@ public class M_Game {
     public void initPlayer(boolean isLoad, String playerName, CustomEnums.HeroClass heroClass) {
         if (isLoad) {
             this.player = new Player(playerName, heroClass);
+            player.mapEnemy = generateEnemy(getSizeMap());
+            player.mapPlayer = generatePlayer(getSizeMap());
             addNewHero(player);
         } else {
             this.player = DataBase.getHero(playerName);
         }
-
-        player.mapEnemy = generateEnemy(getSizeMap());
-        player.mapPlayer = generatePlayer(getSizeMap());
 
         tempArtifact = new Artifact();
 
@@ -70,14 +69,14 @@ public class M_Game {
         return (player.getLevel() - 1) * 5 + 10;
     }
 
-    private int[][] generateEnemy(int size) {
-        int[][] map = new int[size][size];
+    private char[][] generateEnemy(int size) {
+        char[][] map = new char[size][size];
         for (int x = 0; x < map.length; x++) {
             for (int y = 0; y < map.length; y++) {
                 if (getRandom(0, 100) > 65) {
-                    map[x][y] = player.getLevel();
+                    map[x][y] = 'e';
                 } else {
-                    map[x][y] = 0;
+                    map[x][y] = '-';
                 }
             }
         }
@@ -97,7 +96,7 @@ public class M_Game {
         return map;
     }
 
-    public int[][] getMapEnemy() {
+    public char[][] getMapEnemy() {
         return player.mapEnemy;
     }
 
@@ -185,6 +184,10 @@ public class M_Game {
         if (state != CustomEnums.StateGame.WIN && state != CustomEnums.StateGame.DEFEAT) {
             v_game.Loop();
         }
+
+        if (isConsole() == v_gameGui) {
+            v_game.printPlayerInfo(player);
+        }
     }
 
     private void UpdateMap(Vector2 vec) throws CustomException {
@@ -207,8 +210,8 @@ public class M_Game {
 
         player.mapPlayer[player.pos.x][player.pos.y] = 'P';
         //fight
-        if (player.mapEnemy[player.pos.x][player.pos.y] != 0) {
-            player.mapEnemy[player.pos.x][player.pos.y] = 0;
+        if (player.mapEnemy[player.pos.x][player.pos.y] != '-') {
+            player.mapEnemy[player.pos.x][player.pos.y] = '-';
             state = CustomEnums.StateGame.PREFIGHT;
             enemy = new Enemy(player.getLevel());
             v_game.printFight(player, enemy);

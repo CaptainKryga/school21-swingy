@@ -85,8 +85,10 @@ public class DataBase {
                 "chestName varchar(30) , " +
                 "chestBonus varchar(30) , " +
                 "headName varchar(30) , " +
-                "headBonus varchar(30) " +
-                "playerMap varchar(10000) " +
+                "headBonus varchar(30), " +
+                "posX int, " +
+                "posY int, " +
+                "playerMap varchar(10000), " +
                 "enemyMap varchar(10000) " +
                 " )";
 //        System.out.println(query);
@@ -102,9 +104,10 @@ public class DataBase {
                 //class
                 "className, hp, maxHp, atk, maxAtk, def, maxDef, luck, maxLuck, " +
                 //artifacts
-                "weaponName, weaponBonus, chestName, chestBonus, headName, headBonus, playerMap, enemyMap) " +
+                "weaponName, weaponBonus, chestName, chestBonus, headName, headBonus, " +
+                "posX, posY, playerMap, enemyMap) " +
                 //values [?]
-                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement prepare = getConnect().prepareStatement(sqlQuery)) {
             //player
             prepare.setString(1, player.getPlayerName());
@@ -131,8 +134,11 @@ public class DataBase {
             prepare.setString(19, player.getArtifactHead().getArtName());
             prepare.setInt(20, player.getArtifactHead().getBonus());
 
-            prepare.setString(21, player.getMapPlayerString());
-            prepare.setString(22, player.getMapEnemyString());
+            prepare.setInt(21, player.getPos().x);
+            prepare.setInt(22, player.getPos().y);
+
+            prepare.setString(23, player.encode(player.mapPlayer));
+            prepare.setString(24, player.encode(player.mapEnemy));
             prepare.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -195,6 +201,7 @@ public class DataBase {
                             res.getString("chestName"), res.getInt("chestBonus"),
                             res.getString("headName"), res.getInt("headBonus"),
 
+                            res.getInt("posX"), res.getInt("posY"),
                             res.getString("playerMap"), res.getString("enemyMap"));
                     break;
                 }
@@ -225,7 +232,7 @@ public class DataBase {
         String sql = "UPDATE heroes SET playerLevel = ?, experience = ?, score = ?, countHealthBanks = ?, " +
                 "className = ?, hp = ?, maxHp = ?, atk = ?, maxAtk = ?, def = ?, maxDef = ?, luck = ?, maxLuck = ?, " +
                 "weaponName = ?, weaponBonus = ?, chestName = ?, chestBonus = ?, headName = ?, headBonus = ?, " +
-                "playerMap = ?, enemyMap = ?" +
+                "posX = ?, posY = ?, playerMap = ?, enemyMap = ?" +
                 "WHERE playerName = ?";
 
         try (PreparedStatement ps = getConnect().prepareStatement(sql)) {
@@ -252,10 +259,13 @@ public class DataBase {
             ps.setString(18, player.getArtifactHead().getArtName());
             ps.setInt(19, player.getArtifactHead().getBonus());
 
-            ps.setString(20, player.getMapPlayerString());
-            ps.setString(21, player.getMapEnemyString());
+            ps.setInt(20, player.getPos().x);
+            ps.setInt(21, player.getPos().y);
 
-            ps.setString(22, player.getPlayerName());
+            ps.setString(22, player.encode(player.mapPlayer));
+            ps.setString(23, player.encode(player.mapEnemy));
+
+            ps.setString(24, player.getPlayerName());
 
             ps.executeUpdate();
         } catch (SQLException e) {

@@ -24,7 +24,7 @@ public class Player {
     protected Artifact head;
     protected int countHealthBanks;
     protected Vector2 pos;
-    public int[][] mapEnemy;
+    public char[][] mapEnemy;
     public char[][] mapPlayer;
 
     public Player(String playerName, CustomEnums.HeroClass className) {
@@ -43,7 +43,7 @@ public class Player {
     public Player(String playerName, int playerLevel, int experience, int score, int countHealthBanks,
                   String className, int hp, int maxHp, int atk, int maxAtk, int def, int maxDef, int luck, int maxLuck,
                   String weaponName, int weaponBonus, String chestName, int chestBonus, String headName, int headBonus,
-                  String playerMap, String enemyMap) {
+                  int posX, int posY, String playerMap, String enemyMap) {
         this.playerName = playerName;
         this.level = playerLevel;
         this.experience = experience;
@@ -53,8 +53,9 @@ public class Player {
         this.weapon = new Artifact(weaponName, "Weapon", weaponBonus);
         this.chest = new Artifact(chestName, "Chest", chestBonus);
         this.head = new Artifact(headName, "Head", headBonus);
-        this.mapPlayer = setMapPlayerString(playerMap);
-        this.mapEnemy = setMapEnemyString(playerMap);
+        this.pos = new Vector2(posX, posY);
+        this.mapPlayer = decode(playerMap);
+        this.mapEnemy = decode(enemyMap);
     }
 
     private HeroClass setClass(CustomEnums.HeroClass type) {
@@ -168,20 +169,20 @@ public class Player {
         }
     }
 
-    public String getMapPlayerString() {
+    public String encode(char[][] map) {
         StringBuilder res = new StringBuilder("");
-        for (int x = 0; x < mapPlayer.length; x++) {
-            for (int y = 0; y < mapPlayer.length; y++) {
-                res.append(mapPlayer[x][y]);
+        for (int x = 0; x < map.length; x++) {
+            for (int y = 0; y < map.length; y++) {
+                res.append(map[x][y]);
             }
 
-            if (x + 1 < mapPlayer.length)
+            if (x + 1 < map.length)
                 res.append('>');
         }
         return res.toString();
     }
 
-    public char[][] setMapPlayerString(String map) {
+    public char[][] decode(String map) {
         String[] array = map.split(">");
         char[][] res = new char[array[0].length()][array[0].length()];
         for (int x = 0; x < res.length; x++) {
@@ -192,27 +193,7 @@ public class Player {
         return res;
     }
 
-    public String getMapEnemyString() {
-        StringBuilder res = new StringBuilder("");
-        for (int x = 0; x < mapEnemy.length; x++) {
-            for (int y = 0; y < mapEnemy.length; y++) {
-                res.append(mapEnemy[x][y]);
-            }
-
-            if (x + 1 < mapEnemy.length)
-                res.append('|');
-        }
-        return res.toString();
-    }
-
-    public int[][] setMapEnemyString(String map) {
-        String[] array = map.split(">");
-        int[][] res = new int[array[0].length()][array[0].length()];
-        for (int x = 0; x < res.length; x++) {
-            for (int y = 0; y < res.length; y++) {
-                res[x][y] = array[x].toCharArray()[y];
-            }
-        }
-        return res;
+    public Vector2 getPos() {
+        return pos;
     }
 }

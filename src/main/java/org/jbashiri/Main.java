@@ -29,6 +29,10 @@ public class Main {
         new CustomValidator();
         new C_Init(isConsole);
 
+//        createNewDataBase("heroes");
+//        createNewTable("heroes");
+//        deleteAllHeroes();
+
         disconnectDataBase();
     }
 

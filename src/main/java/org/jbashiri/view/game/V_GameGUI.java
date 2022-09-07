@@ -259,7 +259,6 @@ public class V_GameGUI implements V_Game {
         "Health banks: " + player.getCountHealthBanks();
 
         infoPanel.setText(result);
-
     }
 
     @Override
@@ -320,7 +319,6 @@ public class V_GameGUI implements V_Game {
                 getSpaces(10 - getLengthNumber(player.getHeroClass().def)) + "" + enemy.def + "\n" +
         "write FIGHT => start battle" + "\n" +
         "write LEAVE => chance 50% on leave battle");
-
     }
 
     @Override
